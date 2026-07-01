@@ -1,0 +1,50 @@
+{
+  "co-www-home": {
+    "status": "up",
+    "consecutive": 1,
+    "alertedStatus": "up",
+    "since": "2026-07-01T22:34:09.381Z"
+  },
+  "co-www-directory": {
+    "status": "up",
+    "consecutive": 1,
+    "alertedStatus": "up",
+    "since": "2026-07-01T22:34:09.381Z"
+  },
+  "co-api-health": {
+    "status": "slow",
+    "consecutive": 1,
+    "alertedStatus": "up",
+    "since": "2026-07-01T22:34:09.381Z"
+  },
+  "co-admin": {
+    "status": "up",
+    "consecutive": 1,
+    "alertedStatus": "up",
+    "since": "2026-07-01T22:34:09.381Z"
+  },
+  "co-vendor": {
+    "status": "up",
+    "consecutive": 1,
+    "alertedStatus": "up",
+    "since": "2026-07-01T22:34:09.381Z"
+  },
+  "co-cdn": {
+    "status": "slow",
+    "consecutive": 1,
+    "alertedStatus": "up",
+    "since": "2026-07-01T22:34:09.381Z"
+  },
+  "co-stg-api": {
+    "status": "slow",
+    "consecutive": 1,
+    "alertedStatus": "up",
+    "since": "2026-07-01T22:34:09.381Z"
+  },
+  "co-stg-www": {
+    "status": "down",
+    "consecutive": 1,
+    "alertedStatus": "up",
+    "since": "2026-07-01T22:34:09.381Z"
+  }
+}

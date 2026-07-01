@@ -1,0 +1,48 @@
+name: probe
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+    inputs:
+      vantage:
+        description: "Force multi-vantage check"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: probe
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Probe endpoints
+        run: node scripts/probe.mjs
+        env:
+          RUN_VANTAGE: ${{ inputs.vantage && '1' || '' }}
+      - name: Raise / resolve alerts
+        run: node scripts/alert.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          ALERT_EMAILS: ${{ vars.ALERT_EMAILS }}
+          ALERT_FROM: ${{ vars.ALERT_FROM }}
+      - name: Commit data
+        run: |
+          git config user.name "hct-pulse[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/data
+          if ! git diff --cached --quiet; then
+            git commit -m "probe $(date -u +%FT%TZ)"
+            git pull --rebase origin main
+            git push
+          fi

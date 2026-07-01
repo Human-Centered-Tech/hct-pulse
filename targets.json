@@ -1,0 +1,26 @@
+{
+  "services": [
+    {
+      "name": "Catholic Owned — Production",
+      "endpoints": [
+        { "id": "co-www-home", "name": "Storefront home", "url": "https://www.catholicowned.com/us", "warnMs": 3000, "critMs": 10000 },
+        { "id": "co-www-directory", "name": "Directory", "url": "https://www.catholicowned.com/us/directory", "warnMs": 3000, "critMs": 10000 },
+        { "id": "co-api-health", "name": "Backend API /health", "url": "https://api.catholicowned.com/health", "warnMs": 1500, "critMs": 6000 },
+        { "id": "co-admin", "name": "Admin dashboard", "url": "https://v3-admin.catholicowned.com/", "warnMs": 2000, "critMs": 8000 },
+        { "id": "co-vendor", "name": "Vendor dashboard", "url": "https://v3-vendor.catholicowned.com/", "warnMs": 2000, "critMs": 8000 },
+        { "id": "co-cdn", "name": "Media CDN (minio)", "url": "https://v3-cdn.catholicowned.com/", "acceptStatus": [200, 403], "warnMs": 3000, "critMs": 10000 }
+      ]
+    },
+    {
+      "name": "Catholic Owned — Staging",
+      "endpoints": [
+        { "id": "co-stg-api", "name": "Backend /health (staging)", "url": "https://backend-staging-5366.up.railway.app/health", "warnMs": 3000, "critMs": 12000, "alert": false },
+        { "id": "co-stg-www", "name": "Storefront (staging)", "url": "https://marketplace-staging-f930.up.railway.app/us", "acceptStatus": [200, 500], "warnMs": 5000, "critMs": 15000, "alert": false }
+      ]
+    }
+  ],
+  "vantage": {
+    "urls": ["https://api.catholicowned.com/health", "https://www.catholicowned.com/us"],
+    "nodes": ["us1.node.check-host.net", "us2.node.check-host.net", "us3.node.check-host.net", "ca1.node.check-host.net"]
+  }
+}

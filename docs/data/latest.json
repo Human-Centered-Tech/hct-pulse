@@ -1,0 +1,94 @@
+{
+  "ts": "2026-07-01T22:34:09.381Z",
+  "overall": "slow",
+  "results": [
+    {
+      "id": "co-www-home",
+      "name": "Storefront home",
+      "url": "https://www.catholicowned.com/us",
+      "state": "up",
+      "status": 200,
+      "ttfb": 555,
+      "total": 627,
+      "edge": "mia1",
+      "service": "Catholic Owned — Production"
+    },
+    {
+      "id": "co-www-directory",
+      "name": "Directory",
+      "url": "https://www.catholicowned.com/us/directory",
+      "state": "up",
+      "status": 200,
+      "ttfb": 466,
+      "total": 557,
+      "edge": "mia1",
+      "service": "Catholic Owned — Production"
+    },
+    {
+      "id": "co-api-health",
+      "name": "Backend API /health",
+      "url": "https://api.catholicowned.com/health",
+      "state": "slow",
+      "status": 200,
+      "ttfb": 4692,
+      "total": 4693,
+      "edge": "mia1",
+      "service": "Catholic Owned — Production"
+    },
+    {
+      "id": "co-admin",
+      "name": "Admin dashboard",
+      "url": "https://v3-admin.catholicowned.com/",
+      "state": "up",
+      "status": 200,
+      "ttfb": 306,
+      "total": 308,
+      "edge": "mia1",
+      "service": "Catholic Owned — Production"
+    },
+    {
+      "id": "co-vendor",
+      "name": "Vendor dashboard",
+      "url": "https://v3-vendor.catholicowned.com/",
+      "state": "up",
+      "status": 200,
+      "ttfb": 392,
+      "total": 393,
+      "edge": "mia1",
+      "service": "Catholic Owned — Production"
+    },
+    {
+      "id": "co-cdn",
+      "name": "Media CDN (minio)",
+      "url": "https://v3-cdn.catholicowned.com/",
+      "state": "slow",
+      "status": 403,
+      "ttfb": 5707,
+      "total": 5707,
+      "edge": "mia1",
+      "service": "Catholic Owned — Production"
+    },
+    {
+      "id": "co-stg-api",
+      "name": "Backend /health (staging)",
+      "url": "https://backend-staging-5366.up.railway.app/health",
+      "state": "slow",
+      "status": 200,
+      "ttfb": 11392,
+      "total": 11392,
+      "edge": "mia1",
+      "service": "Catholic Owned — Staging"
+    },
+    {
+      "id": "co-stg-www",
+      "name": "Storefront (staging)",
+      "url": "https://marketplace-staging-f930.up.railway.app/us",
+      "state": "down",
+      "status": 200,
+      "ttfb": 6031,
+      "total": 26307,
+      "edge": "mia1",
+      "service": "Catholic Owned — Staging"
+    }
+  ]
+}
