@@ -97,7 +97,7 @@
     <div class="chip"><span class="dot" style="background:var(--held)"></span><span class="n">2</span><span class="l">Held for review</span></div>
     <div class="chip"><span class="dot" style="background:var(--info)"></span><span class="n">6</span><span class="l">Answered — info</span></div>
     <div class="chip"><span class="dot" style="background:var(--decide)"></span><span class="n">9</span><span class="l">Needs a decision</span></div>
-    <div class="chip"><span class="dot" style="background:var(--none)"></span><span class="n">5</span><span class="l">Not started</span></div>
+    <div class="chip"><span class="dot" style="background:var(--none)"></span><span class="n">7</span><span class="l">Not started</span></div>
     <div class="chip"><span class="dot" style="background:var(--mobile)"></span><span class="n">8</span><span class="l">Mobile track</span></div>
   </div>
 
@@ -177,13 +177,15 @@
 
   <!-- NOT STARTED -->
   <section class="grp none">
-    <div class="grp-head"><span class="bar"></span><h2>Not started</h2><span class="cnt">5</span><span class="sub">no blocker — just not reached yet</span></div>
+    <div class="grp-head"><span class="bar"></span><h2>Not started</h2><span class="cnt">7</span><span class="sub">no blocker — just not reached yet</span></div>
     <div class="grid">
       <div class="item"><div class="t">Move backend URLs off v3</div><div class="d">Onto the proper domain — infra/DNS work.</div><span class="src">Liam</span></div>
       <div class="item"><div class="t">Load owner-interview data from Bubble</div><div class="d">One-time data migration into the platform.</div><span class="src">List 2</span></div>
       <div class="item"><div class="t">Refund the test order in Stripe</div><div class="d">A financial action — you'll run this one yourself.</div><span class="src">Liam</span></div>
       <div class="item"><div class="t">Follow up with Joe on auth</div><div class="d">Confirm the auth issues from the last call are fully resolved.</div><span class="src">Liam</span></div>
       <div class="item"><div class="t">Order-tracking screen error</div><div class="d">Was "being fixed" 6/30 — not touched this session; needs a status check.</div><span class="src">Liam</span></div>
+      <div class="item"><div class="t">Move media bucket to US East</div><div class="d">Part of the Railway east-migration plan (backend/DB/bucket still us-west2); 3.8 GB to move.</div><span class="src">Added 7/2</span></div>
+      <div class="item"><div class="t">Re-host Shopify product images on our CDN</div><div class="d">47 imported products point at cdn.shopify.com (allowlisted 7/2 as a hotfix). Import + rewrite URLs + fix CSV import path. Do after the storage decision + bucket move.</div><span class="src">Added 7/2</span></div>
     </div>
   </section>
 
