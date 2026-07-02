@@ -85,6 +85,9 @@ async function fetchHistory() {
 }
 
 const fmtTime = t => new Date(t).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+// Axis labels carry the weekday: a 24h window starts and ends at the same
+// clock time, so bare times would read as three identical labels.
+const fmtAxis = t => new Date(t).toLocaleString([], { weekday: "short", hour: "numeric", minute: "2-digit" });
 const fmtMs = ms => (ms == null ? "—" : ms >= 1000 ? (ms / 1000).toFixed(1) + "s" : ms + "ms");
 
 // Points are plotted at their true time within the 24h window, so scheduler
@@ -101,7 +104,7 @@ function sparkline(points, warnMs, t0, t1) {
   return `<svg class="spark" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none">
     <line x1="0" y1="${warnY}" x2="${w}" y2="${warnY}" stroke="var(--border)" stroke-dasharray="3 4"/>
     <path d="${path}" fill="none" stroke="var(--up)" stroke-width="1.6" opacity=".9"/>${dots}</svg>
-  <div class="axis"><span>${fmtTime(t0)}</span><span>${fmtTime((t0 + t1) / 2)}</span><span>${fmtTime(t1)}</span></div>`;
+  <div class="axis"><span>${fmtAxis(t0)}</span><span>${fmtAxis((t0 + t1) / 2)}</span><span>now</span></div>`;
 }
 
 async function render() {
