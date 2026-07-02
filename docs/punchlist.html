@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Catholic Owned — Punch-List Status</title>
+<style>
+  :root{
+    --paper:#eef0f4; --surface:#ffffff; --ink:#14213d; --body:#454f68; --muted:#8890a3;
+    --navy:#17294A; --gold:#9a7b1f; --hair:#dfe3ea;
+    --live:#1f7a4d; --live-bg:#e7f3ec;
+    --go:#1d4ed8; --go-bg:#e7edfc;
+    --held:#b4530a; --held-bg:#fbecdd;
+    --info:#0e7490; --info-bg:#e2f1f4;
+    --decide:#7127c9; --decide-bg:#f0e9fb;
+    --none:#5b6577; --none-bg:#eceef2;
+    --mobile:#3f3fb0; --mobile-bg:#e9e9f7;
+    --serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+    --sans:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--body);font-family:var(--sans);
+    font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px 72px}
+
+  header{background:linear-gradient(180deg,#17294A,#101d38);color:#eef1f6;
+    padding:38px 0 30px;border-bottom:3px solid var(--gold)}
+  header .wrap{padding-bottom:0}
+  .kicker{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#c7ad63;font-weight:700}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(26px,4vw,38px);
+    margin:.28em 0 .12em;color:#fff;text-wrap:balance;letter-spacing:.2px}
+  header p{margin:0;color:#aeb9cf;max-width:66ch;font-size:14.5px}
+  header .date{color:#d7deec;font-weight:600}
+
+  /* summary chips */
+  .summary{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 6px}
+  .chip{display:flex;align-items:baseline;gap:8px;background:var(--surface);
+    border:1px solid var(--hair);border-radius:9px;padding:9px 13px;box-shadow:0 1px 0 rgba(20,33,61,.03)}
+  .chip .n{font-size:19px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
+  .chip .l{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+  .dot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;align-self:center}
+
+  /* callout */
+  .callout{margin:22px 0 4px;background:var(--go-bg);border:1px solid #c4d4f6;
+    border-left:5px solid var(--go);border-radius:11px;padding:15px 18px}
+  .callout h3{margin:0 0 4px;font-size:14px;color:#173a8f;letter-spacing:.02em}
+  .callout p{margin:0;color:#31427a;font-size:13.5px}
+  .callout b{color:#173a8f}
+
+  section.grp{margin-top:30px}
+  .grp-head{display:flex;align-items:center;gap:11px;padding-bottom:10px;
+    border-bottom:2px solid var(--hair);margin-bottom:16px}
+  .grp-head .bar{width:4px;height:22px;border-radius:3px}
+  .grp-head h2{font-family:var(--serif);font-weight:600;font-size:20px;color:var(--ink);margin:0}
+  .grp-head .cnt{font-size:12px;font-weight:700;color:#fff;border-radius:20px;
+    padding:2px 9px;font-variant-numeric:tabular-nums}
+  .grp-head .sub{margin-left:auto;font-size:12.5px;color:var(--muted)}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px}
+  .item{background:var(--surface);border:1px solid var(--hair);border-radius:10px;
+    padding:13px 15px;border-left:4px solid var(--none)}
+  .item .t{font-weight:650;color:var(--ink);font-size:14.5px;line-height:1.35}
+  .item .d{color:var(--body);font-size:13px;margin-top:3px}
+  .item .src{display:inline-block;margin-top:8px;font-size:10.5px;font-weight:700;
+    letter-spacing:.05em;text-transform:uppercase;color:var(--muted);
+    background:#f1f3f7;border-radius:5px;padding:2px 7px}
+
+  /* status color bindings */
+  .live .bar,.live .item{border-color:var(--live)} .live .cnt{background:var(--live)} .live .item{border-left-color:var(--live)}
+  .go .bar{background:var(--go)} .go .cnt{background:var(--go)} .go .item{border-left-color:var(--go)}
+  .held .bar{background:var(--held)} .held .cnt{background:var(--held)} .held .item{border-left-color:var(--held)}
+  .info .bar{background:var(--info)} .info .cnt{background:var(--info)} .info .item{border-left-color:var(--info)}
+  .decide .bar{background:var(--decide)} .decide .cnt{background:var(--decide)} .decide .item{border-left-color:var(--decide)}
+  .none .bar{background:var(--none)} .none .cnt{background:var(--none)} .none .item{border-left-color:var(--none)}
+  .mobile .bar{background:var(--mobile)} .mobile .cnt{background:var(--mobile)} .mobile .item{border-left-color:var(--mobile)}
+
+  footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--hair);
+    font-size:12.5px;color:var(--muted)}
+  footer b{color:var(--body)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="kicker">Catholic Owned · Launch Punch-List</div>
+    <h1>Where everything stands</h1>
+    <p><span class="date">As of Jul 2, 2026 (morning).</span> Every item Brooke flagged Jul 1, plus the meeting list, my carry-forward list, and what came up since. Anything marked <b style="color:#8fd6ab">Live</b> is on <b style="color:#cdd7ea">production</b>; nothing else has shipped without review.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="summary">
+    <div class="chip"><span class="dot" style="background:var(--live)"></span><span class="n">24</span><span class="l">Live on prod</span></div>
+    <div class="chip"><span class="dot" style="background:var(--held)"></span><span class="n">2</span><span class="l">Held for review</span></div>
+    <div class="chip"><span class="dot" style="background:var(--info)"></span><span class="n">6</span><span class="l">Answered — info</span></div>
+    <div class="chip"><span class="dot" style="background:var(--decide)"></span><span class="n">9</span><span class="l">Needs a decision</span></div>
+    <div class="chip"><span class="dot" style="background:var(--none)"></span><span class="n">5</span><span class="l">Not started</span></div>
+    <div class="chip"><span class="dot" style="background:var(--mobile)"></span><span class="n">8</span><span class="l">Mobile track</span></div>
+  </div>
+
+  <div class="callout">
+    <h3>One action waiting on you</h3>
+    <p><b>Seller-backfill APPLY</b> — the dry-run is confirmed on prod: it would flip <b>8 stuck "inactive" shops</b> to Live (incl. <b>Knights Coffee</b>), and correctly skips the one that's on vacation (Antonina's Garden). Say go and I run <b>APPLY=1</b>.</p>
+  </div>
+
+  <!-- LIVE -->
+  <section class="grp live">
+    <div class="grp-head"><span class="bar"></span><h2>Live on production</h2><span class="cnt">24</span><span class="sub">shipped &amp; verified</span></div>
+    <div class="grid">
+      <div class="item"><div class="t">Marketplace search "X" spacing</div><div class="d">Clear-X no longer crammed against the search button.</div><span class="src">Brooke 1</span></div>
+      <div class="item"><div class="t">Standardized Shop + Events search bars</div><div class="d">Gray magnifier left, navy "Search" button right (web).</div><span class="src">Brooke 2</span></div>
+      <div class="item"><div class="t">Product-page shipping copy fixed</div><div class="d">Removed the "return the chair" / paid-expedited boilerplate.</div><span class="src">Brooke 5</span></div>
+      <div class="item"><div class="t">Admin: upload the 8 listing photos</div><div class="d">Gallery editor on the listing detail page.</div><span class="src">Brooke 6</span></div>
+      <div class="item"><div class="t">Mobile-web product cards scaled down</div><div class="d">2-up grid, less scrolling on phones.</div><span class="src">Brooke 9</span></div>
+      <div class="item"><div class="t">Shop pagination bug</div><div class="d">Page 2 now shows items 49–96 (was duplicating page 1).</div><span class="src">Meeting 4</span></div>
+      <div class="item"><div class="t">Editable event "format" (agenda)</div><div class="d">Admin-editable + renders on the public event page.</div><span class="src">List 4</span></div>
+      <div class="item"><div class="t">Merchant email € → $</div><div class="d">Verified the USD template override is in effect.</div><span class="src">Liam</span></div>
+      <div class="item"><div class="t">"Inactive" sellers — going-forward fix</div><div class="d">Admin grandfather-link now flips store_status to Live.</div><span class="src">Liam</span></div>
+      <div class="item"><div class="t">Real names in messaging (both inboxes)</div><div class="d">Store/buyer names + product titles instead of ID codes.</div><span class="src">Liam</span></div>
+      <div class="item"><div class="t">No re-login after business signup</div><div class="d">become-merchant now hands back a vendor session token.</div><span class="src">Liam</span></div>
+      <div class="item"><div class="t">Vendor onboarding tips</div><div class="d">Products-vs-variants + inventory guidance inline.</div><span class="src">Liam</span></div>
+      <div class="item"><div class="t">Storefront "Message" button icon</div><div class="d">Envelope now visible un-hovered (was a solid blob).</div><span class="src">Brooke msg</span></div>
+      <div class="item"><div class="t">Merchant name + link on product page</div><div class="d">Web PDP links through to the seller's storefront.</div><span class="src">Brooke msg</span></div>
+      <div class="item"><div class="t">Consolidated buyer order email</div><div class="d">One email per checkout, not one per seller. <em>Numbering flagged.</em></div><span class="src">Liam</span></div>
+      <div class="item"><div class="t">Seller status badge + vacation toggle</div><div class="d">Live/On-vacation/Draft badge + pause/reopen in admin.</div><span class="src">Brooke 3</span></div>
+      <div class="item"><div class="t">Sacred Exchange (Barter) delete button</div><div class="d">Admin → Barter → a listing → "Delete Listing".</div><span class="src">Liam</span></div>
+      <div class="item"><div class="t">Google Analytics wiring (web)</div><div class="d">Dormant until NEXT_PUBLIC_GA_ID is set. <em>Mobile pending.</em></div><span class="src">Meeting 1</span></div>
+      <div class="item"><div class="t">Dependency / security remediation</div><div class="d">Criticals + highs fixed; mikro-orm bump reverted (see decision).</div><span class="src">Added</span></div>
+      <div class="item"><div class="t">Catholic Canvas Company import</div><div class="d">47 draft products — 16x20 default, numeric sizes, CDN images. Brooke reviews &amp; publishes.</div><span class="src">Added</span></div>
+      <div class="item"><div class="t">Default-size + numeric size order</div><div class="d">PDP pre-selects a chosen size; sizes sort small→large.</div><span class="src">Added</span></div>
+      <div class="item"><div class="t">Staging → prod deploy pipeline</div><div class="d">Real gate: build on staging, promote in the evening.</div><span class="src">Added</span></div>
+      <div class="item"><div class="t">Trade-listing hard-delete works</div><div class="d">Backend endpoint (6/30) + the admin button now.</div><span class="src">Liam</span></div>
+      <div class="item"><div class="t">CRM app-users API — diagnosed</div><div class="d">Our side sends the fields correctly; fix is a 1-line segment change on Brooke's side (see Answered).</div><span class="src">CRM</span></div>
+    </div>
+  </section>
+
+  <!-- HELD -->
+  <section class="grp held">
+    <div class="grp-head"><span class="bar"></span><h2>Held for your review</h2><span class="cnt">2</span><span class="sub">built, not shipped — money code</span></div>
+    <div class="grid">
+      <div class="item"><div class="t">Seller payout reliability</div><div class="d">Pay every 4h (was daily), per-seller isolation, failure alerting. On <code>feat/seller-payout-fixes</code>.</div><span class="src">Liam</span></div>
+      <div class="item"><div class="t">Refund over-charge + tax in payouts</div><div class="d">Refund reverses only the seller's net; payouts exclude tax/shipping. Overrides Mercur — needs live-boot validation + policy sign-off.</div><span class="src">Liam</span></div>
+    </div>
+  </section>
+
+  <!-- ANSWERED -->
+  <section class="grp info">
+    <div class="grp-head"><span class="bar"></span><h2>Answered — info for Brooke</h2><span class="cnt">6</span><span class="sub">no code needed</span></div>
+    <div class="grid">
+      <div class="item"><div class="t">Where to add categories</div><div class="d">Admin → <b>/directory/categories</b> (business) and <b>/categories</b> (product), full CRUD.</div><span class="src">Brooke 10</span></div>
+      <div class="item"><div class="t">"Logo lost on claim"</div><div class="d">No data loss — logo kept; listing just hidden until the owner pays to go live.</div><span class="src">List 3</span></div>
+      <div class="item"><div class="t">Parishes — where users manage them</div><div class="d">It's a business-listing feature (/user/directory/edit). No user-level parish or "Parish page" today (that's net-new — see Decisions).</div><span class="src">Brooke 4</span></div>
+      <div class="item"><div class="t">Shopify live-connect (Pax Rosa)</div><div class="d">Not code — a Shopify Partner "distribution method" setting. CSV import is a working alternative now.</div><span class="src">Brooke 8</span></div>
+      <div class="item"><div class="t">Storage bucket 80% full</div><div class="d">It's a 5 GB Hobby-plan volume. Pro ($20/mo) → 50 GB, or move media to object storage. <b>Not</b> the $2,000 plan.</div><span class="src">Added</span></div>
+      <div class="item"><div class="t">CRM segment fix (app users)</div><div class="d">Change the segment's "Last activity date" filter to "Created at" — new signups will flow in immediately.</div><span class="src">CRM</span></div>
+    </div>
+  </section>
+
+  <!-- DECISIONS -->
+  <section class="grp decide">
+    <div class="grp-head"><span class="bar"></span><h2>Needs a decision (you / Brooke)</h2><span class="cnt">9</span><span class="sub">not started — blocked on a call</span></div>
+    <div class="grid">
+      <div class="item"><div class="t">Manual tier override in admin</div><div class="d">Ability to set a seller's tier + enterprise/premium placement — pin vs. override semantics.</div><span class="src">Brooke 7</span></div>
+      <div class="item"><div class="t">Returns-policy naming</div><div class="d">"Refund policy" vs "Shipping &amp; refund policy," and one-profile-vs-per-product.</div><span class="src">Brooke 5</span></div>
+      <div class="item"><div class="t">Trust-badge claims + legal terms</div><div class="d">"30-day returns" / "portion supports ministries" — true for all? Legal copy still in edits.</div><span class="src">Brooke msg</span></div>
+      <div class="item"><div class="t">Parish vision (net-new)</div><div class="d">User-level parish → same-parish discovery + trade. Not in the SOW/PRD — roadmap/change-order call.</div><span class="src">Added</span></div>
+      <div class="item"><div class="t">Order-email numbering scheme</div><div class="d">Master # = order_set id; synthetic 2-1/2-2 sub-numbers — keep the real order # alongside?</div><span class="src">Added</span></div>
+      <div class="item"><div class="t">Payout policy flags</div><div class="d">Shipping exclusion, payout cadence/trigger, PAYMENTS_DISABLED gating.</div><span class="src">Added</span></div>
+      <div class="item"><div class="t">Google Analytics go-live</div><div class="d">Provide the GA measurement ID; add cookie-consent gating for EU visitors.</div><span class="src">Meeting 1</span></div>
+      <div class="item"><div class="t">Event "format" = agenda?</div><div class="d">Confirm the field means the agenda (and free-form vs. 3 titled cards).</div><span class="src">List 4</span></div>
+      <div class="item"><div class="t">Storage: Pro upgrade vs. object storage</div><div class="d">Quick $20 Pro + resize now, or migrate media to R2/object storage.</div><span class="src">Added</span></div>
+    </div>
+  </section>
+
+  <!-- NOT STARTED -->
+  <section class="grp none">
+    <div class="grp-head"><span class="bar"></span><h2>Not started</h2><span class="cnt">5</span><span class="sub">no blocker — just not reached yet</span></div>
+    <div class="grid">
+      <div class="item"><div class="t">Move backend URLs off v3</div><div class="d">Onto the proper domain — infra/DNS work.</div><span class="src">Liam</span></div>
+      <div class="item"><div class="t">Load owner-interview data from Bubble</div><div class="d">One-time data migration into the platform.</div><span class="src">List 2</span></div>
+      <div class="item"><div class="t">Refund the test order in Stripe</div><div class="d">A financial action — you'll run this one yourself.</div><span class="src">Liam</span></div>
+      <div class="item"><div class="t">Follow up with Joe on auth</div><div class="d">Confirm the auth issues from the last call are fully resolved.</div><span class="src">Liam</span></div>
+      <div class="item"><div class="t">Order-tracking screen error</div><div class="d">Was "being fixed" 6/30 — not touched this session; needs a status check.</div><span class="src">Liam</span></div>
+    </div>
+  </section>
+
+  <!-- MOBILE -->
+  <section class="grp mobile">
+    <div class="grp-head"><span class="bar"></span><h2>Mobile track</h2><span class="cnt">8</span><span class="sub">separate — ships via EAS build, not the web pipeline</span></div>
+    <div class="grid">
+      <div class="item"><div class="t">Raw-HTML product description</div><div class="d">Fixed in the mobile repo (uncommitted) — needs a build.</div><span class="src">Brooke msg</span></div>
+      <div class="item"><div class="t">Merchant name + shop link on product</div><div class="d">Coded in the mobile repo (uncommitted) — needs a build.</div><span class="src">Brooke msg</span></div>
+      <div class="item"><div class="t">Standardized search bars (mobile)</div><div class="d">Apply the same design + layout audit on mobile.</div><span class="src">Brooke 2</span></div>
+      <div class="item"><div class="t">Mobile-web filters + categories</div><div class="d">Fix filtering/category behavior on mobile web.</div><span class="src">List 1</span></div>
+      <div class="item"><div class="t">Remaining deep links</div><div class="d">Implement in the next mobile build.</div><span class="src">Meeting 2</span></div>
+      <div class="item"><div class="t">iOS map full-screen bug</div><div class="d">Sent in chat — not yet addressed.</div><span class="src">Meeting 3</span></div>
+      <div class="item"><div class="t">iOS directory listing: claim UX</div><div class="d">No "unclaimed"/"claim my listing" + broken website buttons.</div><span class="src">Brooke msg</span></div>
+      <div class="item"><div class="t">Google Analytics on mobile</div><div class="d">Wire GA into the app too (web side is done).</div><span class="src">Meeting 1</span></div>
+    </div>
+  </section>
+
+  <footer>
+    <b>Queued prod actions:</b> run the seller-backfill APPLY (above) · promote payouts after review. &nbsp;•&nbsp;
+    <b>On staging only:</b> nothing right now — everything reviewed was promoted this morning; payouts are on a branch. &nbsp;•&nbsp;
+    Sources: <b>Brooke #</b> = her Jul 1 numbered list · <b>Meeting / List</b> = the Jul 1 meeting notes · <b>Liam</b> = my EOD carry-forward · <b>Added</b> = came up since.
+  </footer>
+
+</div>
+
+</body>
+</html>
