@@ -86,7 +86,7 @@
   <div class="wrap">
     <div class="kicker">Catholic Owned · Launch Punch-List</div>
     <h1>Where everything stands</h1>
-    <p><span class="date">As of Jul 2, 2026 (morning).</span> Every item Brooke flagged Jul 1, plus the meeting list, my carry-forward list, and what came up since. Anything marked <b style="color:#8fd6ab">Live</b> is on <b style="color:#cdd7ea">production</b>; nothing else has shipped without review.</p>
+    <p><span class="date">As of Jul 2, 2026 (evening).</span> Brooke's Jul 1 list, the meeting notes, the 6/30 post-launch list, this morning's Launch-Day Sync, and what came up since. <b style="color:#8fd6ab">Live</b> = on <b style="color:#cdd7ea">production</b>; <b style="color:#bcd0f8">Staged</b> = built + green on staging, awaiting tonight's promote; nothing shipped without review.</p>
   </div>
 </header>
 
@@ -94,16 +94,17 @@
 
   <div class="summary">
     <div class="chip"><span class="dot" style="background:var(--live)"></span><span class="n">26</span><span class="l">Live on prod</span></div>
+    <div class="chip"><span class="dot" style="background:var(--go)"></span><span class="n">6</span><span class="l">Staged for tonight</span></div>
     <div class="chip"><span class="dot" style="background:var(--held)"></span><span class="n">2</span><span class="l">Held for review</span></div>
     <div class="chip"><span class="dot" style="background:var(--info)"></span><span class="n">6</span><span class="l">Answered — info</span></div>
-    <div class="chip"><span class="dot" style="background:var(--decide)"></span><span class="n">8</span><span class="l">Needs a decision</span></div>
-    <div class="chip"><span class="dot" style="background:var(--none)"></span><span class="n">7</span><span class="l">Not started</span></div>
+    <div class="chip"><span class="dot" style="background:var(--decide)"></span><span class="n">5</span><span class="l">Needs a decision</span></div>
+    <div class="chip"><span class="dot" style="background:var(--none)"></span><span class="n">13</span><span class="l">Not started</span></div>
     <div class="chip"><span class="dot" style="background:var(--mobile)"></span><span class="n">8</span><span class="l">Mobile track</span></div>
   </div>
 
   <div class="callout">
-    <h3>One action waiting on you</h3>
-    <p><b>Seller-backfill APPLY</b> — the dry-run is confirmed on prod: it would flip <b>8 stuck "inactive" shops</b> to Live (incl. <b>Knights Coffee</b>), and correctly skips the one that's on vacation (Antonina's Garden). Say go and I run <b>APPLY=1</b>.</p>
+    <h3>Waiting on you</h3>
+    <p><b>1 · Promote tonight's batch</b> — 6 features built + green on staging (below). &nbsp; <b>2 · Seller-backfill APPLY</b> — dry-run confirmed on prod: flips <b>8 stuck "inactive" shops</b> to Live (incl. <b>Knights Coffee</b>), skips the on-vacation one. &nbsp; <b>3 · Payouts</b> — 2 policy confirmations (4h cadence? pay-on-capture?) to ship. Say the word on any.</p>
   </div>
 
   <!-- LIVE -->
@@ -127,9 +128,9 @@
       <div class="item"><div class="t">Consolidated buyer order email</div><div class="d">One email per checkout, not one per seller. <em>Numbering flagged.</em></div><span class="src">Liam</span></div>
       <div class="item"><div class="t">Seller status badge + vacation toggle</div><div class="d">Live/On-vacation/Draft badge + pause/reopen in admin.</div><span class="src">Brooke 3</span></div>
       <div class="item"><div class="t">Sacred Exchange (Barter) delete button</div><div class="d">Admin → Barter → a listing → "Delete Listing".</div><span class="src">Liam</span></div>
-      <div class="item"><div class="t">Google Analytics wiring (web)</div><div class="d">Dormant until NEXT_PUBLIC_GA_ID is set. <em>Mobile pending.</em></div><span class="src">Meeting 1</span></div>
+      <div class="item"><div class="t">Google Analytics — live (web)</div><div class="d">G-LVQJ9P6M5K set on prod; collecting real-user data now. <em>Mobile GA pending build.</em></div><span class="src">Meeting 1</span></div>
       <div class="item"><div class="t">Dependency / security remediation</div><div class="d">Criticals + highs fixed; mikro-orm bump reverted (see decision).</div><span class="src">Added</span></div>
-      <div class="item"><div class="t">Catholic Canvas Company import</div><div class="d">47 draft products — 16x20 default, numeric sizes, CDN images. Brooke reviews &amp; publishes.</div><span class="src">Added</span></div>
+      <div class="item"><div class="t">Catholic Canvas — 47 products published</div><div class="d">All 47 published + Algolia-indexed; live in his shop (store ACTIVE). 16x20 default, numeric sizes.</div><span class="src">Added</span></div>
       <div class="item"><div class="t">Default-size + numeric size order</div><div class="d">PDP pre-selects a chosen size; sizes sort small→large.</div><span class="src">Added</span></div>
       <div class="item"><div class="t">Staging → prod deploy pipeline</div><div class="d">Real gate: build on staging, promote in the evening.</div><span class="src">Added</span></div>
       <div class="item"><div class="t">Trade-listing hard-delete works</div><div class="d">Backend endpoint (6/30) + the admin button now.</div><span class="src">Liam</span></div>
@@ -139,12 +140,25 @@
     </div>
   </section>
 
+  <!-- STAGED -->
+  <section class="grp go">
+    <div class="grp-head"><span class="bar"></span><h2>Staged — awaiting tonight's promote</h2><span class="cnt">6</span><span class="sub">built + green on staging</span></div>
+    <div class="grid">
+      <div class="item"><div class="t">Admin product-list pagination</div><div class="d">Opening a product + coming back no longer snaps to page 1 of 284.</div><span class="src">List 1</span></div>
+      <div class="item"><div class="t">"Shipping &amp; Return Policy" tab</div><div class="d">Renamed on the PDP + shows the seller's return policy; onboarding coaches merchants to include both.</div><span class="src">Brooke 5</span></div>
+      <div class="item"><div class="t">Events RSVP count fixed</div><div class="d">Admin now shows the real confirmed count (was always 0).</div><span class="src">List 4</span></div>
+      <div class="item"><div class="t">Zoom link field on events</div><div class="d">Set on create + edit; storefront shows "Join Zoom Meeting."</div><span class="src">List 4</span></div>
+      <div class="item"><div class="t">Manual tier override in admin</div><div class="d">Set + "pin" a listing's tier; the pin survives Stripe webhook re-sync.</div><span class="src">Brooke 7</span></div>
+      <div class="item"><div class="t">Per-product shipping/return policy</div><div class="d">Merchant can override the store-wide default on a single product.</div><span class="src">Brooke 5</span></div>
+    </div>
+  </section>
+
   <!-- HELD -->
   <section class="grp held">
-    <div class="grp-head"><span class="bar"></span><h2>Held for your review</h2><span class="cnt">2</span><span class="sub">built, not shipped — money code</span></div>
+    <div class="grp-head"><span class="bar"></span><h2>Held for your review</h2><span class="cnt">2</span><span class="sub">reviewed + hardened — money code, needs sign-off</span></div>
     <div class="grid">
-      <div class="item"><div class="t">Seller payout reliability</div><div class="d">Pay every 4h (was daily), per-seller isolation, failure alerting. On <code>feat/seller-payout-fixes</code>.</div><span class="src">Liam</span></div>
-      <div class="item"><div class="t">Refund over-charge + tax in payouts</div><div class="d">Refund reverses only the seller's net; payouts exclude tax/shipping. Overrides Mercur — needs live-boot validation + policy sign-off.</div><span class="src">Liam</span></div>
+      <div class="item"><div class="t">Seller payout reliability</div><div class="d">Pay every 4h (was daily), per-seller isolation, failure alerting. Reviewed + hardened 7/2 (kill-switch guard, real alert recipient). On <code>feat/seller-payout-fixes</code>.</div><span class="src">Liam</span></div>
+      <div class="item"><div class="t">Refund over-charge + tax in payouts</div><div class="d">Refund reverses only the seller's net; excludes tax/shipping. Pure math + 6 unit tests. Needs 2 confirmations (4h cadence? pay-on-capture?) + live-boot validation.</div><span class="src">Liam</span></div>
     </div>
   </section>
 
@@ -163,30 +177,33 @@
 
   <!-- DECISIONS -->
   <section class="grp decide">
-    <div class="grp-head"><span class="bar"></span><h2>Needs a decision (you / Brooke)</h2><span class="cnt">8</span><span class="sub">not started — blocked on a call</span></div>
+    <div class="grp-head"><span class="bar"></span><h2>Needs a decision (you / Brooke)</h2><span class="cnt">5</span><span class="sub">blocked on a call</span></div>
     <div class="grid">
-      <div class="item"><div class="t">Manual tier override in admin</div><div class="d">Ability to set a seller's tier + enterprise/premium placement — pin vs. override semantics.</div><span class="src">Brooke 7</span></div>
-      <div class="item"><div class="t">Returns-policy naming</div><div class="d">"Refund policy" vs "Shipping &amp; refund policy," and one-profile-vs-per-product.</div><span class="src">Brooke 5</span></div>
-      <div class="item"><div class="t">Trust-badge claims + legal terms</div><div class="d">"30-day returns" / "portion supports ministries" — true for all? Legal copy still in edits.</div><span class="src">Brooke msg</span></div>
+      <div class="item"><div class="t">Trust-badge claims + legal terms</div><div class="d">"30-day returns" / "portion supports ministries" — true for all? Legal copy still in edits (ToS ~Jul 7).</div><span class="src">Brooke msg</span></div>
       <div class="item"><div class="t">Parish vision (net-new)</div><div class="d">User-level parish → same-parish discovery + trade. Not in the SOW/PRD — roadmap/change-order call.</div><span class="src">Added</span></div>
       <div class="item"><div class="t">Order-email numbering scheme</div><div class="d">Master # = order_set id; synthetic 2-1/2-2 sub-numbers — keep the real order # alongside?</div><span class="src">Added</span></div>
-      <div class="item"><div class="t">Payout policy flags</div><div class="d">Shipping exclusion, payout cadence/trigger, PAYMENTS_DISABLED gating.</div><span class="src">Added</span></div>
-      <div class="item"><div class="t">Google Analytics go-live</div><div class="d">Provide the GA measurement ID; add cookie-consent gating for EU visitors.</div><span class="src">Meeting 1</span></div>
-      <div class="item"><div class="t">Event "format" = agenda?</div><div class="d">Confirm the field means the agenda (and free-form vs. 3 titled cards).</div><span class="src">List 4</span></div>
+      <div class="item"><div class="t">Payout confirmations</div><div class="d">Two calls to ship the held payouts: 4h transfer cadence OK? pay-on-capture OK (vs pay-on-fulfillment)?</div><span class="src">Added</span></div>
+      <div class="item"><div class="t">GA cookie-consent gating (EU)</div><div class="d">GA is live on web; add a consent gate before it loads for EU visitors (GDPR).</div><span class="src">Meeting 1</span></div>
     </div>
   </section>
 
   <!-- NOT STARTED -->
   <section class="grp none">
-    <div class="grp-head"><span class="bar"></span><h2>Not started</h2><span class="cnt">7</span><span class="sub">no blocker — just not reached yet</span></div>
+    <div class="grp-head"><span class="bar"></span><h2>Not started</h2><span class="cnt">13</span><span class="sub">open — some blocked on legal / Joe / next week</span></div>
     <div class="grid">
-      <div class="item"><div class="t">Move backend URLs off v3</div><div class="d">Onto the proper domain — infra/DNS work.</div><span class="src">Liam</span></div>
-      <div class="item"><div class="t">Load owner-interview data from Bubble</div><div class="d">One-time data migration into the platform.</div><span class="src">List 2</span></div>
-      <div class="item"><div class="t">Refund the test order in Stripe</div><div class="d">A financial action — you'll run this one yourself.</div><span class="src">Liam</span></div>
-      <div class="item"><div class="t">Follow up with Joe on auth</div><div class="d">Confirm the auth issues from the last call are fully resolved.</div><span class="src">Liam</span></div>
-      <div class="item"><div class="t">Order-tracking screen error</div><div class="d">Was "being fixed" 6/30 — not touched this session; needs a status check.</div><span class="src">Liam</span></div>
-      <div class="item"><div class="t">Move media bucket to US East</div><div class="d">Part of the Railway east-migration plan (backend/DB/bucket still us-west2); 3.8 GB to move.</div><span class="src">Added 7/2</span></div>
-      <div class="item"><div class="t">Re-host Shopify product images on our CDN</div><div class="d">47 imported products point at cdn.shopify.com (allowlisted 7/2 as a hotfix). Import + rewrite URLs + fix CSV import path. Do after the storage decision + bucket move.</div><span class="src">Added 7/2</span></div>
+      <div class="item"><div class="t">Move off v3 + GoDaddy apex→www redirect</div><div class="d">Apex forward fails ~1/10; fix via middleware. Infra/DNS — needs your hands on GoDaddy.</div><span class="src">List / 6-30</span></div>
+      <div class="item"><div class="t">Admin "Products" click → logout (401)</div><div class="d">6/30 bug, no code fix yet. Needs a Network-tab repro. May have stopped (Brooke's 7/2 note was the pagination reset, now fixed).</div><span class="src">6-30</span></div>
+      <div class="item"><div class="t">Terms-of-service acceptance flow</div><div class="d">Wire up user/merchant ToS acceptance. Blocked on legal docs (~Jul 7).</div><span class="src">7-2</span></div>
+      <div class="item"><div class="t">Zoom API integration (auto-create)</div><div class="d">Auto-create Zoom meetings from events + end-to-end test before Jul 27–28. Next week.</div><span class="src">7-2</span></div>
+      <div class="item"><div class="t">Merge Joe's auth fix</div><div class="d">Better long-term auth solution — needs Joe.</div><span class="src">7-2</span></div>
+      <div class="item"><div class="t">Directory &amp; shop-level analytics in admin</div><div class="d">Per-listing numbers Brooke can show merchants without logging in as them.</div><span class="src">6-30</span></div>
+      <div class="item"><div class="t">Owner-analytics audit + tracking plan</div><div class="d">Page views / clicks / saves / cart / registry; maybe Clarity; possible ToS update.</div><span class="src">6-30</span></div>
+      <div class="item"><div class="t">Test / verify the parish page</div><div class="d">Confirm it works, then tell Brooke.</div><span class="src">6-30</span></div>
+      <div class="item"><div class="t">Load owner-interview data from Bubble</div><div class="d">One-time migration for ~150–160 featured members. Deprioritized below tier override.</div><span class="src">List 2</span></div>
+      <div class="item"><div class="t">Retainer / support proposal</div><div class="d">Itemized hosting + monthly hour block + SLA. Business — you.</div><span class="src">6-30</span></div>
+      <div class="item"><div class="t">Refund the $15 test order in Stripe</div><div class="d">A financial action — you'll run this one yourself.</div><span class="src">Liam</span></div>
+      <div class="item"><div class="t">Move media bucket to US East</div><div class="d">Part of the Railway east-migration plan (backend/DB/bucket still us-west2); ~3.8 GB to move.</div><span class="src">Added 7/2</span></div>
+      <div class="item"><div class="t">Re-host Shopify product images on our CDN</div><div class="d">47 imported products point at cdn.shopify.com (allowlisted 7/2 as a hotfix). Import + rewrite URLs. After the bucket move.</div><span class="src">Added 7/2</span></div>
     </div>
   </section>
 
@@ -197,18 +214,18 @@
       <div class="item"><div class="t">Raw-HTML product description</div><div class="d">Fixed in the mobile repo (uncommitted) — needs a build.</div><span class="src">Brooke msg</span></div>
       <div class="item"><div class="t">Merchant name + shop link on product</div><div class="d">Coded in the mobile repo (uncommitted) — needs a build.</div><span class="src">Brooke msg</span></div>
       <div class="item"><div class="t">Standardized search bars (mobile)</div><div class="d">Apply the same design + layout audit on mobile.</div><span class="src">Brooke 2</span></div>
-      <div class="item"><div class="t">Mobile-web filters + categories</div><div class="d">Fix filtering/category behavior on mobile web.</div><span class="src">List 1</span></div>
+      <div class="item"><div class="t">Mobile-web categories</div><div class="d">Filters fixed + live (7/2); confirm category behavior on mobile web.</div><span class="src">List 1</span></div>
       <div class="item"><div class="t">Remaining deep links</div><div class="d">Implement in the next mobile build.</div><span class="src">Meeting 2</span></div>
       <div class="item"><div class="t">iOS map full-screen bug</div><div class="d">Sent in chat — not yet addressed.</div><span class="src">Meeting 3</span></div>
       <div class="item"><div class="t">iOS directory listing: claim UX</div><div class="d">No "unclaimed"/"claim my listing" + broken website buttons.</div><span class="src">Brooke msg</span></div>
-      <div class="item"><div class="t">Google Analytics on mobile</div><div class="d">Wire GA into the app too (web side is done).</div><span class="src">Meeting 1</span></div>
+      <div class="item"><div class="t">Google Analytics on mobile</div><div class="d">Coded via Measurement Protocol; needs the EAS build + GA stream config (web side is live).</div><span class="src">Meeting 1</span></div>
     </div>
   </section>
 
   <footer>
-    <b>Queued prod actions:</b> run the seller-backfill APPLY (above) · promote payouts after review. &nbsp;•&nbsp;
-    <b>On staging only:</b> nothing right now — everything reviewed was promoted this morning; payouts are on a branch. &nbsp;•&nbsp;
-    Sources: <b>Brooke #</b> = her Jul 1 numbered list · <b>Meeting / List</b> = the Jul 1 meeting notes · <b>Liam</b> = my EOD carry-forward · <b>Added</b> = came up since.
+    <b>Queued prod actions:</b> promote tonight's 6 staged features · run the seller-backfill APPLY · ship payouts after 2 confirmations. &nbsp;•&nbsp;
+    <b>On staging:</b> the 6 features above (green). Payouts are on <code>feat/seller-payout-fixes</code>. &nbsp;•&nbsp;
+    Sources: <b>Brooke #</b> = her Jul 1 list · <b>Meeting / List / 6-30</b> = meeting + post-launch notes · <b>Liam</b> = carry-forward · <b>Added / 7-2</b> = since.
   </footer>
 
 </div>
