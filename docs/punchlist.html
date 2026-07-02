@@ -99,7 +99,7 @@
     <div class="chip"><span class="dot" style="background:var(--info)"></span><span class="n">6</span><span class="l">Answered — info</span></div>
     <div class="chip"><span class="dot" style="background:var(--decide)"></span><span class="n">4</span><span class="l">Needs a decision</span></div>
     <div class="chip"><span class="dot" style="background:var(--none)"></span><span class="n">13</span><span class="l">Not started</span></div>
-    <div class="chip"><span class="dot" style="background:var(--mobile)"></span><span class="n">8</span><span class="l">Mobile track</span></div>
+    <div class="chip"><span class="dot" style="background:var(--mobile)"></span><span class="n">9</span><span class="l">Mobile track</span></div>
   </div>
 
   <div class="callout">
@@ -209,16 +209,17 @@
 
   <!-- MOBILE -->
   <section class="grp mobile">
-    <div class="grp-head"><span class="bar"></span><h2>Mobile track</h2><span class="cnt">8</span><span class="sub">separate — ships via EAS build, not the web pipeline</span></div>
+    <div class="grp-head"><span class="bar"></span><h2>Mobile track</h2><span class="cnt">9</span><span class="sub">separate — ships via EAS build, not the web pipeline</span></div>
     <div class="grid">
-      <div class="item"><div class="t">Raw-HTML product description</div><div class="d">Fixed in the mobile repo (uncommitted) — needs a build.</div><span class="src">Brooke msg</span></div>
-      <div class="item"><div class="t">Merchant name + shop link on product</div><div class="d">Coded in the mobile repo (uncommitted) — needs a build.</div><span class="src">Brooke msg</span></div>
-      <div class="item"><div class="t">Standardized search bars (mobile)</div><div class="d">Apply the same design + layout audit on mobile.</div><span class="src">Brooke 2</span></div>
-      <div class="item"><div class="t">Mobile-web categories</div><div class="d">Filters fixed + live (7/2); confirm category behavior on mobile web.</div><span class="src">List 1</span></div>
-      <div class="item"><div class="t">Remaining deep links</div><div class="d">Implement in the next mobile build.</div><span class="src">Meeting 2</span></div>
-      <div class="item"><div class="t">iOS map full-screen bug</div><div class="d">Sent in chat — not yet addressed.</div><span class="src">Meeting 3</span></div>
-      <div class="item"><div class="t">iOS directory listing: claim UX</div><div class="d">No "unclaimed"/"claim my listing" + broken website buttons.</div><span class="src">Brooke msg</span></div>
-      <div class="item"><div class="t">Google Analytics on mobile</div><div class="d">Coded via Measurement Protocol; needs the EAS build + GA stream config (web side is live).</div><span class="src">Meeting 1</span></div>
+      <div class="item"><div class="t">Raw-HTML product description</div><div class="d">✅ Committed on the build branch (7/2) — in tonight's build.</div><span class="src">Brooke msg</span></div>
+      <div class="item"><div class="t">Merchant name + shop link on product</div><div class="d">✅ Committed, incl. the new seller-shop screen (7/2) — in tonight's build.</div><span class="src">Brooke msg</span></div>
+      <div class="item"><div class="t">Event RSVP button too low</div><div class="d">✅ Fixed — safe-area inset on the action bar (7/2) — in tonight's build.</div><span class="src">Mateo chat</span></div>
+      <div class="item"><div class="t">Remaining deep links</div><div class="d">✅ Done — www.catholicowned.com (canonical) registered alongside apex + v3; reset/verify-email links open the app — in tonight's build.</div><span class="src">Meeting 2</span></div>
+      <div class="item"><div class="t">Google Analytics on mobile</div><div class="d">✅ Done — Measurement Protocol into the existing iOS/Android app streams; API secrets configured; test events verified in GA Realtime — in tonight's build.</div><span class="src">Meeting 1</span></div>
+      <div class="item"><div class="t">Standardized search bars (mobile)</div><div class="d">Open — native app uses the platform pattern (magnifier in field + keyboard Search key, no blue button); confirm with Brooke whether web parity is wanted.</div><span class="src">Brooke 2</span></div>
+      <div class="item"><div class="t">Mobile-web categories</div><div class="d">Filters fixed + live (7/2); confirm category behavior on mobile web. (Web pipeline, not the app build.)</div><span class="src">List 1</span></div>
+      <div class="item"><div class="t">iOS map full-screen bug</div><div class="d">Open — sent in chat, not yet addressed. Not in tonight's build.</div><span class="src">Meeting 3</span></div>
+      <div class="item"><div class="t">iOS directory listing: claim UX</div><div class="d">Open — no "unclaimed"/"claim my listing" + broken website buttons. Not in tonight's build.</div><span class="src">Brooke msg</span></div>
     </div>
   </section>
 
