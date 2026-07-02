@@ -94,10 +94,10 @@
 
   <div class="summary">
     <div class="chip"><span class="dot" style="background:var(--live)"></span><span class="n">26</span><span class="l">Live on prod</span></div>
-    <div class="chip"><span class="dot" style="background:var(--go)"></span><span class="n">6</span><span class="l">Staged for tonight</span></div>
+    <div class="chip"><span class="dot" style="background:var(--go)"></span><span class="n">7</span><span class="l">Staged for tonight</span></div>
     <div class="chip"><span class="dot" style="background:var(--held)"></span><span class="n">2</span><span class="l">Held for review</span></div>
     <div class="chip"><span class="dot" style="background:var(--info)"></span><span class="n">6</span><span class="l">Answered — info</span></div>
-    <div class="chip"><span class="dot" style="background:var(--decide)"></span><span class="n">5</span><span class="l">Needs a decision</span></div>
+    <div class="chip"><span class="dot" style="background:var(--decide)"></span><span class="n">4</span><span class="l">Needs a decision</span></div>
     <div class="chip"><span class="dot" style="background:var(--none)"></span><span class="n">13</span><span class="l">Not started</span></div>
     <div class="chip"><span class="dot" style="background:var(--mobile)"></span><span class="n">8</span><span class="l">Mobile track</span></div>
   </div>
@@ -142,7 +142,7 @@
 
   <!-- STAGED -->
   <section class="grp go">
-    <div class="grp-head"><span class="bar"></span><h2>Staged — awaiting tonight's promote</h2><span class="cnt">6</span><span class="sub">built + green on staging</span></div>
+    <div class="grp-head"><span class="bar"></span><h2>Staged — awaiting tonight's promote</h2><span class="cnt">7</span><span class="sub">built + green on staging</span></div>
     <div class="grid">
       <div class="item"><div class="t">Admin product-list pagination</div><div class="d">Opening a product + coming back no longer snaps to page 1 of 284.</div><span class="src">List 1</span></div>
       <div class="item"><div class="t">"Shipping &amp; Return Policy" tab</div><div class="d">Renamed on the PDP + shows the seller's return policy; onboarding coaches merchants to include both.</div><span class="src">Brooke 5</span></div>
@@ -150,6 +150,7 @@
       <div class="item"><div class="t">Zoom link field on events</div><div class="d">Set on create + edit; storefront shows "Join Zoom Meeting."</div><span class="src">List 4</span></div>
       <div class="item"><div class="t">Manual tier override in admin</div><div class="d">Set + "pin" a listing's tier; the pin survives Stripe webhook re-sync.</div><span class="src">Brooke 7</span></div>
       <div class="item"><div class="t">Per-product shipping/return policy</div><div class="d">Merchant can override the store-wide default on a single product.</div><span class="src">Brooke 5</span></div>
+      <div class="item"><div class="t">Order-email numbering</div><div class="d">Consolidated email now labels each seller group by its real, searchable order # — dropped the synthetic 2-1/2-2.</div><span class="src">Added</span></div>
     </div>
   </section>
 
@@ -177,11 +178,10 @@
 
   <!-- DECISIONS -->
   <section class="grp decide">
-    <div class="grp-head"><span class="bar"></span><h2>Needs a decision (you / Brooke)</h2><span class="cnt">5</span><span class="sub">blocked on a call</span></div>
+    <div class="grp-head"><span class="bar"></span><h2>Needs a decision (you / Brooke)</h2><span class="cnt">4</span><span class="sub">blocked on a call</span></div>
     <div class="grid">
       <div class="item"><div class="t">Trust-badge claims + legal terms</div><div class="d">"30-day returns" / "portion supports ministries" — true for all? Legal copy still in edits (ToS ~Jul 7).</div><span class="src">Brooke msg</span></div>
       <div class="item"><div class="t">Parish vision (net-new)</div><div class="d">User-level parish → same-parish discovery + trade. Not in the SOW/PRD — roadmap/change-order call.</div><span class="src">Added</span></div>
-      <div class="item"><div class="t">Order-email numbering scheme</div><div class="d">Master # = order_set id; synthetic 2-1/2-2 sub-numbers — keep the real order # alongside?</div><span class="src">Added</span></div>
       <div class="item"><div class="t">Payout confirmations</div><div class="d">Two calls to ship the held payouts: 4h transfer cadence OK? pay-on-capture OK (vs pay-on-fulfillment)?</div><span class="src">Added</span></div>
       <div class="item"><div class="t">GA cookie-consent gating (EU)</div><div class="d">GA is live on web; add a consent gate before it loads for EU visitors (GDPR).</div><span class="src">Meeting 1</span></div>
     </div>
