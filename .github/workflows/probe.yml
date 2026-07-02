@@ -29,6 +29,11 @@ jobs:
         run: node scripts/probe.mjs
         env:
           RUN_VANTAGE: ${{ inputs.vantage && '1' || '' }}
+      - name: Collect traffic stats
+        run: node scripts/traffic.mjs
+        continue-on-error: true
+        env:
+          RAILWAY_PROJECT_TOKEN: ${{ secrets.RAILWAY_PROJECT_TOKEN }}
       - name: Raise / resolve alerts
         run: node scripts/alert.mjs
         env:

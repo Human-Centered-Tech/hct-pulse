@@ -37,6 +37,14 @@
   .worst { color: var(--dim); font-size: 11.5px; margin-top: 2px; font-family: "DM Mono", monospace; }
   .worst b { font-weight: 500; }
   .worst .w-up { color: var(--up); } .worst .w-slow { color: var(--slow); } .worst .w-down { color: var(--down); }
+  .traffic { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px 12px; }
+  .traffic .tt { font-weight: 500; font-size: 15px; margin-bottom: 8px; }
+  .tstats { display: flex; flex-wrap: wrap; gap: 8px 22px; font-family: "DM Mono", monospace; font-size: 12.5px; color: var(--dim); margin-bottom: 10px; }
+  .tstats b { color: var(--text); font-weight: 500; font-size: 15px; display: block; }
+  .tstats .hum b { color: var(--up); } .tstats .bot b { color: var(--dim); }
+  .tbars { width: 100%; height: 72px; }
+  .tlegend { color: var(--dim); font-size: 10.5px; font-family: "DM Mono", monospace; margin-top: 4px; }
+  .tlegend .sw { display: inline-block; width: 8px; height: 8px; border-radius: 2px; vertical-align: -1px; }
   .vantage { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; font-size: 13px; }
   .vantage table { border-collapse: collapse; width: 100%; font-family: "DM Mono", monospace; font-size: 12.5px; }
   .vantage td, .vantage th { text-align: left; padding: 4px 10px 4px 0; color: var(--dim); font-weight: 400; }
@@ -54,6 +62,10 @@
   </header>
   <div class="banner" id="banner">Loading status…</div>
   <div id="services"></div>
+  <div id="traffic-wrap" style="display:none">
+    <h2>Traffic — last 24h</h2>
+    <div id="traffic"></div>
+  </div>
   <h2>Multi-vantage view <span style="text-transform:none;letter-spacing:0">(check-host.net, hourly)</span></h2>
   <div class="vantage" id="vantage">No vantage data yet.</div>
   <footer>
@@ -156,6 +168,50 @@ async function render() {
     }
     container.appendChild(grid);
   }
+
+  try {
+    const traffic = await fetchJSON("data/traffic.json");
+    const twrap = document.getElementById("traffic-wrap");
+    const tEl = document.getElementById("traffic");
+    tEl.innerHTML = "";
+    let any = false;
+    for (const s of Object.values(traffic.series || {})) {
+      // last 24 whole hours, oldest -> newest
+      const hours = [];
+      for (let i = 23; i >= 0; i--) {
+        const hk = new Date(Date.now() - i * 3600e3).toISOString().slice(0, 13);
+        hours.push({ hk, ...(s.hours[hk] || { req: 0, bot: 0, human: 0, pv: 0, uniq: 0 }) });
+      }
+      const sum = k => hours.reduce((a, h) => a + h[k], 0);
+      if (!sum("req")) continue;
+      any = true;
+      const peak = hours.reduce((m, h) => (h.uniq > m.uniq ? h : m), hours[0]);
+      const w = 300, hgt = 72, bw = w / 24;
+      const maxReq = Math.max(1, ...hours.map(h => h.human + h.bot));
+      const bars = hours.map((h, i) => {
+        const hh = ((h.human) / maxReq) * (hgt - 14);
+        const bh = ((h.bot) / maxReq) * (hgt - 14);
+        const x = (i * bw + 1).toFixed(1);
+        return `<rect x="${x}" y="${(hgt - hh - bh).toFixed(1)}" width="${(bw - 2).toFixed(1)}" height="${bh.toFixed(1)}" fill="var(--border)"/>
+                <rect x="${x}" y="${(hgt - hh).toFixed(1)}" width="${(bw - 2).toFixed(1)}" height="${hh.toFixed(1)}" fill="var(--up)" opacity=".85"/>`;
+      }).join("");
+      const card = document.createElement("div");
+      card.className = "traffic";
+      card.innerHTML = `
+        <div class="tt">${s.label}</div>
+        <div class="tstats">
+          <span class="hum"><b>${sum("human").toLocaleString()}</b>human requests</span>
+          <span class="bot"><b>${sum("bot").toLocaleString()}</b>bot requests</span>
+          <span><b>${sum("pv").toLocaleString()}</b>page views</span>
+          <span><b>${peak.uniq}</b>peak visitors/hr (${fmtTime(new Date(peak.hk + ":00:00Z"))})</span>
+        </div>
+        <svg class="tbars" viewBox="0 0 ${w} ${hgt}" preserveAspectRatio="none">${bars}</svg>
+        <div class="axis"><span>${fmtAxis(Date.now() - 24 * 3600e3)}</span><span>${fmtAxis(Date.now() - 12 * 3600e3)}</span><span>now</span></div>
+        <div class="tlegend"><span class="sw" style="background:var(--up)"></span> humans &nbsp; <span class="sw" style="background:var(--border)"></span> bots · visitors = distinct IPs per hour · source: Railway edge logs</div>`;
+      tEl.appendChild(card);
+    }
+    twrap.style.display = any ? "" : "none";
+  } catch {}
 
   try {
     const v = await fetchJSON("data/vantage.json");

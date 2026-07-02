@@ -19,6 +19,15 @@
       ]
     }
   ],
+  "traffic": [
+    {
+      "label": "Storefront (www.catholicowned.com)",
+      "key": "co-www",
+      "projectId": "4d2f0250-8501-4468-9f86-b9d2562a61e6",
+      "environmentId": "ced0a862-985c-4b7e-9a49-b2d16212893c",
+      "serviceId": "462495de-b3cb-4e95-8064-605548ad60a5"
+    }
+  ],
   "vantage": {
     "urls": ["https://api.catholicowned.com/health", "https://www.catholicowned.com/us"],
     "nodes": ["us1.node.check-host.net", "us2.node.check-host.net", "us3.node.check-host.net", "ca1.node.check-host.net"]
