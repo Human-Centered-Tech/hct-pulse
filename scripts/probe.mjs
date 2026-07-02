@@ -48,7 +48,7 @@ async function probe(ep) {
   else if (total >= (ep.critMs ?? 10000)) state = 'down';
   else if (total >= (ep.warnMs ?? 3000)) state = 'slow';
   else state = 'up';
-  return { id: ep.id, name: ep.name, url: ep.url, state, status, ttfb, total, edge, error: error ?? undefined };
+  return { id: ep.id, name: ep.name, url: ep.url, state, status, ttfb, total, edge, warnMs: ep.warnMs ?? 3000, error: error ?? undefined };
 }
 
 // check-host.net multi-vantage: catches path-specific outages (e.g. one bad
