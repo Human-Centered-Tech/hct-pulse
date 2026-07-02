@@ -53,14 +53,26 @@ async function probe(ep) {
 
 // check-host.net multi-vantage: catches path-specific outages (e.g. one bad
 // anycast POP) that a single-vantage probe from a GitHub runner can't see.
+async function fetchCheckHostJSON(url, opts, attempts = 2) {
+  for (let i = 1; ; i++) {
+    const res = await fetch(url, opts);
+    const text = await res.text();
+    try {
+      return JSON.parse(text);
+    } catch {
+      // check-host answers with an HTML page when rate-limited
+      if (i >= attempts) throw new Error(`check-host returned non-JSON (HTTP ${res.status}, likely rate limit)`);
+      await new Promise(r => setTimeout(r, 15000));
+    }
+  }
+}
+
 async function vantageCheck(url, nodes) {
   const nodeParams = nodes.map(n => `node=${n}`).join('&');
   const opts = { headers: { Accept: 'application/json' } };
-  const kick = await fetch(`https://check-host.net/check-http?host=${encodeURIComponent(url)}&${nodeParams}`, opts);
-  const { request_id } = await kick.json();
+  const { request_id } = await fetchCheckHostJSON(`https://check-host.net/check-http?host=${encodeURIComponent(url)}&${nodeParams}`, opts);
   await new Promise(r => setTimeout(r, 25000));
-  const res = await fetch(`https://check-host.net/check-result/${request_id}`, opts);
-  const data = await res.json();
+  const data = await fetchCheckHostJSON(`https://check-host.net/check-result/${request_id}`, opts);
   const out = {};
   for (const [node, r] of Object.entries(data)) {
     const v = r && r[0];
@@ -102,7 +114,11 @@ let vantage;
 const lastVantagePath = join(dataDir, 'vantage.json');
 if (config.vantage && (process.env.RUN_VANTAGE === '1' || now.getUTCMinutes() < 5)) {
   vantage = { ts, results: {} };
+  let first = true;
   for (const url of config.vantage.urls) {
+    // space out requests: check-host rate-limits back-to-back calls from one IP
+    if (!first) await new Promise(r => setTimeout(r, 15000));
+    first = false;
     try {
       vantage.results[url] = await vantageCheck(url, config.vantage.nodes);
     } catch (e) {
