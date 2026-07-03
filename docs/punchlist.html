@@ -93,12 +93,12 @@
 <div class="wrap">
 
   <div class="summary">
-    <div class="chip"><span class="dot" style="background:var(--live)"></span><span class="n">32</span><span class="l">Live on prod</span></div>
+    <div class="chip"><span class="dot" style="background:var(--live)"></span><span class="n">33</span><span class="l">Live on prod</span></div>
     <div class="chip"><span class="dot" style="background:var(--go)"></span><span class="n">7</span><span class="l">Staged for tonight</span></div>
     <div class="chip"><span class="dot" style="background:var(--held)"></span><span class="n">2</span><span class="l">Held for review</span></div>
     <div class="chip"><span class="dot" style="background:var(--info)"></span><span class="n">6</span><span class="l">Answered — info</span></div>
     <div class="chip"><span class="dot" style="background:var(--decide)"></span><span class="n">4</span><span class="l">Needs a decision</span></div>
-    <div class="chip"><span class="dot" style="background:var(--none)"></span><span class="n">13</span><span class="l">Not started</span></div>
+    <div class="chip"><span class="dot" style="background:var(--none)"></span><span class="n">14</span><span class="l">Not started</span></div>
     <div class="chip"><span class="dot" style="background:var(--mobile)"></span><span class="n">9</span><span class="l">Mobile track</span></div>
   </div>
 
@@ -109,7 +109,7 @@
 
   <!-- LIVE -->
   <section class="grp live">
-    <div class="grp-head"><span class="bar"></span><h2>Live on production</h2><span class="cnt">32</span><span class="sub">shipped &amp; verified</span></div>
+    <div class="grp-head"><span class="bar"></span><h2>Live on production</h2><span class="cnt">33</span><span class="sub">shipped &amp; verified</span></div>
     <div class="grid">
       <div class="item"><div class="t">Marketplace search "X" spacing</div><div class="d">Clear-X no longer crammed against the search button.</div><span class="src">Brooke 1</span></div>
       <div class="item"><div class="t">Standardized Shop + Events search bars</div><div class="d">Gray magnifier left, navy "Search" button right (web).</div><span class="src">Brooke 2</span></div>
@@ -140,6 +140,7 @@
       <div class="item"><div class="t">Mobile-web cart half off-screen</div><div class="d">Cart panel hung off the left edge on phones (Brooke's IG link — likely suppressed orders). Now full-width under the header on mobile.</div><span class="src">Brooke 7/3</span></div>
       <div class="item"><div class="t">Mobile-web account menu stuck over the page</div><div class="d">Hover menu had no touch dismissal; now desktop-only — the profile icon navigates to /user on phones.</div><span class="src">Mateo 7/3</span></div>
       <div class="item"><div class="t">Directory map blank with 3+ results (mobile)</div><div class="d">List panel starved the map of height; map now on top, list capped + scrollable below.</div><span class="src">Mateo 7/3</span></div>
+      <div class="item"><div class="t">All product images re-hosted on our CDN</div><div class="d">272 Etsy + Shopify images moved to our storage 7/3 (zero failures), Algolia reindexed; i.etsystatic.com also allowlisted. Directory/Bubble images: script staged, runs after the backend batch promote.</div><span class="src">Added 7/3</span></div>
       <div class="item"><div class="t">Homepage "View All" cramped/overlapping (mobile)</div><div class="d">Section headings now wrap on phones; link no longer squeezed (4 sections).</div><span class="src">Mateo 7/3</span></div>
       <div class="item"><div class="t">Hamburger menu broken on iPhone (only "SHOP" visible)</div><div class="d">iOS Safari sized the menu to the header (backdrop-blur containing-block bug) — now portaled to body, true full screen.</div><span class="src">Mateo 7/3</span></div>
       <div class="item"><div class="t">Tablet round: filters, PDP image, directory bar, account menu, card names</div><div class="d">Marketplace gets the Filters popup on tablets; PDP gallery capped; directory search bar wraps; account menu closes on tap-outside/navigation; long business names clamp on homepage cards.</div><span class="src">Mateo 7/3</span></div>
@@ -195,8 +196,10 @@
 
   <!-- NOT STARTED -->
   <section class="grp none">
-    <div class="grp-head"><span class="bar"></span><h2>Not started</h2><span class="cnt">13</span><span class="sub">open — some blocked on legal / Joe / next week</span></div>
+    <div class="grp-head"><span class="bar"></span><h2>Not started</h2><span class="cnt">14</span><span class="sub">open — some blocked on legal / Joe / next week</span></div>
     <div class="grid">
+      <div class="item"><div class="t">Play advisory: Android 15 edge-to-edge deprecations</div><div class="d">All flagged call sites are third-party (RN core, react-native-screens, Material, Stripe SDK, Expo modules) — resolved by the next Expo SDK bump. No app code to change; not a rejection risk today.</div><span class="src">Play 7/3</span></div>
+      <div class="item"><div class="t">Play advisory: portrait lock ignored on large screens (Android 16)</div><div class="d">App declares orientation:portrait; Android 16 tablets/foldables will ignore it. Post-7/11: remove the lock + landscape QA pass (Matteo). Keep locked for now.</div><span class="src">Play 7/3</span></div>
       <div class="item"><div class="t">Move off v3 + GoDaddy apex→www redirect</div><div class="d">Apex forward fails ~1/10; fix via middleware. Infra/DNS — needs your hands on GoDaddy.</div><span class="src">List / 6-30</span></div>
       <div class="item"><div class="t">Admin "Products" click → logout (401)</div><div class="d">6/30 bug, no code fix yet. Needs a Network-tab repro. May have stopped (Brooke's 7/2 note was the pagination reset, now fixed).</div><span class="src">6-30</span></div>
       <div class="item"><div class="t">Terms-of-service acceptance flow</div><div class="d">Wire up user/merchant ToS acceptance. Blocked on legal docs (~Jul 7).</div><span class="src">7-2</span></div>
@@ -209,7 +212,7 @@
       <div class="item"><div class="t">Retainer / support proposal</div><div class="d">Itemized hosting + monthly hour block + SLA. Business — you.</div><span class="src">6-30</span></div>
       <div class="item"><div class="t">Refund the $15 test order in Stripe</div><div class="d">A financial action — you'll run this one yourself.</div><span class="src">Liam</span></div>
       <div class="item"><div class="t">Move media bucket to US East</div><div class="d">Part of the Railway east-migration plan (backend/DB/bucket still us-west2); ~3.8 GB to move.</div><span class="src">Added 7/2</span></div>
-      <div class="item"><div class="t">Re-host Shopify product images on our CDN</div><div class="d">47 imported products point at cdn.shopify.com (allowlisted 7/2 as a hotfix). Import + rewrite URLs. After the bucket move.</div><span class="src">Added 7/2</span></div>
+      
     </div>
   </section>
 
