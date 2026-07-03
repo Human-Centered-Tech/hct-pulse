@@ -93,7 +93,7 @@
 <div class="wrap">
 
   <div class="summary">
-    <div class="chip"><span class="dot" style="background:var(--live)"></span><span class="n">33</span><span class="l">Live on prod</span></div>
+    <div class="chip"><span class="dot" style="background:var(--live)"></span><span class="n">34</span><span class="l">Live on prod</span></div>
     <div class="chip"><span class="dot" style="background:var(--go)"></span><span class="n">7</span><span class="l">Staged for tonight</span></div>
     <div class="chip"><span class="dot" style="background:var(--held)"></span><span class="n">2</span><span class="l">Held for review</span></div>
     <div class="chip"><span class="dot" style="background:var(--info)"></span><span class="n">6</span><span class="l">Answered — info</span></div>
@@ -109,7 +109,7 @@
 
   <!-- LIVE -->
   <section class="grp live">
-    <div class="grp-head"><span class="bar"></span><h2>Live on production</h2><span class="cnt">33</span><span class="sub">shipped &amp; verified</span></div>
+    <div class="grp-head"><span class="bar"></span><h2>Live on production</h2><span class="cnt">34</span><span class="sub">shipped &amp; verified</span></div>
     <div class="grid">
       <div class="item"><div class="t">Marketplace search "X" spacing</div><div class="d">Clear-X no longer crammed against the search button.</div><span class="src">Brooke 1</span></div>
       <div class="item"><div class="t">Standardized Shop + Events search bars</div><div class="d">Gray magnifier left, navy "Search" button right (web).</div><span class="src">Brooke 2</span></div>
@@ -140,6 +140,7 @@
       <div class="item"><div class="t">Mobile-web cart half off-screen</div><div class="d">Cart panel hung off the left edge on phones (Brooke's IG link — likely suppressed orders). Now full-width under the header on mobile.</div><span class="src">Brooke 7/3</span></div>
       <div class="item"><div class="t">Mobile-web account menu stuck over the page</div><div class="d">Hover menu had no touch dismissal; now desktop-only — the profile icon navigates to /user on phones.</div><span class="src">Mateo 7/3</span></div>
       <div class="item"><div class="t">Directory map blank with 3+ results (mobile)</div><div class="d">List panel starved the map of height; map now on top, list capped + scrollable below.</div><span class="src">Mateo 7/3</span></div>
+      <div class="item"><div class="t">Search indexing fix: v3 redirect + canonicals</div><div class="d">GSC showed 287 not-indexed (134 dup-no-canonical): v3 still mirrored the site and only the homepage had a canonical. Now: v3 301s to www (app .well-known exempt) + every page self-canonicalizes. Liam: click "Validate fix" in Search Console.</div><span class="src">GSC 7/3</span></div>
       <div class="item"><div class="t">All product images re-hosted on our CDN</div><div class="d">272 Etsy + Shopify images moved to our storage 7/3 (zero failures), Algolia reindexed; i.etsystatic.com also allowlisted. Directory/Bubble images: script staged, runs after the backend batch promote.</div><span class="src">Added 7/3</span></div>
       <div class="item"><div class="t">Homepage "View All" cramped/overlapping (mobile)</div><div class="d">Section headings now wrap on phones; link no longer squeezed (4 sections).</div><span class="src">Mateo 7/3</span></div>
       <div class="item"><div class="t">Hamburger menu broken on iPhone (only "SHOP" visible)</div><div class="d">iOS Safari sized the menu to the header (backdrop-blur containing-block bug) — now portaled to body, true full screen.</div><span class="src">Mateo 7/3</span></div>
