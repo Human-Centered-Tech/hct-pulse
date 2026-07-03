@@ -93,7 +93,7 @@
 <div class="wrap">
 
   <div class="summary">
-    <div class="chip"><span class="dot" style="background:var(--live)"></span><span class="n">26</span><span class="l">Live on prod</span></div>
+    <div class="chip"><span class="dot" style="background:var(--live)"></span><span class="n">30</span><span class="l">Live on prod</span></div>
     <div class="chip"><span class="dot" style="background:var(--go)"></span><span class="n">7</span><span class="l">Staged for tonight</span></div>
     <div class="chip"><span class="dot" style="background:var(--held)"></span><span class="n">2</span><span class="l">Held for review</span></div>
     <div class="chip"><span class="dot" style="background:var(--info)"></span><span class="n">6</span><span class="l">Answered — info</span></div>
@@ -109,7 +109,7 @@
 
   <!-- LIVE -->
   <section class="grp live">
-    <div class="grp-head"><span class="bar"></span><h2>Live on production</h2><span class="cnt">26</span><span class="sub">shipped &amp; verified</span></div>
+    <div class="grp-head"><span class="bar"></span><h2>Live on production</h2><span class="cnt">30</span><span class="sub">shipped &amp; verified</span></div>
     <div class="grid">
       <div class="item"><div class="t">Marketplace search "X" spacing</div><div class="d">Clear-X no longer crammed against the search button.</div><span class="src">Brooke 1</span></div>
       <div class="item"><div class="t">Standardized Shop + Events search bars</div><div class="d">Gray magnifier left, navy "Search" button right (web).</div><span class="src">Brooke 2</span></div>
@@ -137,6 +137,10 @@
       <div class="item"><div class="t">CRM app-users API — diagnosed</div><div class="d">Our side sends the fields correctly; fix is a 1-line segment change on Brooke's side (see Answered).</div><span class="src">CRM</span></div>
       <div class="item"><div class="t">Media storage headroom fixed</div><div class="d">Railway Pro + prod bucket volume grown 5→50 GB (was 88% full, now 9%). Resolves the storage decision.</div><span class="src">Added 7/2</span></div>
       <div class="item"><div class="t">Shopify product images render again</div><div class="d">cdn.shopify.com allowlisted in the image optimizer — 47 imported products had blank cards on /categories, PDP, search.</div><span class="src">Added 7/2</span></div>
+      <div class="item"><div class="t">Mobile-web cart half off-screen</div><div class="d">Cart panel hung off the left edge on phones (Brooke's IG link — likely suppressed orders). Now full-width under the header on mobile.</div><span class="src">Brooke 7/3</span></div>
+      <div class="item"><div class="t">Mobile-web account menu stuck over the page</div><div class="d">Hover menu had no touch dismissal; now desktop-only — the profile icon navigates to /user on phones.</div><span class="src">Mateo 7/3</span></div>
+      <div class="item"><div class="t">Directory map blank with 3+ results (mobile)</div><div class="d">List panel starved the map of height; map now on top, list capped + scrollable below.</div><span class="src">Mateo 7/3</span></div>
+      <div class="item"><div class="t">Homepage "View All" cramped/overlapping (mobile)</div><div class="d">Section headings now wrap on phones; link no longer squeezed (4 sections).</div><span class="src">Mateo 7/3</span></div>
     </div>
   </section>
 
