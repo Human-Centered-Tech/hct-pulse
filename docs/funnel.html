@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Catholic Owned — Purchase Funnel</title>
+<style>
+  :root{
+    --paper:#eef0f4; --surface:#ffffff; --ink:#14213d; --body:#454f68; --muted:#8890a3;
+    --navy:#17294A; --gold:#9a7b1f; --hair:#dfe3ea;
+    --data:#3563c4; /* validated data hue (light surface) */
+    --data-soft:#e7edfc;
+    --serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+    --sans:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--body);font-family:var(--sans);font-size:15px;line-height:1.5}
+  .wrap{max-width:960px;margin:0 auto;padding:0 20px 72px}
+  header{background:linear-gradient(180deg,#17294A,#101d38);color:#eef1f6;padding:34px 0 26px;border-bottom:3px solid var(--gold)}
+  header .wrap{padding-bottom:0}
+  .kicker{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#c7ad63;font-weight:700}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(24px,4vw,34px);margin:.28em 0 .12em;color:#fff}
+  header p{margin:0;color:#aeb9cf;font-size:14px}
+  header a{color:#c7ad63}
+  .card{background:var(--surface);border:1px solid var(--hair);border-radius:12px;padding:20px 22px;margin-top:22px;box-shadow:0 1px 0 rgba(20,33,61,.03)}
+  .card h2{font-family:var(--serif);font-size:19px;color:var(--ink);margin:0 0 2px}
+  .card .sub{font-size:12.5px;color:var(--muted);margin:0 0 14px}
+  .toggle{display:inline-flex;gap:4px;background:#f1f3f7;border:1px solid var(--hair);border-radius:8px;padding:3px;margin-left:auto}
+  .toggle button{border:0;background:transparent;font:inherit;font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--muted);padding:4px 12px;border-radius:6px;cursor:pointer}
+  .toggle button.on{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(20,33,61,.12)}
+  .rowhead{display:flex;align-items:center}
+  /* funnel bars */
+  .frow{display:grid;grid-template-columns:110px 1fr 118px;gap:12px;align-items:center;padding:7px 0}
+  .frow .lbl{font-size:13px;font-weight:650;color:var(--ink);text-align:right}
+  .frow .track{position:relative;height:22px}
+  .frow .bar{position:absolute;inset:0 auto 0 0;background:var(--data);border-radius:0 4px 4px 0;min-width:2px;transition:width .35s ease}
+  .frow.dim .bar{background:#9fb4dd}
+  .frow .val{font-size:13px;color:var(--body);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .frow .val b{color:var(--ink)}
+  .drop{font-size:11px;color:var(--muted);grid-column:3;text-align:left}
+  .conv{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;padding-top:12px;border-top:1px solid var(--hair)}
+  .conv div{font-size:12.5px;color:var(--muted)}
+  .conv b{display:block;font-size:19px;color:var(--ink);font-variant-numeric:tabular-nums}
+  /* stat tiles */
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+  .tile{background:#fafbfd;border:1px solid var(--hair);border-radius:10px;padding:12px 14px}
+  .tile .n{font-size:24px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
+  .tile .l{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+  .note{font-size:12.5px;color:var(--muted);margin-top:10px}
+  .pending{background:#fbf6e7;border:1px solid #e7d9ae;border-radius:10px;padding:12px 16px;font-size:13.5px;color:#6b5410}
+  details{margin-top:14px}
+  summary{cursor:pointer;font-size:12.5px;color:var(--muted)}
+  table{border-collapse:collapse;margin-top:8px;font-size:12.5px;width:100%}
+  th,td{text-align:right;padding:4px 10px;border-bottom:1px solid var(--hair);font-variant-numeric:tabular-nums}
+  th:first-child,td:first-child{text-align:left}
+  th{color:var(--muted);font-weight:600;text-transform:uppercase;font-size:10.5px;letter-spacing:.05em}
+  #tip{position:fixed;pointer-events:none;background:var(--ink);color:#fff;font-size:12px;padding:6px 9px;border-radius:6px;opacity:0;transition:opacity .12s;z-index:50;max-width:260px}
+  #tip b{color:#f2cd69}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="kicker">Catholic Owned · Purchase Funnel</div>
+    <h1>Where shoppers stop</h1>
+    <p>Server-side page views from the edge logs (bots removed), refreshed every 5 minutes. <a href="punchlist.html">Punch-list</a> · <a href="index.html">Uptime</a></p>
+  </div>
+</header>
+<div class="wrap">
+
+  <div class="card">
+    <div class="rowhead">
+      <div>
+        <h2>Marketplace funnel</h2>
+        <p class="sub" id="fsub">Loading…</p>
+      </div>
+      <div class="toggle" role="tablist">
+        <button id="t24" class="on">24 h</button>
+        <button id="t7">7 days</button>
+      </div>
+    </div>
+    <div id="funnel"></div>
+    <div class="conv" id="convs"></div>
+    <details><summary>Data table</summary><div id="ftable"></div></details>
+  </div>
+
+  <div class="card">
+    <h2>Since launch — database truth</h2>
+    <p class="sub">Carts and orders straight from the store database (all sellers). Snapshot of Jul 3; refreshed manually.</p>
+    <div class="tiles" id="dbtiles"></div>
+    <p class="note" id="dbnote"></p>
+  </div>
+
+  <div class="card">
+    <h2>Unique people per step — Google Analytics</h2>
+    <p class="sub">Users (not views) per step across the last 28 days. Includes the mobile apps once their next build reports in.</p>
+    <div id="ga"></div>
+  </div>
+
+</div>
+<div id="tip"></div>
+<script>
+const STEPS = [
+  ['home', 'Homepage'],
+  ['shop', 'Marketplace'],
+  ['product', 'Product page'],
+  ['cart', 'Cart'],
+  ['checkout', 'Checkout'],
+  ['purchase', 'Purchase ✓'],
+];
+const fmt = n => n.toLocaleString('en-US');
+const tip = document.getElementById('tip');
+function showTip(e, html){ tip.innerHTML = html; tip.style.opacity = 1;
+  tip.style.left = Math.min(e.clientX + 14, innerWidth - 280) + 'px'; tip.style.top = (e.clientY + 14) + 'px'; }
+function hideTip(){ tip.style.opacity = 0; }
+
+// DB-truth seed (updated by hand; see punch-list "funnel" notes).
+const DB = { asOf: 'Jul 3, 2026', carts: 25, withItems: 25, withAddress: 25, completed: 2, orders: 5,
+  note: 'All cart emails so far are the team or merchants testing their own shops — the funnel problem is traffic entering it, not checkout breaking. (2 completed carts became 5 seller-orders: multi-seller carts split.)' };
+
+const tiles = document.getElementById('dbtiles');
+[['Carts created', DB.carts], ['…with items', DB.withItems], ['…reached address', DB.withAddress], ['…completed', DB.completed], ['Seller orders', DB.orders]]
+  .forEach(([l, n]) => { const d = document.createElement('div'); d.className = 'tile';
+    d.innerHTML = `<div class="n">${fmt(n)}</div><div class="l">${l}</div>`; tiles.appendChild(d); });
+document.getElementById('dbnote').textContent = DB.note + ' As of ' + DB.asOf + '.';
+
+let hours = {}, range = 24;
+function totals(rangeH){
+  const cutoff = new Date(Date.now() - rangeH * 3600e3).toISOString().slice(0, 13);
+  const sum = {};
+  for (const [hk, b] of Object.entries(hours)) {
+    if (hk < cutoff || !b.fn) continue;
+    for (const [k, v] of Object.entries(b.fn)) sum[k] = (sum[k] || 0) + v;
+  }
+  return sum;
+}
+function render(){
+  const t = totals(range);
+  const max = Math.max(1, ...STEPS.map(([k]) => t[k] || 0));
+  const el = document.getElementById('funnel');
+  el.innerHTML = '';
+  let prev = null;
+  for (const [k, label] of STEPS) {
+    const v = t[k] || 0;
+    const row = document.createElement('div');
+    row.className = 'frow' + (v === 0 ? ' dim' : '');
+    const pct = prev ? (prev ? Math.round((v / Math.max(prev, 1)) * 100) : 0) : null;
+    row.innerHTML = `<div class="lbl">${label}</div>
+      <div class="track"><div class="bar" style="width:${Math.max(2, (v / max) * 100)}%"></div></div>
+      <div class="val"><b>${fmt(v)}</b> views${pct !== null ? ` · ${pct}%` : ''}</div>`;
+    const bar = row.querySelector('.track');
+    bar.addEventListener('mousemove', e => showTip(e, `<b>${label}</b><br>${fmt(v)} page views in last ${range === 24 ? '24 h' : '7 days'}${pct !== null ? `<br>${pct}% of previous step` : ''}`));
+    bar.addEventListener('mouseleave', hideTip);
+    el.appendChild(row);
+    prev = v;
+  }
+  const dirViews = t.directory || 0;
+  const conv = document.getElementById('convs');
+  const home = t.home || 0, prod = t.product || 0, cart = t.cart || 0, buy = t.purchase || 0;
+  conv.innerHTML = `
+    <div><b>${home ? Math.round((prod / Math.max(home, 1)) * 100) + '%' : '—'}</b>homepage → product</div>
+    <div><b>${prod ? Math.round((cart / Math.max(prod, 1)) * 100) + '%' : '—'}</b>product → cart</div>
+    <div><b>${cart ? Math.round((buy / Math.max(cart, 1)) * 100) + '%' : '—'}</b>cart → purchase</div>
+    <div><b>${fmt(dirViews)}</b>directory views (parallel track)</div>`;
+  document.getElementById('ftable').innerHTML =
+    '<table><tr><th>Step</th><th>Views</th></tr>' +
+    STEPS.concat([['directory', 'Directory']]).map(([k, l]) => `<tr><td>${l}</td><td>${fmt(t[k] || 0)}</td></tr>`).join('') +
+    '</table>';
+}
+document.getElementById('t24').onclick = () => { range = 24; t24.className = 'on'; t7.className = ''; render(); };
+document.getElementById('t7').onclick = () => { range = 168; t7.className = 'on'; t24.className = ''; render(); };
+
+fetch('data/traffic.json').then(r => r.json()).then(d => {
+  const s = Object.values(d.series || {})[0];
+  hours = s?.hours || {};
+  const hasFn = Object.values(hours).some(b => b.fn);
+  document.getElementById('fsub').textContent = hasFn
+    ? `Human page views per step · updated ${new Date(d.updated).toLocaleString()}`
+    : 'Collector just upgraded — funnel buckets start filling within ~10 minutes of the next probe run.';
+  render();
+}).catch(() => { document.getElementById('fsub').textContent = 'traffic.json unavailable'; });
+
+fetch('data/funnel-ga.json').then(r => r.json()).then(d => {
+  const el = document.getElementById('ga');
+  if (d.pending) {
+    el.innerHTML = `<div class="pending">Awaiting Google Analytics access: Brooke needs to add
+      <b>hct-funnel-reader@thoughtweaver.iam.gserviceaccount.com</b> as <b>Viewer</b> under
+      GA Admin → Property access management. Data appears here automatically after the next refresh.
+      <span style="color:#a08427">(${d.reason || ''})</span></div>`;
+    return;
+  }
+  const sum = {};
+  for (const day of Object.values(d.days || {}))
+    for (const [k, v] of Object.entries(day)) sum[k] = (sum[k] || 0) + v.users;
+  const max = Math.max(1, ...STEPS.map(([k]) => sum[k] || 0));
+  el.innerHTML = '';
+  for (const [k, label] of STEPS) {
+    const v = sum[k] || 0;
+    const row = document.createElement('div');
+    row.className = 'frow' + (v === 0 ? ' dim' : '');
+    row.innerHTML = `<div class="lbl">${label}</div>
+      <div class="track"><div class="bar" style="width:${Math.max(2, (v / max) * 100)}%"></div></div>
+      <div class="val"><b>${fmt(v)}</b> users</div>`;
+    const bar = row.querySelector('.track');
+    bar.addEventListener('mousemove', e => showTip(e, `<b>${label}</b><br>${fmt(v)} unique users, last 28 days (GA)`));
+    bar.addEventListener('mouseleave', hideTip);
+    el.appendChild(row);
+  }
+}).catch(() => { document.getElementById('ga').innerHTML = '<div class="pending">GA feed not initialized yet.</div>'; });
+</script>
+</body>
+</html>

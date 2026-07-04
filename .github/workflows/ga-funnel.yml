@@ -1,0 +1,35 @@
+name: ga-funnel
+on:
+  schedule:
+    - cron: "17 5,17 * * *" # twice daily
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ga-funnel
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Fetch GA funnel data
+        run: node scripts/fetch-ga-funnel.mjs
+        env:
+          GA_FUNNEL_SA_KEY: ${{ secrets.GA_FUNNEL_SA_KEY }}
+      - name: Commit data
+        run: |
+          git config user.name "hct-pulse[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/data
+          if ! git diff --cached --quiet; then
+            git commit -m "ga-funnel $(date -u +%FT%TZ)"
+            git pull --rebase origin main
+            git push
+          fi

@@ -41,6 +41,25 @@ async function gql(query, variables) {
   return body.data;
 }
 
+// Purchase-funnel classification for docs/funnel.html. The locale prefix
+// (/us, /es, ...) varies, so strip one leading 2-letter segment then match.
+const FUNNEL_STEPS = [
+  ['purchase', /^\/order\/[^/]+\/confirmed/],
+  ['checkout', /^\/checkout/],
+  ['cart', /^\/cart$/],
+  ['product', /^\/products\/[^/]+/],
+  ['shop', /^\/(categories|search)(\/|$)/],
+  ['directory', /^\/directory(\/|$)/],
+  ['home', /^\/?$/],
+];
+function funnelStep(path) {
+  let p = (path || '').split('?')[0];
+  p = p.replace(/^\/[a-z]{2}(?=\/|$)/i, '');
+  if (p === '') p = '/';
+  for (const [k, re] of FUNNEL_STEPS) if (re.test(p)) return k;
+  return null;
+}
+
 const hashIp = ip => createHmac('sha256', token).update(ip || '?').digest('base64url').slice(0, 10);
 const hourKey = ts => ts.slice(0, 13);
 
@@ -109,7 +128,11 @@ for (const t of targets) {
     const h = hashIp(e.srcIp);
     if (!ips.includes(h)) ips.push(h);
     b.uniq = ips.length;
-    if (e.method === 'GET' && e.httpStatus < 400 && !ASSET_RE.test(e.path || '')) b.pv++;
+    if (e.method === 'GET' && e.httpStatus < 400 && !ASSET_RE.test(e.path || '')) {
+      b.pv++;
+      const step = funnelStep(e.path);
+      if (step) { const f = (b.fn ??= {}); f[step] = (f[step] || 0) + 1; }
+    }
   }
 
   if (entries.length) st.lastTs = entries.reduce((m, e) => (e.timestamp > m ? e.timestamp : m), st.lastTs);
