@@ -98,7 +98,7 @@
     <div class="chip"><span class="dot" style="background:var(--held)"></span><span class="n">2</span><span class="l">Held for review</span></div>
     <div class="chip"><span class="dot" style="background:var(--info)"></span><span class="n">6</span><span class="l">Answered — info</span></div>
     <div class="chip"><span class="dot" style="background:var(--decide)"></span><span class="n">4</span><span class="l">Needs a decision</span></div>
-    <div class="chip"><span class="dot" style="background:var(--none)"></span><span class="n">14</span><span class="l">Not started</span></div>
+    <div class="chip"><span class="dot" style="background:var(--none)"></span><span class="n">15</span><span class="l">Not started</span></div>
     <div class="chip"><span class="dot" style="background:var(--mobile)"></span><span class="n">9</span><span class="l">Mobile track</span></div>
   </div>
 
@@ -197,8 +197,9 @@
 
   <!-- NOT STARTED -->
   <section class="grp none">
-    <div class="grp-head"><span class="bar"></span><h2>Not started</h2><span class="cnt">14</span><span class="sub">open — some blocked on legal / Joe / next week</span></div>
+    <div class="grp-head"><span class="bar"></span><h2>Not started</h2><span class="cnt">15</span><span class="sub">open — some blocked on legal / Joe / next week</span></div>
     <div class="grid">
+      <div class="item"><div class="t">Scheduled seller-shipping guard</div><div class="d">Every new merchant passes through a "products added, shipping not configured" window that silently blocks checkout (Chain of Joy 7/3). Post-7/11: run diagnose-seller-shipping on a schedule feeding a pulse alert + add "create a shipping option" to Brooke's onboarding email as a required step.</div><span class="src">Audit 7/3</span></div>
       <div class="item"><div class="t">Play advisory: Android 15 edge-to-edge deprecations</div><div class="d">All flagged call sites are third-party (RN core, react-native-screens, Material, Stripe SDK, Expo modules) — resolved by the next Expo SDK bump. No app code to change; not a rejection risk today.</div><span class="src">Play 7/3</span></div>
       <div class="item"><div class="t">Play advisory: portrait lock ignored on large screens (Android 16)</div><div class="d">App declares orientation:portrait; Android 16 tablets/foldables will ignore it. Post-7/11: remove the lock + landscape QA pass (Matteo). Keep locked for now.</div><span class="src">Play 7/3</span></div>
       <div class="item"><div class="t">Move off v3 + GoDaddy apex→www redirect</div><div class="d">Apex forward fails ~1/10; fix via middleware. Infra/DNS — needs your hands on GoDaddy.</div><span class="src">List / 6-30</span></div>
