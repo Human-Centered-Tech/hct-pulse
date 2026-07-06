@@ -1,30 +1,49 @@
 {
-  "ts": "2026-07-02T04:02:11.742Z",
+  "ts": "2026-07-06T11:04:07.928Z",
   "results": {
     "https://api.catholicowned.com/health": {
       "ca1": {
         "ok": true,
-        "seconds": 0.13,
+        "seconds": 0.129,
         "detail": "OK"
       },
       "us1": {
         "ok": true,
-        "seconds": 0.065,
+        "seconds": 0.043,
         "detail": "OK"
       },
       "us2": {
         "ok": true,
-        "seconds": 1.283,
+        "seconds": 0.237,
         "detail": "OK"
       },
       "us3": {
         "ok": true,
-        "seconds": 0.149,
+        "seconds": 0.186,
         "detail": "OK"
       }
     },
     "https://www.catholicowned.com/us": {
-      "error": "Unexpected token '<', \"<html>\r\n<h\"... is not valid JSON"
+      "ca1": {
+        "ok": true,
+        "seconds": 0.408,
+        "detail": "OK"
+      },
+      "us1": {
+        "ok": true,
+        "seconds": 0.407,
+        "detail": "OK"
+      },
+      "us2": {
+        "ok": true,
+        "seconds": 0.484,
+        "detail": "OK"
+      },
+      "us3": {
+        "ok": true,
+        "seconds": 0.323,
+        "detail": "OK"
+      }
     }
   }
 }
