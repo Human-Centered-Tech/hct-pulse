@@ -796,9 +796,11 @@ window.__state = {
   "fri-tier-parish-sync__notes": "Verified working: the parish-affiliation limit reads the listing subscription_tier, which the admin tier override pins — so raising the pinned tier raises the available parish slots. (Edge case: pinning a tier BELOW the owner-selected recommended_tier keeps the higher slot count; rare, flag if it matters.)",
   "cb-tridfi-unpublish": true,
   "cb-tridfi-unpublish__notes": "Hide/reinstate TOOL built on staging 7/7 (new admin_hidden flag + a Hide/Show-in-directory toggle on the listing detail; hidden listings drop from the public directory + Algolia, fully reversible). Actually hiding TridFi = one click in admin once promoted. Needs prod promote (incl. a migration, auto-applies on deploy).",
-  "fri-admin-org__notes": "NOT done — needs your input on structure. Current admin nav has Sellers + Directory groups. Brooke wants: Business Owners / Merchants / Directory Listings / Marketplace Storefronts as distinct sections. Some of these overlap (Sellers = Marketplace Storefronts; Business Owners = listing owners). Tell me the exact grouping/labels you want and I will restructure the left nav.",
-  "cb-admin-tabs__notes": "Same as fri-admin-org — the left-nav / distinct-tabs reorg needs your desired grouping before I build it.",
-  "mat-admin-manual-crud__notes": "Partly there: admins can now edit, hide/unpublish, and delete directory listings, and events have create/edit. A from-scratch \"create directory listing\" in admin does not exist (listings come from claim/import). Tell me if you want an admin create-listing form too."
+  "fri-admin-org__notes": "Done on staging 7/7 using Brooke's account taxonomy (her 7/7 message): new Business Owners tab (listing owners w/ Merchant vs Business Owner badge + filters), nav relabeled Sellers→Marketplace Storefronts and Directory→Directory Listings. Guest checkout + regular users already live under Orders/Customers. Verified on staging.",
+  "cb-admin-tabs__notes": "Same as the admin-org item — Directory Listings / Marketplace Storefronts / Business Owners are now distinct nav sections (staging).",
+  "mat-admin-manual-crud__notes": "Mostly there now: admins can edit, hide/unpublish (new toggle), and delete directory listings; upload logo/cover/gallery; edit parishes/categories/badges/tier; events have create/edit. Still missing: a from-scratch admin create-listing form — say the word if wanted.",
+  "fri-admin-org": true,
+  "cb-admin-tabs": true
 };
 window.__prodSet = ["mon-cancel-email"];
 window.addEventListener("DOMContentLoaded", () => {
