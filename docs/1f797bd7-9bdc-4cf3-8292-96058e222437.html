@@ -800,7 +800,9 @@ window.__state = {
   "cb-admin-tabs__notes": "Same as the admin-org item — Directory Listings / Marketplace Storefronts / Business Owners are now distinct nav sections (staging).",
   "mat-admin-manual-crud__notes": "Mostly there now: admins can edit, hide/unpublish (new toggle), and delete directory listings; upload logo/cover/gallery; edit parishes/categories/badges/tier; events have create/edit. Still missing: a from-scratch admin create-listing form — say the word if wanted.",
   "fri-admin-org": true,
-  "cb-admin-tabs": true
+  "cb-admin-tabs": true,
+  "cb-claim-logo-fix": true,
+  "cb-claim-logo-fix__notes": "ROOT FIX built on staging 7/7 (claim-flow rebuild): the listing no longer disappears when claimed — it stays publicly visible with its pre-claim content, and ownership/edits publish at payment (grandfathered members transfer instantly, free). Verified end-to-end on staging incl. a simulated Stripe payment webhook. Also: every claim attempt is now recorded (admin → Directory Listings → Claim Attempts) with a Void action, attestation checkbox per the claim terms, and NO forced merchant onboarding. One staging-only gap: staging Stripe test account lacks the tier prices, so the checkout leg can only be browser-tested on prod or after cloning prices (scripts/clone-stripe-tier-prices.mjs)."
 };
 window.__prodSet = ["mon-cancel-email"];
 window.addEventListener("DOMContentLoaded", () => {
