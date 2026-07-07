@@ -734,7 +734,7 @@
     </ul>
   </section>
 
-  <footer>Read-only published copy — republished as items complete. Last updated: 2026-07-07.</footer>
+  <footer>Read-only published copy — republished as items complete. Last updated: 2026-07-07 (overnight session).</footer>
 </div>
 <script>window.__state = {
   "mon-cancel-email": true,
@@ -764,7 +764,21 @@
   "ios-placing-order-copy": true,
   "ios-placing-order-copy__notes": "Done 7/7 (mobile branch): overlay behind the Stripe sheet now says 'Preparing payment…' until the card is charged, then 'Placing your order…'. Rides the next EAS build.",
   "addon-custom-badge-dims": true,
-  "addon-custom-badge-dims__notes": "ANSWER for the partner (His Way at Work) badge graphic: deliver a SQUARE (1:1), transparent-background image — SVG preferred, otherwise PNG exported at 96×96 px (128 is fine) so it's crisp on retina. Keep it simple/high-contrast so it reads small. IMPORTANT caveat: today the custom badge shows as a text-only colored pill on directory CARDS (icon not shown), a tiny 12px icon on the listing DETAIL page, and NOT AT ALL in the mobile apps. For it to be a real visible partner badge / revenue driver, we should enhance the rendering (show the icon on cards, larger on detail ~24-32px, and add it to mobile) — ~1-2 hrs, tell me to proceed."
+  "addon-custom-badge-dims__notes": "ANSWER for the partner (His Way at Work) badge graphic: SQUARE (1:1), transparent bg, SVG preferred else PNG @96×96 (128 fine), simple/high-contrast so it reads small. ALSO done on staging 7/7: the badge graphic now actually shows — icon on directory cards (was name-only), 20px on detail, and rendered in the mobile apps too. If Brooke wants it MORE prominent (standalone 32-40px chip), that's a further step — say the word.",
+  "cb-price-slider": true,
+  "cb-price-slider__notes": "Done on staging 7/7: slider caps at $500 with a '$500+' ceiling (top = no upper bound, so the $1k-26k Sacred Art originals are still reachable but don't wreck the scale). Awaiting prod promote.",
+  "mon-crm-names": true,
+  "mon-crm-names__notes": "Code fix done on staging 7/7: app-only signups (name optional) + social/guest users were nameless → CRM showed the id. Now derives a readable name from the email when both name fields are empty (never overwrites a real name). Fixes FUTURE syncs. The EXISTING nameless contacts in your CSV need a one-time resync against the live Freshworks CRM — I didn't run that unattended; tell me and I'll do the batch.",
+  "addon-team-invite-deadlink__notes": "ROOT-CAUSED + staging-fixed 7/7. Mercur builds the invite link from env VENDOR_PANEL_URL, but prod only has VENDOR_DASHBOARD_URL set → link fell back to http://localhost:5173/invite (dead). Also silently breaks vendor password-reset links (same var). PROD FIX (one-liner, you run): railway variables --service Backend --environment production --set \"VENDOR_PANEL_URL=https://v3-vendor.catholicowned.com\". Set on staging already. No code change.",
+  "ios-hold-submission__notes": "Acknowledged — no submission tonight; build 20 stays the candidate. Mobile branch work (My Parishes, iOS copy, Shop-More-from, badges) rides the next build (3.0.2).",
+  "mat-webapp-styling__notes": "Partly done: app 'Sold by X' → 'Shop More from X' + larger icon/spacing DONE (mobile branch). The WEB home-header-size / product-name-size / 'View All' crowding are subjective/screenshot-driven — left for your review rather than guess-and-churn. Proposed: section h2 text-3xl/4xl → text-2xl/3xl + more room for View All. Say go.",
+  "mat-notifications__notes": "Diagnosed (needs on-device testing — can't verify from here). iOS: the app won't appear in Settings→Notifications until it requests authorization at least once; the app only prompts at an 'intent moment'/soft-ask, so if that never fires, no iOS entry. Fix direction: add an explicit in-app 'Enable notifications' toggle that calls enablePush() so the OS prompt reliably fires. Android 13+: confirm POST_NOTIFICATIONS runtime permission is actually requested + the 'default' channel importance. Code path looks structurally OK; the trigger UX is the likely gap. Recommend a test push round-trip on both platforms with the next build.",
+  "mat-owner-devotional-format__notes": "DEFERRED — conflicts with Brooke's 'merge devotional into owner-interview Q3 and remove the devotional section'. Matteo wants the two images portrait/square, side-by-side on tablet, stacked on mobile; Brooke wants to merge them. You two should align on the final design before I build (otherwise I'd build something one of you undoes). Flagging both together.",
+  "mon-devotional-merge__notes": "See mat-owner-devotional-format — Brooke (merge into Q3, remove section) and Matteo (side-by-side layout) overlap/conflict. Needs a quick alignment, then I'll build.",
+  "mon-directory-pagination__notes": "DEFERRED — the directory is a 780-line component with map-view sync, dedup, and load-more state. A full load-more→paged rewrite unattended risks breaking the main browse experience. Plan ready; do it with you around to verify.",
+  "mon-marketplace-sort__notes": "DEFERRED — needs Algolia replica indices + a reindex on the shared prod app (risky unattended). Mobile already has featured/newest/oldest sort; plan = wire replicas + bring web to parity. ~1-2 hrs with you watching the reindex.",
+  "mon-sort-options__notes": "Same as mon-marketplace-sort — needs Algolia replicas + reindex, deferred to a supervised session. Price filter itself works (slider cap fixed tonight).",
+  "carry-mobile-next-build__notes": "Store candidate = build 20; submission ON HOLD (Brooke 7/7). Next build (3.0.2) carries: stale-cart recovery, My Parishes native, Enterprise icon, iOS 'Preparing payment' copy, Shop-More-from, custom badges. Merge feat/mobile-parishes + fix/checkout-stale-cart-recovery (no overlap)."
 };
 window.addEventListener("DOMContentLoaded", () => {
   for (const [k, v] of Object.entries(window.__state)) {
