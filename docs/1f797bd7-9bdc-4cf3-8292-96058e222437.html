@@ -49,6 +49,9 @@
   li.item:has(> input[type="checkbox"]:checked) .body .title,
   li.item:has(> input[type="checkbox"]:checked) .body .desc { text-decoration: line-through; color: var(--muted); }
   footer { text-align: center; color: var(--muted); font-size: 12px; font-family: Verdana, sans-serif; margin-top: 24px; }
+  li.item > input[type="checkbox"] { pointer-events: none; }
+  .note-static { margin-top: 7px; font-family: Verdana, sans-serif; font-size: 12px; padding: 6px 8px; border-left: 3px solid var(--gold); background: #fcf8ec; border-radius: 4px; color: #4a4a45; }
+  .readonly-banner { background: #fff4cc; border: 1px solid #d4a300; color: #5a4a00; border-radius: 10px; padding: 10px 16px; margin-bottom: 16px; font-family: Verdana, sans-serif; font-size: 12px; text-align: center; }
 </style>
 </head>
 <body>
@@ -61,6 +64,8 @@
       <div class="progress-label" id="plabel">—</div>
     </div>
   </header>
+
+  <div class="readonly-banner">📌 Read-only status page — updated by Liam as items complete. Nothing you click here is saved.</div>
 
   <!-- ===================== FRIDAY'S MEETING ===================== -->
   <section>
@@ -613,9 +618,7 @@
     </ul>
   </section>
 
-  <footer>
-    Read-only published copy — checkbox state here reflects the last update by Liam and is republished as items complete.<br>Ticking boxes in this view is not saved.
-  </footer>
+  <footer>Read-only published copy — republished as items complete. Last updated: 2026-07-06.</footer>
 </div>
 <script>window.__state = {
   "mon-cancel-email": true,
@@ -627,6 +630,13 @@ window.addEventListener("DOMContentLoaded", () => {
     if (!el) continue;
     if (el.type === "checkbox") el.checked = !!v; else el.value = v;
   }
+  document.querySelectorAll(".investigate-toggle").forEach(t => t.remove());
+  document.querySelectorAll("textarea.notes").forEach(t => {
+    const val = t.value.trim();
+    if (val) { const d = document.createElement("div"); d.className = "note-static"; d.textContent = "📝 " + val; t.replaceWith(d); }
+    else t.remove();
+  });
+  document.querySelectorAll("input, textarea").forEach(el => { el.disabled = true; });
 });</script>
 <script>
   // Progress counters (overall + per section). Recomputed on any change;
