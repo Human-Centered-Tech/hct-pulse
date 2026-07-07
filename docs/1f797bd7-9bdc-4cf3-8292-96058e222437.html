@@ -761,7 +761,7 @@ window.__state = {
   "carry-staging-allowlist__notes": "Done 7/7: EMAIL_RECIPIENT_ALLOWLIST set on staging Backend — staging can now only email the team (@humancenteredtech, @catholicowned) + known gmail testers, not real customers.",
   "fri-my-parishes": false,
   "fri-my-parishes__notes": "Built 7/6 web (staging, verified) + native app (branch feat/mobile-parishes, tsc clean, not device-tested). Review at marketplace-staging-f930.up.railway.app/us/parishes. Awaiting prod promote + an EAS build for the app.",
-  "carry-mobile-next-build__notes": "Store candidate = build 20. Brooke 7/7: HOLD submission until Matteo's items + iOS checkout-copy fix land (see the 7/7 section). Next build (3.0.2) carries: stale-cart recovery, My Parishes native, Enterprise-icon.",
+  "carry-mobile-next-build__notes": "Store candidate = build 20; submission ON HOLD (Brooke 7/7). Next build (3.0.2) carries: stale-cart recovery, My Parishes native, Enterprise icon, iOS 'Preparing payment' copy, Shop-More-from, custom badges. Merge feat/mobile-parishes + fix/checkout-stale-cart-recovery (no overlap).",
   "cb-payout-promote__notes": "Correction still stands: fix is on branch feat/seller-payout-fixes (not staging). Needs 2 policy sign-offs, then merge→staging→promote.",
   "addon-founding-pillars": true,
   "addon-founding-pillars__notes": "Done on staging 7/7: 'Every Member must align with our signature Founding Pillars' (sell page + vendor onboarding). Also swept remaining FAQ 'Verified' copy. Awaiting prod promote.",
@@ -782,10 +782,23 @@ window.__state = {
   "mon-directory-pagination__notes": "DEFERRED — the directory is a 780-line component with map-view sync, dedup, and load-more state. A full load-more→paged rewrite unattended risks breaking the main browse experience. Plan ready; do it with you around to verify.",
   "mon-marketplace-sort__notes": "DEFERRED — needs Algolia replica indices + a reindex on the shared prod app (risky unattended). Mobile already has featured/newest/oldest sort; plan = wire replicas + bring web to parity. ~1-2 hrs with you watching the reindex.",
   "mon-sort-options__notes": "Same as mon-marketplace-sort — needs Algolia replicas + reindex, deferred to a supervised session. Price filter itself works (slider cap fixed tonight).",
-  "carry-mobile-next-build__notes": "Store candidate = build 20; submission ON HOLD (Brooke 7/7). Next build (3.0.2) carries: stale-cart recovery, My Parishes native, Enterprise icon, iOS 'Preparing payment' copy, Shop-More-from, custom badges. Merge feat/mobile-parishes + fix/checkout-stale-cart-recovery (no overlap).",
   "mat-transparent-logo-bg": true,
   "mat-transparent-logo-bg__notes": "Done on staging 7/7: the seller storefront header put transparent logos on a navy background — now white behind a real logo (matches the directory-card convention); the letter placeholder keeps navy. The mobile APP storefront doesn't show logos at all (letter only), so nothing to change there.",
-  "mon-linked-state__notes": "Backend guard DONE on staging 7/7: the admin link tool now REJECTS linking a Stripe subscription that's already on another listing (409 naming the other business) — prevents the Renovus dual-link where cancelling one listing cancels the other's real Stripe sub. The UI half — showing an already-linked state (checkmark/edit) instead of acting unlinked — is admin-fork frontend work, part of the deferred admin batch."
+  "mon-linked-state__notes": "Done on staging 7/7: detail page now shows the linked state clearly (green ✓ Membership linked / ✓ Claimed vs No membership linked / Unclaimed). Plus the backend guard from earlier that rejects linking a Stripe sub already on another listing (Renovus).",
+  "mon-parish-edit-admin": true,
+  "mon-parish-edit-admin__notes": "Done on staging 7/7: parish-affiliation editor added to the admin directory-listing detail page (typeahead + chips), backed by new admin affiliation endpoints; tier cap enforced.",
+  "fri-admin-listing-photos": true,
+  "fri-admin-listing-photos__notes": "Done on staging 7/7: admin can now upload/replace a listing logo + cover image (gallery upload already existed). On the directory-listing detail page.",
+  "mon-linked-state": true,
+  "fri-vacation-toggle": true,
+  "fri-vacation-toggle__notes": "Already existed — the admin Seller page has Pause/Reopen shop (vacation). Verified present; no build needed.",
+  "fri-tier-parish-sync": true,
+  "fri-tier-parish-sync__notes": "Verified working: the parish-affiliation limit reads the listing subscription_tier, which the admin tier override pins — so raising the pinned tier raises the available parish slots. (Edge case: pinning a tier BELOW the owner-selected recommended_tier keeps the higher slot count; rare, flag if it matters.)",
+  "cb-tridfi-unpublish": true,
+  "cb-tridfi-unpublish__notes": "Hide/reinstate TOOL built on staging 7/7 (new admin_hidden flag + a Hide/Show-in-directory toggle on the listing detail; hidden listings drop from the public directory + Algolia, fully reversible). Actually hiding TridFi = one click in admin once promoted. Needs prod promote (incl. a migration, auto-applies on deploy).",
+  "fri-admin-org__notes": "NOT done — needs your input on structure. Current admin nav has Sellers + Directory groups. Brooke wants: Business Owners / Merchants / Directory Listings / Marketplace Storefronts as distinct sections. Some of these overlap (Sellers = Marketplace Storefronts; Business Owners = listing owners). Tell me the exact grouping/labels you want and I will restructure the left nav.",
+  "cb-admin-tabs__notes": "Same as fri-admin-org — the left-nav / distinct-tabs reorg needs your desired grouping before I build it.",
+  "mat-admin-manual-crud__notes": "Partly there: admins can now edit, hide/unpublish, and delete directory listings, and events have create/edit. A from-scratch \"create directory listing\" in admin does not exist (listings come from claim/import). Tell me if you want an admin create-listing form too."
 };
 window.__prodSet = ["mon-cancel-email"];
 window.addEventListener("DOMContentLoaded", () => {
