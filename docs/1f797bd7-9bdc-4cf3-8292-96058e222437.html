@@ -503,6 +503,122 @@
     </ul>
   </section>
 
+  <!-- ===================== LATEST 7/7 THREAD ===================== -->
+  <section>
+    <h2>Latest from the thread — 7/7 (Brooke add-ons + Matteo + iOS) <span class="count"></span></h2>
+    <div class="secnote">New items from the 7/7 emails (Brooke 2:21 AM &amp; 4:46 AM, Matteo 3:24 AM). ⚠️ Brooke: HOLD the Apple/Google submission until Matteo's items + these are done.</div>
+    <ul class="items">
+      <li class="item">
+        <input type="checkbox" data-field="ios-hold-submission">
+        <div class="body">
+          <div class="title">⚠️ HOLD app-store submission (Apple + Google)</div>
+          <div class="desc">Brooke 4:46 AM: don't submit build 20 yet — wait until Matteo's items below and the iOS checkout-copy fix are done. (Supersedes "submit build 20 this week"; the 3rd submission absorbs these.)</div>
+          <textarea class="notes" data-field="ios-hold-submission__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="ios-hold-submission__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="ios-placing-order-copy">
+        <div class="body">
+          <div class="title">iOS checkout: "Placing your order" shows during Stripe payment sheet</div>
+          <div class="desc">Brooke 4:46 AM (screenshot): after "Proceed to Payment", while the Stripe sheet loads, the loading text reads "Placing your order" — confusing since payment hasn't happened. Reword (e.g. "Preparing payment…").</div>
+          <textarea class="notes" data-field="ios-placing-order-copy__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="ios-placing-order-copy__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="addon-founding-pillars">
+        <div class="body">
+          <div class="title">"Verified" on the Founding Pillars box</div>
+          <div class="desc">Brooke 2:21 AM, exact swap: "Every Featured &amp; Verified business must align with our signature Founding Pillars:" → <strong>"Every Member must align with our signature Founding Pillars."</strong> (sell page + vendor onboarding funnel — the two spots deferred from the Verified sweep.)</div>
+          <textarea class="notes" data-field="addon-founding-pillars__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="addon-founding-pillars__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="addon-custom-badge-dims">
+        <div class="body">
+          <div class="title">Custom-badge dimensions for partner org (revenue driver)</div>
+          <div class="desc">Brooke 2:21 AM: an org (His Way at Work) wants a filterable directory category + a badge on their members' listings. She needs the recommended badge image dimensions that look good on listings across all devices (admin "Custom badges" field). Liam to measure + report so she can move the partnership forward.</div>
+          <textarea class="notes" data-field="addon-custom-badge-dims__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="addon-custom-badge-dims__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="addon-team-invite-deadlink">
+        <div class="body">
+          <div class="title">Team-member invite link is dead</div>
+          <div class="desc">Brooke 2:21 AM: a Featured member tried the "invite team members to manage the listing" flow — the invite email sent, but the link was a dead link. (More detail in other emails if needed.)</div>
+          <textarea class="notes" data-field="addon-team-invite-deadlink__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="addon-team-invite-deadlink__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mat-webapp-styling">
+        <div class="body">
+          <div class="title">Matteo: web-app styling polish</div>
+          <div class="desc">Home section headers slightly smaller (closer to the app); "View All" too crowded. Product-listing product name too big. Product page "Sold by STOREFRONT ›" → suggest copy <strong>"Shop More from STOREFRONT NAME"</strong>, keep the icon but make it larger and spaced further from the "currently in carts/wishlist" line. Brooke prefers the web styling of the storefront name.</div>
+          <textarea class="notes" data-field="mat-webapp-styling__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mat-webapp-styling__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mat-transparent-logo-bg">
+        <div class="body">
+          <div class="title">Matteo: transparent logo gets a dark-blue background</div>
+          <div class="desc">On-and-off issue; seen on a marketplace storefront on mobile web — a transparent logo renders on a dark navy fill instead of transparent.</div>
+          <textarea class="notes" data-field="mat-transparent-logo-bg__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mat-transparent-logo-bg__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mat-notifications">
+        <div class="body">
+          <div class="title">Matteo: notifications not actually enabling; implement + test</div>
+          <div class="desc">Android: tapping "allow notifications" at first install, but the app's system settings still show notifications disabled. iOS: app settings don't show a notifications section at all. Put notifications properly in place and test on both platforms.</div>
+          <textarea class="notes" data-field="mat-notifications__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mat-notifications__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mat-admin-manual-crud">
+        <div class="body">
+          <div class="title">Matteo: full manual CRUD for all content types in admin</div>
+          <div class="desc">Be able to manually create / edit / publish / unpublish any type of listing, event, etc. from the admin dashboard. (Overlaps the admin-reorg + "unpublish TridFi" + Brooke's admin-control items.)</div>
+          <textarea class="notes" data-field="mat-admin-manual-crud__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mat-admin-manual-crud__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mat-owner-devotional-format">
+        <div class="body">
+          <div class="title">Matteo: "Meet the Owner" + devotional image layout is weird</div>
+          <div class="desc">Currently wide-and-short. Suggest side-by-side on tablet with a more portrait/square crop, and stacked (one below the other) on mobile. (Ties to the "merge devotional into owner-interview Q3" item.)</div>
+          <textarea class="notes" data-field="mat-owner-devotional-format__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mat-owner-devotional-format__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mat-e2e-transaction">
+        <div class="body">
+          <div class="title">Matteo + Brooke: real end-to-end transaction test</div>
+          <div class="desc">Both asked: have we actually run a full transaction — order placed, money received, everything works end to end? (Same as the 2-merchant checkout+refund test carried below.)</div>
+          <textarea class="notes" data-field="mat-e2e-transaction__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mat-e2e-transaction__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="ios-build-numbers">
+        <div class="body">
+          <div class="title">iOS build-number churn</div>
+          <div class="desc">Brooke 4:46 AM: "versions are always moving forward in iOS so I don't want to have 100." Keep the iOS build/version count sensible while iterating pre-submission. (Awareness note more than a task.)</div>
+          <textarea class="notes" data-field="ios-build-numbers__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="ios-build-numbers__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+    </ul>
+  </section>
+
   <!-- ===================== CARRIED OVER ===================== -->
   <section>
     <h2>Carried over from our punch list (still open, not in Brooke's email) <span class="count"></span></h2>
@@ -618,11 +734,31 @@
     </ul>
   </section>
 
-  <footer>Read-only published copy — republished as items complete. Last updated: 2026-07-06.</footer>
+  <footer>Read-only published copy — republished as items complete. Last updated: 2026-07-07 (added 7/7 thread items; marked staging-complete work).</footer>
 </div>
 <script>window.__state = {
   "mon-cancel-email": true,
-  "mon-cancel-email__notes": "Done 7/6: internal heads-up email on cancel + payment-failed (to brooke@catholicowned.com), with a warning when the listing has a pinned tier. Live on prod. The Loaves & Fishes Café cancellation email was our staging test — disregard."
+  "mon-cancel-email__notes": "Done 7/6, LIVE ON PROD: internal heads-up email on cancel + payment-failed (to brooke@catholicowned.com), with a warning when the listing has a pinned tier. The Loaves & Fishes Café cancellation email was our staging test — disregard.",
+  "fri-verified-essential": true,
+  "fri-verified-essential__notes": "Done on staging 7/6: verified→Essential, plus Merchant/Local split (derives from pricing_tier). Awaiting prod promote.",
+  "fri-badges-set": true,
+  "fri-badges-set__notes": "Done on staging: badge taxonomy now Enterprise/Featured/Essential/Merchant/Local across cards, detail, map, checkout, success. Awaiting prod promote.",
+  "fri-remove-verified-doubles": true,
+  "fri-remove-verified-doubles__notes": "Done on staging: removed the double 'Verified Merchant'/'Verified Business' chips on Enterprise + detail; swept 'Verified' from tier/badge copy. NOTE: Founding Pillars box copy is the one remaining spot — see the 7/7 add-on item.",
+  "mon-enterprise-star": true,
+  "mon-enterprise-star__notes": "Done on staging: Enterprise now shows a premium medal (workspace_premium) vs Featured's gold star — web cards, map, and mobile. Awaiting prod promote.",
+  "fri-events-rsvp-loggedout": true,
+  "fri-events-rsvp-loggedout__notes": "Done on staging: sidebar RSVP now shows a friendly 'Sign in to RSVP' link instead of the raw red SIGN_IN_REQUIRED code. Awaiting prod promote.",
+  "fri-events-networking-copy": true,
+  "fri-events-networking-copy__notes": "Done on staging: default event copy no longer says 'networking' (Reserve your spot for this event / Connection Rounds / Live virtual session). Real networking events can say so via the custom format field. Awaiting prod promote.",
+  "fri-events-rsvp-count": true,
+  "fri-events-rsvp-count__notes": "Done: admin count fixed (already on prod); public count fixed on staging — there was no single-event API route so the page fell back to a list that omitted RSVPs (always 0); added the route + server-derived confirmed count. Awaiting prod promote.",
+  "carry-staging-allowlist": true,
+  "carry-staging-allowlist__notes": "Done 7/7: EMAIL_RECIPIENT_ALLOWLIST set on staging Backend — staging can now only email the team (@humancenteredtech, @catholicowned) + known gmail testers, not real customers.",
+  "fri-my-parishes": false,
+  "fri-my-parishes__notes": "Built 7/6 web (staging, verified) + native app (branch feat/mobile-parishes, tsc clean, not device-tested). Review at marketplace-staging-f930.up.railway.app/us/parishes. Awaiting prod promote + an EAS build for the app.",
+  "carry-mobile-next-build__notes": "Store candidate = build 20. Brooke 7/7: HOLD submission until Matteo's items + iOS checkout-copy fix land (see the 7/7 section). Next build (3.0.2) carries: stale-cart recovery, My Parishes native, Enterprise-icon.",
+  "cb-payout-promote__notes": "Correction still stands: fix is on branch feat/seller-payout-fixes (not staging). Needs 2 policy sign-offs, then merge→staging→promote."
 };
 window.addEventListener("DOMContentLoaded", () => {
   for (const [k, v] of Object.entries(window.__state)) {
