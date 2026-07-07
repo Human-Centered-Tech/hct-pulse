@@ -51,7 +51,10 @@
   footer { text-align: center; color: var(--muted); font-size: 12px; font-family: Verdana, sans-serif; margin-top: 24px; }
   li.item > input[type="checkbox"] { pointer-events: none; }
   .note-static { margin-top: 7px; font-family: Verdana, sans-serif; font-size: 12px; padding: 6px 8px; border-left: 3px solid var(--gold); background: #fcf8ec; border-radius: 4px; color: #4a4a45; }
-  .readonly-banner { background: #fff4cc; border: 1px solid #d4a300; color: #5a4a00; border-radius: 10px; padding: 10px 16px; margin-bottom: 16px; font-family: Verdana, sans-serif; font-size: 12px; text-align: center; }
+  .readonly-banner { background: #fff4cc; border: 1px solid #d4a300; color: #5a4a00; border-radius: 10px; padding: 12px 16px; margin-bottom: 16px; font-family: Verdana, sans-serif; font-size: 12px; text-align: center; line-height: 1.6; }
+  .stage-pill { font-family: Verdana, sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.05em; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+  .stage-live { background: #e6f4ea; color: #1a7f37; border: 1px solid #9bd3ab; }
+  .stage-staged { background: #fff4cc; color: #8a6d00; border: 1px solid #e6c200; }
 </style>
 </head>
 <body>
@@ -65,7 +68,7 @@
     </div>
   </header>
 
-  <div class="readonly-banner">📌 Read-only status page — updated by Liam as items complete. Nothing you click here is saved.</div>
+  <div class="readonly-banner">📌 Read-only status page — updated by Liam as items progress. Nothing you click here is saved.<br><b>Status key:</b> <span style="color:#1a7f37;font-weight:700;">● LIVE</span> = on the live site/app · <span style="color:#8a6d00;font-weight:700;">● STAGED</span> = done &amp; on our staging/preview, not live yet · ☐ = open or in progress.</div>
 
   <!-- ===================== FRIDAY'S MEETING ===================== -->
   <section>
@@ -734,9 +737,10 @@
     </ul>
   </section>
 
-  <footer>Read-only published copy — republished as items complete. Last updated: 2026-07-07 (overnight session).</footer>
+  <footer>Read-only published copy — republished as items progress. Last updated: 2026-07-07.</footer>
 </div>
-<script>window.__state = {
+<script>
+window.__state = {
   "mon-cancel-email": true,
   "mon-cancel-email__notes": "Done 7/6, LIVE ON PROD: internal heads-up email on cancel + payment-failed (to brooke@catholicowned.com), with a warning when the listing has a pinned tier. The Loaves & Fishes Café cancellation email was our staging test — disregard.",
   "fri-verified-essential": true,
@@ -780,20 +784,38 @@
   "mon-sort-options__notes": "Same as mon-marketplace-sort — needs Algolia replicas + reindex, deferred to a supervised session. Price filter itself works (slider cap fixed tonight).",
   "carry-mobile-next-build__notes": "Store candidate = build 20; submission ON HOLD (Brooke 7/7). Next build (3.0.2) carries: stale-cart recovery, My Parishes native, Enterprise icon, iOS 'Preparing payment' copy, Shop-More-from, custom badges. Merge feat/mobile-parishes + fix/checkout-stale-cart-recovery (no overlap)."
 };
+window.__prodSet = ["mon-cancel-email"];
 window.addEventListener("DOMContentLoaded", () => {
+  const prod = new Set(window.__prodSet);
+  // 1. Apply saved values.
   for (const [k, v] of Object.entries(window.__state)) {
-    const el = document.querySelector(`[data-field="${k}"]`);
+    const el = document.querySelector('[data-field="' + k + '"]');
     if (!el) continue;
     if (el.type === "checkbox") el.checked = !!v; else el.value = v;
   }
-  document.querySelectorAll(".investigate-toggle").forEach(t => t.remove());
-  document.querySelectorAll("textarea.notes").forEach(t => {
+  // 2. Per-item deploy-status pill (LIVE / STAGED), based on the done checkbox.
+  document.querySelectorAll("li.item").forEach((li) => {
+    const box = li.querySelector(':scope > input[type="checkbox"]');
+    if (!box || !box.checked) return;
+    const slug = box.getAttribute("data-field");
+    const tags = li.querySelector(".tags");
+    if (!tags) return;
+    const pill = document.createElement("span");
+    if (prod.has(slug)) { pill.className = "stage-pill stage-live"; pill.textContent = "● LIVE"; }
+    else { pill.className = "stage-pill stage-staged"; pill.textContent = "● STAGED"; }
+    tags.insertBefore(pill, tags.firstChild);
+  });
+  // 3. Read-only presentation: strip investigate toggles, freeze inputs, turn
+  //    notes into static lines.
+  document.querySelectorAll(".investigate-toggle").forEach((t) => t.remove());
+  document.querySelectorAll("textarea.notes").forEach((t) => {
     const val = t.value.trim();
     if (val) { const d = document.createElement("div"); d.className = "note-static"; d.textContent = "📝 " + val; t.replaceWith(d); }
     else t.remove();
   });
-  document.querySelectorAll("input, textarea").forEach(el => { el.disabled = true; });
-});</script>
+  document.querySelectorAll("input, textarea").forEach((el) => { el.disabled = true; });
+});
+</script>
 <script>
   // Progress counters (overall + per section). Recomputed on any change;
   // also shortly after load so counts reflect the autoloaded state.
