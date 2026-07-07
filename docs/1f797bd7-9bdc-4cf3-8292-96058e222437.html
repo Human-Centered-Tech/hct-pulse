@@ -734,7 +734,7 @@
     </ul>
   </section>
 
-  <footer>Read-only published copy — republished as items complete. Last updated: 2026-07-07 (added 7/7 thread items; marked staging-complete work).</footer>
+  <footer>Read-only published copy — republished as items complete. Last updated: 2026-07-07.</footer>
 </div>
 <script>window.__state = {
   "mon-cancel-email": true,
@@ -758,7 +758,13 @@
   "fri-my-parishes": false,
   "fri-my-parishes__notes": "Built 7/6 web (staging, verified) + native app (branch feat/mobile-parishes, tsc clean, not device-tested). Review at marketplace-staging-f930.up.railway.app/us/parishes. Awaiting prod promote + an EAS build for the app.",
   "carry-mobile-next-build__notes": "Store candidate = build 20. Brooke 7/7: HOLD submission until Matteo's items + iOS checkout-copy fix land (see the 7/7 section). Next build (3.0.2) carries: stale-cart recovery, My Parishes native, Enterprise-icon.",
-  "cb-payout-promote__notes": "Correction still stands: fix is on branch feat/seller-payout-fixes (not staging). Needs 2 policy sign-offs, then merge→staging→promote."
+  "cb-payout-promote__notes": "Correction still stands: fix is on branch feat/seller-payout-fixes (not staging). Needs 2 policy sign-offs, then merge→staging→promote.",
+  "addon-founding-pillars": true,
+  "addon-founding-pillars__notes": "Done on staging 7/7: 'Every Member must align with our signature Founding Pillars' (sell page + vendor onboarding). Also swept remaining FAQ 'Verified' copy. Awaiting prod promote.",
+  "ios-placing-order-copy": true,
+  "ios-placing-order-copy__notes": "Done 7/7 (mobile branch): overlay behind the Stripe sheet now says 'Preparing payment…' until the card is charged, then 'Placing your order…'. Rides the next EAS build.",
+  "addon-custom-badge-dims": true,
+  "addon-custom-badge-dims__notes": "ANSWER for the partner (His Way at Work) badge graphic: deliver a SQUARE (1:1), transparent-background image — SVG preferred, otherwise PNG exported at 96×96 px (128 is fine) so it's crisp on retina. Keep it simple/high-contrast so it reads small. IMPORTANT caveat: today the custom badge shows as a text-only colored pill on directory CARDS (icon not shown), a tiny 12px icon on the listing DETAIL page, and NOT AT ALL in the mobile apps. For it to be a real visible partner badge / revenue driver, we should enhance the rendering (show the icon on cards, larger on detail ~24-32px, and add it to mobile) — ~1-2 hrs, tell me to proceed."
 };
 window.addEventListener("DOMContentLoaded", () => {
   for (const [k, v] of Object.entries(window.__state)) {
