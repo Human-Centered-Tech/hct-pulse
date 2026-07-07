@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brooke's Master List — Week of 7/6–7/11</title>
+<style>
+  :root {
+    --navy: #17294A; --navy-dark: #101d36; --gold: #BE9B32; --gold-light: #F2CD69;
+    --bg: #faf9f5; --card: #ffffff; --line: #d6d0c4; --muted: #6b7280;
+    --green: #1a7f37; --green-bg: #e6f4ea;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: Georgia, 'EB Garamond', serif; background: var(--bg); color: var(--navy); margin: 0; padding: 24px 16px 80px; }
+  .wrap { max-width: 860px; margin: 0 auto; }
+  header.doc { background: var(--navy); color: #fff; border-radius: 14px; padding: 22px 28px; margin-bottom: 18px; }
+  header.doc h1 { font-size: 24px; margin: 0 0 4px; }
+  header.doc .sub { color: var(--gold-light); font-size: 13px; letter-spacing: 0.08em; }
+  .progress-wrap { margin-top: 14px; }
+  .progress-bar { height: 10px; background: rgba(255,255,255,0.18); border-radius: 5px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--gold-light); width: 0%; transition: width .3s; }
+  .progress-label { font-size: 12px; margin-top: 5px; color: #dbe2ee; font-family: Verdana, sans-serif; }
+  section { background: var(--card); border: 1px solid var(--line); border-radius: 14px; margin-bottom: 18px; overflow: hidden; }
+  section > h2 { margin: 0; padding: 14px 20px; font-size: 16px; background: #f3efe4; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: baseline; }
+  section > h2 .count { font-family: Verdana, sans-serif; font-size: 11px; color: var(--muted); font-weight: normal; }
+  section .secnote { padding: 10px 20px 0; font-size: 13px; color: var(--muted); font-style: italic; }
+  ul.items { list-style: none; margin: 0; padding: 10px 14px 14px; display: flex; flex-direction: column; gap: 8px; }
+  li.item { order: 0; display: flex; gap: 12px; align-items: flex-start; padding: 10px 12px; border: 1px solid #eee9dc; border-radius: 10px; background: #fffefb; }
+  li.item > input[type="checkbox"] { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--green); flex-shrink: 0; cursor: pointer; }
+  li.item .body { flex: 1; min-width: 0; }
+  li.item .title { font-weight: bold; font-size: 15px; }
+  li.item .desc { font-size: 13px; color: #44474e; margin-top: 2px; line-height: 1.45; }
+  li.item .desc .cc { background:#eef3fb; border-radius:4px; padding:0 4px; font-family: Consolas, monospace; font-size: 12px; }
+  textarea.notes { width: 100%; margin-top: 7px; font-family: Verdana, sans-serif; font-size: 12px; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; background: #fcfbf7; resize: vertical; min-height: 28px; }
+  .tags { display: flex; flex-direction: column; gap: 5px; align-items: flex-end; flex-shrink: 0; }
+  .tag { font-family: Verdana, sans-serif; font-size: 10px; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+  .tag.owner-liam { background: var(--navy); color: #fff; }
+  .tag.owner-brooke { background: var(--gold-light); color: var(--navy-dark); }
+  .tag.owner-joe { background: #5a7d9a; color: #fff; }
+  .tag.owner-both { background: #7a6ea8; color: #fff; }
+  .investigate-toggle { cursor: pointer; user-select: none; display: inline-flex; }
+  .investigate-toggle input { position: absolute; opacity: 0; pointer-events: none; width: 0; height: 0; }
+  .tag.investigate { background: #fff; border: 1px dashed #6b6b6b; color: #6b6b6b; padding: 1px 7px; }
+  .investigate-toggle:hover .tag.investigate { background: #f3f3f3; color: #1c1c1c; border-color: #1c1c1c; }
+  .investigate-toggle input:checked ~ .tag.investigate { background: #fff4cc; border: 1px solid #d4a300; color: #5a4a00; font-weight: 700; }
+  li.item:has(.investigate-toggle input:checked) { border-left: 4px solid #d4a300; background: #fffdf3; }
+  li.item:has(.investigate-toggle input:checked) .body .notes { background: #fffaeb; border-color: #d4a300; }
+  li.item:has(> input[type="checkbox"]:checked) { order: 1; opacity: 0.72; background: var(--green-bg); border-color: #bfe3c9; }
+  li.item:has(> input[type="checkbox"]:checked) .body .title,
+  li.item:has(> input[type="checkbox"]:checked) .body .desc { text-decoration: line-through; color: var(--muted); }
+  footer { text-align: center; color: var(--muted); font-size: 12px; font-family: Verdana, sans-serif; margin-top: 24px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="doc">
+    <h1>Brooke's Master List — Week of 7/6–7/11</h1>
+    <div class="sub">From her 7/6 email (Friday call + Friday Circle Back + Monday call + Monday Circle Back) — same order as the email. Carried-over punch-list items at the bottom. Hard deadline 7/11.</div>
+    <div class="progress-wrap">
+      <div class="progress-bar"><div class="progress-fill" id="pfill"></div></div>
+      <div class="progress-label" id="plabel">—</div>
+    </div>
+  </header>
+
+  <!-- ===================== FRIDAY'S MEETING ===================== -->
+  <section>
+    <h2>From Friday's Meeting <span class="count"></span></h2>
+    <ul class="items">
+      <li class="item">
+        <input type="checkbox" data-field="fri-admin-org">
+        <div class="body">
+          <div class="title">Admin panel left-nav reorganization</div>
+          <div class="desc">Organize admin left nav into: Business Owners, Merchants, Directory Listings, Marketplace Storefronts — with the ability to control each. (Repeated in Friday's Circle Back below.)</div>
+          <textarea class="notes" data-field="fri-admin-org__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle" title="Flag for Claude to check on"><input type="checkbox" data-field="fri-admin-org__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="fri-vacation-toggle">
+        <div class="body">
+          <div class="title">Vacation-mode toggle for shops in admin</div>
+          <div class="desc">Admin can flip a storefront's vacation mode (vendors already have one on their side).</div>
+          <textarea class="notes" data-field="fri-vacation-toggle__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="fri-vacation-toggle__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="fri-admin-listing-photos">
+        <div class="body">
+          <div class="title">Admin can upload directory-listing photos</div>
+          <div class="desc">Ability for admin to upload/replace listing photos (logo, cover, gallery) on any listing.</div>
+          <textarea class="notes" data-field="fri-admin-listing-photos__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="fri-admin-listing-photos__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="fri-tier-parish-sync">
+        <div class="body">
+          <div class="title">Tier override must sync parish-affiliation count</div>
+          <div class="desc">When admin pins a listing's tier (the override that went live 7/6), the number of parish affiliations the owner can choose must sync to the pinned tier (1/3/10 by tier).</div>
+          <textarea class="notes" data-field="fri-tier-parish-sync__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="fri-tier-parish-sync__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="fri-my-parishes">
+        <div class="body">
+          <div class="title">"My Parishes" feature — web + apps</div>
+          <div class="desc">A page filtered by parish affiliation with sections for Directory listings, Marketplace products, and Sacred Exchange listings — mirroring the home page structure. Brooke wants it in the final release <strong>this Thurs/Fri</strong>.</div>
+          <textarea class="notes" data-field="fri-my-parishes__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="fri-my-parishes__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="fri-shopify-import">
+        <div class="body">
+          <div class="title">Shopify import problem — all merchants linking Shopify</div>
+          <div class="desc">Confirmed for all merchants, not just Pax Rosa. Joe's support needed. <span class="cc">Known state 7/6: the OAuth connector code works (proved on a dev store); blocker is the Shopify Partner app's distribution-method setting. CSV convert+import path works today as a stopgap.</span></div>
+          <textarea class="notes" data-field="fri-shopify-import__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="fri-shopify-import__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-joe">Joe + Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="fri-verified-essential">
+        <div class="body">
+          <div class="title">"Verified" tier → show "Essential" on directory preview</div>
+          <div class="desc">For verified-tier listings that are NOT Merchants or Local, badge should read "Essential" where others say Enterprise / Featured.</div>
+          <textarea class="notes" data-field="fri-verified-essential__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="fri-verified-essential__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="fri-badges-set">
+        <div class="body">
+          <div class="title">Final badge set: Enterprise, Featured, Essential, Merchant, Local</div>
+          <div class="desc">Brooke has corresponding badge artwork she gives members for email/website.</div>
+          <textarea class="notes" data-field="fri-badges-set__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="fri-badges-set__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="fri-remove-verified-doubles">
+        <div class="body">
+          <div class="title">Remove "Verified" from other tiers (double badges)</div>
+          <div class="desc">Enterprise and Featured members currently show a double badge including "Verified" — delete it (cleanup only, no replacement needed). Goal: the word Verified gone everywhere on web + apps.</div>
+          <textarea class="notes" data-field="fri-remove-verified-doubles__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="fri-remove-verified-doubles__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="fri-events-rsvp-loggedout">
+        <div class="body">
+          <div class="title">Events: logged-out RSVP shows raw red error text</div>
+          <div class="desc">Clicking RSVP while logged out shows red error code below the button instead of a friendly prompt to log in.</div>
+          <textarea class="notes" data-field="fri-events-rsvp-loggedout__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="fri-events-rsvp-loggedout__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="fri-events-networking-copy">
+        <div class="body">
+          <div class="title">Events: "networking" wording on non-networking events</div>
+          <div class="desc">Event detail page had 2 sections saying "networking" for an event that wasn't. Ref: Brooke's chat pic 3:29 PM on 7/3.</div>
+          <textarea class="notes" data-field="fri-events-networking-copy__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="fri-events-networking-copy__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="fri-events-rsvp-count">
+        <div class="body">
+          <div class="title">Events: RSVP count not showing</div>
+          <div class="desc"><span class="cc">Admin RSVP count fix went live 7/6 (was always 0). If Brooke means the public event page count, that part still needs checking.</span></div>
+          <textarea class="notes" data-field="fri-events-rsvp-count__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="fri-events-rsvp-count__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="fri-events-zoom-create">
+        <div class="body">
+          <div class="title">Events: Zoom link not being created</div>
+          <div class="desc"><span class="cc">Manual Zoom-link field went live 7/6 (admin can paste a link; storefront shows "Join Zoom Meeting"). Auto-creation via Zoom API is the remaining piece — end-to-end test needed before July 27–28 events.</span></div>
+          <textarea class="notes" data-field="fri-events-zoom-create__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="fri-events-zoom-create__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="fri-events-calendar-invite">
+        <div class="body">
+          <div class="title">Events: calendar invite with Zoom not sent</div>
+          <div class="desc">RSVP should trigger a calendar invite carrying the Zoom link.</div>
+          <textarea class="notes" data-field="fri-events-calendar-invite__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="fri-events-calendar-invite__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="fri-events-reminders-convo">
+        <div class="body">
+          <div class="title">Events: email + text reminders — conversation needed</div>
+          <div class="desc">How do reminders work now vs. how we want them to work? Schedule a discussion with Brooke.</div>
+          <textarea class="notes" data-field="fri-events-reminders-convo__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="fri-events-reminders-convo__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="fri-make-social">
+        <div class="body">
+          <div class="title">Auto-social posts tool (make.com)</div>
+          <div class="desc">Brooke wants the Seller Spotlight social-blurb tool in. <span class="cc">Spec done (context/social-blurb-spec-2026-07-03.md); backend Phase 1 blurbs went live 7/6; Make.com wiring + her decisions pending.</span></div>
+          <textarea class="notes" data-field="fri-make-social__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="fri-make-social__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ===================== FOR BROOKE ===================== -->
+  <section>
+    <h2>For Brooke <span class="count"></span></h2>
+    <ul class="items">
+      <li class="item">
+        <input type="checkbox" data-field="brooke-cef-code">
+        <div class="body">
+          <div class="title">Code for CEF attendees — $10 gift card</div>
+          <div class="desc">Brooke asks: "how do I do this?" — Liam to show her the promo/gift-card mechanism.</div>
+          <textarea class="notes" data-field="brooke-cef-code__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="brooke-cef-code__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-brooke">Brooke</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="brooke-listing-categories">
+        <div class="body">
+          <div class="title">Listing-category cleanup</div>
+          <div class="desc">Choose "Art, Gifts &amp; Home Goods" businesses and "Catholic Gifts &amp; Home Goods"; general category cleanup for listings + edit listings to the preferred categories.</div>
+          <textarea class="notes" data-field="brooke-listing-categories__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="brooke-listing-categories__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-brooke">Brooke</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="brooke-product-categories">
+        <div class="body">
+          <div class="title">Product-category cleanup + assignment</div>
+          <div class="desc">Brooke cleans up categories; then Liam runs an AI pass assigning categories to every product so Brooke only reviews a subset.</div>
+          <textarea class="notes" data-field="brooke-product-categories__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="brooke-product-categories__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="brooke-onboarding-categories-coaching">
+        <div class="body">
+          <div class="title">Merchant onboarding: category coaching</div>
+          <div class="desc">Onboarding copy should coach merchants on choosing good categories.</div>
+          <textarea class="notes" data-field="brooke-onboarding-categories-coaching__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="brooke-onboarding-categories-coaching__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ===================== FRIDAY'S CIRCLE BACK ===================== -->
+  <section>
+    <h2>From Friday's Circle Back <span class="count"></span></h2>
+    <ul class="items">
+      <li class="item">
+        <input type="checkbox" data-field="cb-bubble-interviews">
+        <div class="body">
+          <div class="title">Import owner-interview data from Bubble</div>
+          <div class="desc">~150–160 members' interview data from the old Bubble platform into v3.</div>
+          <textarea class="notes" data-field="cb-bubble-interviews__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="cb-bubble-interviews__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="cb-tridfi-unpublish">
+        <div class="body">
+          <div class="title">Unpublish TridFi listing; confirm Brooke can reinstate from admin</div>
+          <textarea class="notes" data-field="cb-tridfi-unpublish__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="cb-tridfi-unpublish__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="cb-members-subdomain">
+        <div class="body">
+          <div class="title">Move merchant portal URL to members.catholicowned.com</div>
+          <textarea class="notes" data-field="cb-members-subdomain__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="cb-members-subdomain__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="cb-auth-hardening">
+        <div class="body">
+          <div class="title">Complete remaining auth hardening task</div>
+          <div class="desc"><span class="cc">Needs Joe's auth fix merged (from the 7/2 list).</span></div>
+          <textarea class="notes" data-field="cb-auth-hardening__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="cb-auth-hardening__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-joe">Joe + Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="cb-admin-tabs">
+        <div class="body">
+          <div class="title">Separate admin tabs: Directory Listings / Marketplace Storefronts / Business Owners &amp; Merchants</div>
+          <div class="desc">Same goal as the admin left-nav reorganization above.</div>
+          <textarea class="notes" data-field="cb-admin-tabs__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="cb-admin-tabs__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="cb-local-pricing-flow">
+        <div class="body">
+          <div class="title">Verify Local member sign-up shows pricing before login redirect</div>
+          <textarea class="notes" data-field="cb-local-pricing-flow__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="cb-local-pricing-flow__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="cb-claim-logo-fix">
+        <div class="body">
+          <div class="title">Fix logo/data "disappearing" after a user claims a directory listing</div>
+          <div class="desc"><span class="cc">Earlier diagnosis (6/30): no data is lost — a claimed-but-unpaid listing is intentionally hidden by the visibility gate until payment. If Brooke wants claimed listings to stay visible pre-payment, that's a product decision to change the gate.</span></div>
+          <textarea class="notes" data-field="cb-claim-logo-fix__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="cb-claim-logo-fix__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="cb-payout-promote">
+        <div class="body">
+          <div class="title">Promote seller payout reliability fix to production</div>
+          <div class="desc"><span class="cc">Correction: the fix is on branch feat/seller-payout-fixes (not staging yet). Money code — needs 2 policy sign-offs (4-hour cadence? pay-on-capture?), then merge → staging validation → promote.</span></div>
+          <textarea class="notes" data-field="cb-payout-promote__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="cb-payout-promote__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="cb-ai-categories">
+        <div class="body">
+          <div class="title">AI bulk-assign product categories (after Brooke's cleanup)</div>
+          <div class="desc">Blocked on Brooke's category cleanup above; then AI pass so she only reviews/corrects a subset.</div>
+          <textarea class="notes" data-field="cb-ai-categories__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="cb-ai-categories__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="cb-searchbar-spacing">
+        <div class="body">
+          <div class="title">Search-bar X spacing + standardize Shop and Events bars</div>
+          <div class="desc">Fix the X (clear) spacing; make Events match the Shop/Marketplace search bar (the one Brooke prefers). Web + mobile web.</div>
+          <textarea class="notes" data-field="cb-searchbar-spacing__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="cb-searchbar-spacing__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="cb-ai-filterable-categories">
+        <div class="body">
+          <div class="title">AI-assign filterable categories to all marketplace products</div>
+          <div class="desc">Companion to the bulk-assign item — ensure assigned categories drive the marketplace filters.</div>
+          <textarea class="notes" data-field="cb-ai-filterable-categories__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="cb-ai-filterable-categories__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="cb-price-slider">
+        <div class="body">
+          <div class="title">Marketplace price slider: cap at a reasonable max</div>
+          <div class="desc"><span class="cc">Note: Sacred Art originals really do run $1k–26k — capping the slider needs a UX answer for those (e.g. "$500+" bucket).</span></div>
+          <textarea class="notes" data-field="cb-price-slider__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="cb-price-slider__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ===================== MONDAY'S CIRCLE BACK ===================== -->
+  <section>
+    <h2>From Monday's Circle Back <span class="count"></span></h2>
+    <div class="secnote">Monday's call: "everything is summarized below" per Brooke.</div>
+    <ul class="items">
+      <li class="item">
+        <input type="checkbox" data-field="mon-brooke-diane-call">
+        <div class="body">
+          <div class="title">Brooke: attend scheduled call with Diane re: multi-vendor checkout issue (7/7)</div>
+          <textarea class="notes" data-field="mon-brooke-diane-call__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-brooke-diane-call__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-brooke">Brooke</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-image-dims">
+        <div class="body">
+          <div class="title">Document recommended product-image dimensions for vendors</div>
+          <div class="desc">Find/verify the ideal dimensions, document, and communicate to Brooke for vendor guidance.</div>
+          <textarea class="notes" data-field="mon-image-dims__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-image-dims__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-algolia-review">
+        <div class="body">
+          <div class="title">Review Algolia setup with Joe; brief Brooke on tuning search</div>
+          <div class="desc">Get up to speed on Joe's Algolia config, then make sure Brooke can tune search rules over time.</div>
+          <textarea class="notes" data-field="mon-algolia-review__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-algolia-review__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-joe">Joe + Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-directory-pagination">
+        <div class="body">
+          <div class="title">Directory pages: paginated instead of load-more</div>
+          <div class="desc">Switch from infinite scroll / load-more to pages (e.g. 100 per page). Suggestion from Matthew Lynn.</div>
+          <textarea class="notes" data-field="mon-directory-pagination__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-directory-pagination__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-marketplace-sort">
+        <div class="body">
+          <div class="title">Marketplace sort order: featured members' products first</div>
+          <div class="desc">Featured members' products first (newest-first within featured), then everyone else newest-first. Currently pure chronological.</div>
+          <textarea class="notes" data-field="mon-marketplace-sort__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-marketplace-sort__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-crm-names">
+        <div class="body">
+          <div class="title">CRM contacts show ID strings instead of real names</div>
+          <div class="desc">See Brooke's attached CSV (App users, no purchase yet).</div>
+          <textarea class="notes" data-field="mon-crm-names__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-crm-names__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-matteo-confirm">
+        <div class="body">
+          <div class="title">Confirm multi-vendor mobile checkout fix passes Matteo's testing</div>
+          <div class="desc"><span class="cc">Build 20 = store candidate. Mateo's 7/5 errors were separate issues, both fixed server-side 7/6 (stale cart repointed; Chain of Joy shipping option restored). He should retest with matteo.back2business@gmail.com — nothing to reinstall.</span></div>
+          <textarea class="notes" data-field="mon-matteo-confirm__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-matteo-confirm__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Matteo + Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-sort-options">
+        <div class="body">
+          <div class="title">Marketplace sort-by options</div>
+          <div class="desc">Price low→high / high→low and newest/oldest. Also confirm the price filter/updater works.</div>
+          <textarea class="notes" data-field="mon-sort-options__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-sort-options__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-cancel-email">
+        <div class="body">
+          <div class="title">Email Brooke when a member cancels or stops paying</div>
+          <div class="desc"><span class="cc">DONE 7/6: internal heads-up email on cancel + payment-failed, incl. a warning when the listing has a pinned tier. The "Loaves &amp; Fishes Café" cancellation she received WAS our staging test — tell her to disregard.</span></div>
+          <textarea class="notes" data-field="mon-cancel-email__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-cancel-email__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-linked-state">
+        <div class="body">
+          <div class="title">Admin: show linked state for memberships (checkmark/edit, not "unlinked")</div>
+          <div class="desc"><span class="cc">Related hardening from the 7/6 Renovus incident: the link tool should also auto-unlink the subscription from any other listing holding it, so a mis-link can't leave two listings on one Stripe sub.</span></div>
+          <textarea class="notes" data-field="mon-linked-state__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-linked-state__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-enterprise-star">
+        <div class="body">
+          <div class="title">Directory cards: distinct icon for Enterprise (gold star currently = Enterprise + Featured)</div>
+          <textarea class="notes" data-field="mon-enterprise-star__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-enterprise-star__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-parish-edit-admin">
+        <div class="body">
+          <div class="title">Admin: edit button for a listing's parish affiliations</div>
+          <textarea class="notes" data-field="mon-parish-edit-admin__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-parish-edit-admin__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-extended-profile">
+        <div class="body">
+          <div class="title">Extended profile for ALL listing tiers</div>
+          <div class="desc">Every tier gets the full extended profile — golden CTA button, full description, owner interview, etc. Tier differentiation happens via visibility (states, parish counts, sort order), not profile content.</div>
+          <textarea class="notes" data-field="mon-extended-profile__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-extended-profile__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-devotional-merge">
+        <div class="body">
+          <div class="title">Merge devotional image into owner-interview Q3; remove devotional section</div>
+          <textarea class="notes" data-field="mon-devotional-merge__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-devotional-merge__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ===================== CARRIED OVER ===================== -->
+  <section>
+    <h2>Carried over from our punch list (still open, not in Brooke's email) <span class="count"></span></h2>
+    <ul class="items">
+      <li class="item">
+        <input type="checkbox" data-field="carry-seller-backfill">
+        <div class="body">
+          <div class="title">Run the seller-backfill APPLY on prod</div>
+          <div class="desc">Flips 8 stuck-INACTIVE shops to Live (incl. Knights Coffee), skips on-vacation. One command, waiting on Liam's go.</div>
+          <textarea class="notes" data-field="carry-seller-backfill__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="carry-seller-backfill__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="carry-admin-products-401">
+        <div class="body">
+          <div class="title">Admin "Products" → logout (401) — confirm whether it still happens</div>
+          <div class="desc">6/30 report; may have resolved with the pagination fix. Needs a Network-tab repro before any code change.</div>
+          <textarea class="notes" data-field="carry-admin-products-401__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="carry-admin-products-401__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="carry-admin-analytics">
+        <div class="body">
+          <div class="title">Directory + shop-level analytics in admin</div>
+          <div class="desc">Per-listing numbers Brooke can view without logging in as the vendor.</div>
+          <textarea class="notes" data-field="carry-admin-analytics__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="carry-admin-analytics__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="carry-analytics-plan">
+        <div class="body">
+          <div class="title">Owner-analytics audit + tracking plan</div>
+          <div class="desc">Page views / clicks / saves / wishlist / cart / registry; maybe Clarity; ToS update implications.</div>
+          <textarea class="notes" data-field="carry-analytics-plan__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="carry-analytics-plan__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="carry-checkout-refund-test">
+        <div class="body">
+          <div class="title">End-to-end checkout + refund test (2 merchants)</div>
+          <div class="desc">Staged live test with Brooke this week.</div>
+          <textarea class="notes" data-field="carry-checkout-refund-test__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="carry-checkout-refund-test__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="carry-refund-brooke-15">
+        <div class="body">
+          <div class="title">Refund Brooke's $15 test order</div>
+          <div class="desc"><span class="cc">pi_3To37iKGagALUNWW0wKGlqla</span></div>
+          <textarea class="notes" data-field="carry-refund-brooke-15__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="carry-refund-brooke-15__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="carry-tos-flow">
+        <div class="body">
+          <div class="title">Terms-of-service acceptance flow</div>
+          <div class="desc">Blocked on legal docs (~July 7, i.e. now) — wire up once Brooke delivers them.</div>
+          <textarea class="notes" data-field="carry-tos-flow__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="carry-tos-flow__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="carry-mobile-next-build">
+        <div class="body">
+          <div class="title">Mobile: submit build 20 to the stores; fold stale-cart recovery into 3.0.2</div>
+          <div class="desc">Store candidate = 3.0.1 iOS build 20 / Android vc15 (multi-seller checkout fix). The 7/6 stale-cart auto-recovery branch (<span class="cc">fix/checkout-stale-cart-recovery</span>) rides the NEXT build.</div>
+          <textarea class="notes" data-field="carry-mobile-next-build__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="carry-mobile-next-build__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="carry-staging-allowlist">
+        <div class="body">
+          <div class="title">Set EMAIL_RECIPIENT_ALLOWLIST on staging</div>
+          <div class="desc">Staging currently has no recipient gate — staging tests can email real people (Brooke got our 7/6 test email). One Railway variable.</div>
+          <textarea class="notes" data-field="carry-staging-allowlist__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="carry-staging-allowlist__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="carry-dependabot">
+        <div class="body">
+          <div class="title">Dependabot criticals on admin + vendor repos</div>
+          <div class="desc">admin: 1 critical / 15 high; vendor: 2 critical / 39 high (pre-existing, flagged during 7/6 promote).</div>
+          <textarea class="notes" data-field="carry-dependabot__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="carry-dependabot__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="carry-sqli-mikroorm">
+        <div class="body">
+          <div class="title">mikro-orm SQLi-critical dependency (deferred)</div>
+          <div class="desc">Blocked: mikro-orm 6.6.x breaks all Medusa writes; revisit when Medusa is compatible.</div>
+          <textarea class="notes" data-field="carry-sqli-mikroorm__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="carry-sqli-mikroorm__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="carry-retainer">
+        <div class="body">
+          <div class="title">Retainer / ongoing-support proposal</div>
+          <div class="desc">Business item — timely, since Brooke's email says 7/11 = "100% done and moving into maintenance."</div>
+          <textarea class="notes" data-field="carry-retainer__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="carry-retainer__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+    </ul>
+  </section>
+
+  <footer>
+    Read-only published copy — checkbox state here reflects the last update by Liam and is republished as items complete.<br>Ticking boxes in this view is not saved.
+  </footer>
+</div>
+<script>window.__state = {
+  "mon-cancel-email": true,
+  "mon-cancel-email__notes": "Done 7/6: internal heads-up email on cancel + payment-failed (to brooke@catholicowned.com), with a warning when the listing has a pinned tier. Live on prod. The Loaves & Fishes Café cancellation email was our staging test — disregard."
+};
+window.addEventListener("DOMContentLoaded", () => {
+  for (const [k, v] of Object.entries(window.__state)) {
+    const el = document.querySelector(`[data-field="${k}"]`);
+    if (!el) continue;
+    if (el.type === "checkbox") el.checked = !!v; else el.value = v;
+  }
+});</script>
+<script>
+  // Progress counters (overall + per section). Recomputed on any change;
+  // also shortly after load so counts reflect the autoloaded state.
+  function doneBoxes(root) {
+    return [...root.querySelectorAll('li.item > input[type="checkbox"]')];
+  }
+  function refreshCounts() {
+    const all = doneBoxes(document);
+    const done = all.filter(b => b.checked).length;
+    document.getElementById('pfill').style.width = all.length ? (100 * done / all.length) + '%' : '0%';
+    document.getElementById('plabel').textContent = done + ' of ' + all.length + ' done';
+    document.querySelectorAll('section').forEach(sec => {
+      const boxes = doneBoxes(sec);
+      const c = sec.querySelector('h2 .count');
+      if (c && boxes.length) c.textContent = boxes.filter(b => b.checked).length + ' / ' + boxes.length;
+    });
+  }
+  document.addEventListener('change', refreshCounts);
+  window.addEventListener('load', () => { setTimeout(refreshCounts, 600); setTimeout(refreshCounts, 2000); });
+</script>
+</body>
+</html>
