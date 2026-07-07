@@ -782,7 +782,10 @@ window.__state = {
   "mon-directory-pagination__notes": "DEFERRED — the directory is a 780-line component with map-view sync, dedup, and load-more state. A full load-more→paged rewrite unattended risks breaking the main browse experience. Plan ready; do it with you around to verify.",
   "mon-marketplace-sort__notes": "DEFERRED — needs Algolia replica indices + a reindex on the shared prod app (risky unattended). Mobile already has featured/newest/oldest sort; plan = wire replicas + bring web to parity. ~1-2 hrs with you watching the reindex.",
   "mon-sort-options__notes": "Same as mon-marketplace-sort — needs Algolia replicas + reindex, deferred to a supervised session. Price filter itself works (slider cap fixed tonight).",
-  "carry-mobile-next-build__notes": "Store candidate = build 20; submission ON HOLD (Brooke 7/7). Next build (3.0.2) carries: stale-cart recovery, My Parishes native, Enterprise icon, iOS 'Preparing payment' copy, Shop-More-from, custom badges. Merge feat/mobile-parishes + fix/checkout-stale-cart-recovery (no overlap)."
+  "carry-mobile-next-build__notes": "Store candidate = build 20; submission ON HOLD (Brooke 7/7). Next build (3.0.2) carries: stale-cart recovery, My Parishes native, Enterprise icon, iOS 'Preparing payment' copy, Shop-More-from, custom badges. Merge feat/mobile-parishes + fix/checkout-stale-cart-recovery (no overlap).",
+  "mat-transparent-logo-bg": true,
+  "mat-transparent-logo-bg__notes": "Done on staging 7/7: the seller storefront header put transparent logos on a navy background — now white behind a real logo (matches the directory-card convention); the letter placeholder keeps navy. The mobile APP storefront doesn't show logos at all (letter only), so nothing to change there.",
+  "mon-linked-state__notes": "Backend guard DONE on staging 7/7: the admin link tool now REJECTS linking a Stripe subscription that's already on another listing (409 naming the other business) — prevents the Renovus dual-link where cancelling one listing cancels the other's real Stripe sub. The UI half — showing an already-linked state (checkmark/edit) instead of acting unlinked — is admin-fork frontend work, part of the deferred admin batch."
 };
 window.__prodSet = ["mon-cancel-email"];
 window.addEventListener("DOMContentLoaded", () => {
