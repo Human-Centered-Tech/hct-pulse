@@ -737,75 +737,227 @@
     </ul>
   </section>
 
-  <footer>Read-only published copy — republished as items progress. Last updated: 2026-07-07.</footer>
+  <!-- ===================== 7/8 TESTER QA BATCH ===================== -->
+  <section>
+    <h2>7/8 Tester QA batch (Brooke + Mateo reports) <span class="count"></span></h2>
+    <ul class="items">
+      <li class="item">
+        <input type="checkbox" data-field="qa78-marketplace-pagination">
+        <div class="body">
+          <div class="title">Marketplace now shows ALL products</div>
+          <div class="desc">Was capped at the first 40 of 301 — the app never loaded page 2. Now auto-loads as you scroll. In the next app build.</div>
+          <textarea class="notes" data-field="qa78-marketplace-pagination__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle" title="Flag for Claude to check on"><input type="checkbox" data-field="qa78-marketplace-pagination__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="qa78-price-filter">
+        <div class="body">
+          <div class="title">Price filter searches the whole catalog</div>
+          <div class="desc">Brooke's video: $0–300 showed no rosaries. The filter only looked at the 40 loaded items; it now filters server-side across everything. In the next app build.</div>
+          <textarea class="notes" data-field="qa78-price-filter__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="qa78-price-filter__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="qa78-vendor-shop-bleed">
+        <div class="body">
+          <div class="title">Vendor shop no longer shows other merchants' products</div>
+          <div class="desc">Mateo's screenshot (lobster in a financial listing's shop): a timing race let the full marketplace overwrite the vendor's own catalog. Fixed. In the next app build.</div>
+          <textarea class="notes" data-field="qa78-vendor-shop-bleed__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="qa78-vendor-shop-bleed__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="qa78-directory-autoload">
+        <div class="body">
+          <div class="title">Directory auto-loads as you scroll</div>
+          <div class="desc">The manual "Load More" button is gone — next pages load automatically near the bottom. In the next app build.</div>
+          <textarea class="notes" data-field="qa78-directory-autoload__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="qa78-directory-autoload__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="qa78-cart-shop-nav">
+        <div class="body">
+          <div class="title">Empty cart → "Shop Marketplace" works (iOS blank screen / popup nav)</div>
+          <div class="desc">The cart sheet stayed open while the marketplace moved behind it. It now closes and lands you on the Shop tab. In the next app build.</div>
+          <textarea class="notes" data-field="qa78-cart-shop-nav__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="qa78-cart-shop-nav__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="qa78-gallery-lightbox">
+        <div class="body">
+          <div class="title">Listing photos open fullscreen + owner/devotional photos square</div>
+          <div class="desc">Tapping gallery photos now opens a fullscreen viewer (swipe + zoom); Meet-the-Owner and Devotional images render square instead of letterboxed. App only — web gallery is a separate open item below. In the next app build.</div>
+          <textarea class="notes" data-field="qa78-gallery-lightbox__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="qa78-gallery-lightbox__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="qa78-back-arrow">
+        <div class="body">
+          <div class="title">Back from a listing's website returns to the listing (Android)</div>
+          <div class="desc">Root cause found: the earlier fix never made it into store builds (build config gap). It now ships with every build. Verify on the next build.</div>
+          <textarea class="notes" data-field="qa78-back-arrow__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="qa78-back-arrow__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="qa78-trust-badges">
+        <div class="body">
+          <div class="title">Incorrect product-page claims removed (30-day returns / portion donated)</div>
+          <div class="desc">Removed on app AND web; the accurate ones (Catholic-owned, shipping included) stay. Real per-seller shipping/return policy display needs copy + policy data from Brooke.</div>
+          <textarea class="notes" data-field="qa78-trust-badges__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="qa78-trust-badges__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="qa78-reviews-ui">
+        <div class="body">
+          <div class="title">NEW: Reviews in the app — seller AND product reviews</div>
+          <div class="desc">View seller scores + reviews (with seller replies) on shops, product reviews on product pages, write/edit from your orders, "My Reviews" in the menu. Names show as "First name + last initial." for privacy. In the next app build.</div>
+          <textarea class="notes" data-field="qa78-reviews-ui__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="qa78-reviews-ui__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="qa78-checkout-shipping">
+        <div class="body">
+          <div class="title">Checkout "No shipping options are available" (intermittent) — #1 issue</div>
+          <div class="desc">Two causes found. (1) Dead cart from a deleted test account (Brooke's iPad 7/5, build 20) — build 21 recovers automatically. (2) A transient window when a seller edits shipping settings — needs a backend guard promoted to prod. All 21 sellers verified OK right now.</div>
+          <textarea class="notes" data-field="qa78-checkout-shipping__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="qa78-checkout-shipping__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="qa78-map-preview">
+        <div class="body">
+          <div class="title">Map listing preview — needs Mateo to clarify</div>
+          <div class="desc">Mateo flagged "same issue as Android" without detail. Currently the preview card shows a letter placeholder instead of the logo, and the tab bar slightly clips the card. Mateo: which did you mean (or both)?</div>
+          <textarea class="notes" data-field="qa78-map-preview__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="qa78-map-preview__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="qa78-web-gallery">
+        <div class="body">
+          <div class="title">Web: listing gallery photos still can't be opened</div>
+          <div class="desc">Mobile got the fullscreen viewer in this batch; the website needs the same treatment.</div>
+          <textarea class="notes" data-field="qa78-web-gallery__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="qa78-web-gallery__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="qa78-reviews-editdelete-bug">
+        <div class="body">
+          <div class="title">Backend: editing/deleting a review returns "not found"</div>
+          <div class="desc">Found during review-feature QA on staging: creating and viewing reviews works, but the edit/delete API is broken server-side (affects web too — nothing exposed it until now). Backend fix queued.</div>
+          <textarea class="notes" data-field="qa78-reviews-editdelete-bug__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="qa78-reviews-editdelete-bug__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="qa78-first-product-unbuyable">
+        <div class="body">
+          <div class="title">#1 product in the marketplace can't be bought</div>
+          <div class="desc">St. Catherine of Siena Print (maeve-cahill-art) is the first card everyone sees, but the vendor never finished onboarding, so add-to-cart fails. Onboard the vendor or unpublish the products (marissa-thornberry-art has the same issue).</div>
+          <textarea class="notes" data-field="qa78-first-product-unbuyable__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="qa78-first-product-unbuyable__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="qa78-mobile-build">
+        <div class="body">
+          <div class="title">Cut + distribute the new mobile build with all of the above</div>
+          <div class="desc">All fixes + the reviews feature are committed on a branch; needs push → EAS build → TestFlight / Play internal so Brooke + Mateo can retest.</div>
+          <textarea class="notes" data-field="qa78-mobile-build__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="qa78-mobile-build__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+    </ul>
+  </section>
+
+  <footer>Read-only published copy — republished as items progress. Last updated: 2026-07-08.</footer>
 </div>
 <script>
 window.__state = {
-  "mon-cancel-email": true,
-  "mon-cancel-email__notes": "Done 7/6, LIVE ON PROD: internal heads-up email on cancel + payment-failed (to brooke@catholicowned.com), with a warning when the listing has a pinned tier. The Loaves & Fishes Café cancellation email was our staging test — disregard.",
-  "fri-verified-essential": true,
-  "fri-verified-essential__notes": "Done on staging 7/6: verified→Essential, plus Merchant/Local split (derives from pricing_tier). Awaiting prod promote.",
-  "fri-badges-set": true,
-  "fri-badges-set__notes": "Done on staging: badge taxonomy now Enterprise/Featured/Essential/Merchant/Local across cards, detail, map, checkout, success. Awaiting prod promote.",
-  "fri-remove-verified-doubles": true,
-  "fri-remove-verified-doubles__notes": "Done on staging: removed the double 'Verified Merchant'/'Verified Business' chips on Enterprise + detail; swept 'Verified' from tier/badge copy. NOTE: Founding Pillars box copy is the one remaining spot — see the 7/7 add-on item.",
-  "mon-enterprise-star": true,
-  "mon-enterprise-star__notes": "Done on staging: Enterprise now shows a premium medal (workspace_premium) vs Featured's gold star — web cards, map, and mobile. Awaiting prod promote.",
-  "fri-events-rsvp-loggedout": true,
-  "fri-events-rsvp-loggedout__notes": "Done on staging: sidebar RSVP now shows a friendly 'Sign in to RSVP' link instead of the raw red SIGN_IN_REQUIRED code. Awaiting prod promote.",
-  "fri-events-networking-copy": true,
-  "fri-events-networking-copy__notes": "Done on staging: default event copy no longer says 'networking' (Reserve your spot for this event / Connection Rounds / Live virtual session). Real networking events can say so via the custom format field. Awaiting prod promote.",
-  "fri-events-rsvp-count": true,
-  "fri-events-rsvp-count__notes": "Done: admin count fixed (already on prod); public count fixed on staging — there was no single-event API route so the page fell back to a list that omitted RSVPs (always 0); added the route + server-derived confirmed count. Awaiting prod promote.",
-  "carry-staging-allowlist": true,
-  "carry-staging-allowlist__notes": "Done 7/7: EMAIL_RECIPIENT_ALLOWLIST set on staging Backend — staging can now only email the team (@humancenteredtech, @catholicowned) + known gmail testers, not real customers.",
-  "fri-my-parishes": true,
-  "fri-my-parishes__notes": "LIVE ON PROD (web): /parishes + /parishes/[id]. Native version in build 21 (3.0.2, awaiting store submission). Brooke should take a look at catholicowned.com/us/parishes.",
-  "carry-mobile-next-build__notes": "3.0.2 = iOS build 21 / Android vc16 CUT (mobile main): My Parishes native, stale-cart recovery, iOS Preparing-payment copy, per-option variant selectors, Shop-More-from, partner badges, notifications row, Verified sweep. STORE SUBMISSION still ON HOLD per Brooke until testing passes.",
-  "cb-payout-promote__notes": "Correction still stands: fix is on branch feat/seller-payout-fixes (not staging). Needs 2 policy sign-offs, then merge→staging→promote.",
-  "addon-founding-pillars": true,
-  "addon-founding-pillars__notes": "Done on staging 7/7: 'Every Member must align with our signature Founding Pillars' (sell page + vendor onboarding). Also swept remaining FAQ 'Verified' copy. Awaiting prod promote.",
-  "ios-placing-order-copy": true,
-  "ios-placing-order-copy__notes": "Done 7/7 (mobile branch): overlay behind the Stripe sheet now says 'Preparing payment…' until the card is charged, then 'Placing your order…'. Rides the next EAS build.",
-  "addon-custom-badge-dims": true,
-  "addon-custom-badge-dims__notes": "ANSWER for the partner (His Way at Work) badge graphic: SQUARE (1:1), transparent bg, SVG preferred else PNG @96×96 (128 fine), simple/high-contrast so it reads small. ALSO done on staging 7/7: the badge graphic now actually shows — icon on directory cards (was name-only), 20px on detail, and rendered in the mobile apps too. If Brooke wants it MORE prominent (standalone 32-40px chip), that's a further step — say the word.",
-  "cb-price-slider": true,
-  "cb-price-slider__notes": "Done on staging 7/7: slider caps at $500 with a '$500+' ceiling (top = no upper bound, so the $1k-26k Sacred Art originals are still reachable but don't wreck the scale). Awaiting prod promote.",
-  "mon-crm-names": true,
-  "mon-crm-names__notes": "Code fix done on staging 7/7: app-only signups (name optional) + social/guest users were nameless → CRM showed the id. Now derives a readable name from the email when both name fields are empty (never overwrites a real name). Fixes FUTURE syncs. The EXISTING nameless contacts in your CSV need a one-time resync against the live Freshworks CRM — I didn't run that unattended; tell me and I'll do the batch.",
-  "addon-team-invite-deadlink__notes": "FIXED ON PROD: VENDOR_PANEL_URL is now set on production Backend (verified 7/7 eve) — invite emails and vendor password-reset links point at the real dashboard. Root cause was the env var Mercur reads being unset (fell back to localhost).",
-  "ios-hold-submission__notes": "Acknowledged — no submission tonight; build 20 stays the candidate. Mobile branch work (My Parishes, iOS copy, Shop-More-from, badges) rides the next build (3.0.2).",
-  "mat-webapp-styling__notes": "Partly done: app 'Sold by X' → 'Shop More from X' + larger icon/spacing DONE (mobile branch). The WEB home-header-size / product-name-size / 'View All' crowding are subjective/screenshot-driven — left for your review rather than guess-and-churn. Proposed: section h2 text-3xl/4xl → text-2xl/3xl + more room for View All. Say go. UPDATE 7/7 eve: app product page reworked — per-OPTION selectors (fixes Chain of Joy wall-of-text pills AND the Novena watch missing second option), moved next to the price above the description, unlinked option choices ship as line-item metadata. Personalization/gift-message box already existed on web+app (metadata.personalization_available) — enabled LIVE on the Novena watch as a demo; vendor-dashboard toggle so merchants can enable it themselves is the remaining piece.",
-  "mat-notifications__notes": "Built (another agent, mobile main 5b8b3cb): a Notifications row in the app menu that fires the OS permission prompt / deep-links to system settings — fixes the iOS no-settings-entry and Android allow-but-disabled issues. In build 21 (3.0.2). Needs Matteo device test.",
-  "mat-owner-devotional-format__notes": "DEFERRED — conflicts with Brooke's 'merge devotional into owner-interview Q3 and remove the devotional section'. Matteo wants the two images portrait/square, side-by-side on tablet, stacked on mobile; Brooke wants to merge them. You two should align on the final design before I build (otherwise I'd build something one of you undoes). Flagging both together.",
-  "mon-devotional-merge__notes": "See mat-owner-devotional-format — Brooke (merge into Q3, remove section) and Matteo (side-by-side layout) overlap/conflict. Needs a quick alignment, then I'll build.",
-  "mon-directory-pagination__notes": "DEFERRED — the directory is a 780-line component with map-view sync, dedup, and load-more state. A full load-more→paged rewrite unattended risks breaking the main browse experience. Plan ready; do it with you around to verify.",
-  "mon-marketplace-sort__notes": "DEFERRED — needs Algolia replica indices + a reindex on the shared prod app (risky unattended). Mobile already has featured/newest/oldest sort; plan = wire replicas + bring web to parity. ~1-2 hrs with you watching the reindex.",
-  "mon-sort-options__notes": "Same as mon-marketplace-sort — needs Algolia replicas + reindex, deferred to a supervised session. Price filter itself works (slider cap fixed tonight).",
-  "mat-transparent-logo-bg": true,
-  "mat-transparent-logo-bg__notes": "Done on staging 7/7: the seller storefront header put transparent logos on a navy background — now white behind a real logo (matches the directory-card convention); the letter placeholder keeps navy. The mobile APP storefront doesn't show logos at all (letter only), so nothing to change there.",
-  "mon-linked-state__notes": "Done on staging 7/7: detail page now shows the linked state clearly (green ✓ Membership linked / ✓ Claimed vs No membership linked / Unclaimed). Plus the backend guard from earlier that rejects linking a Stripe sub already on another listing (Renovus).",
-  "mon-parish-edit-admin": true,
-  "mon-parish-edit-admin__notes": "Done on staging 7/7: parish-affiliation editor added to the admin directory-listing detail page (typeahead + chips), backed by new admin affiliation endpoints; tier cap enforced.",
-  "fri-admin-listing-photos": true,
-  "fri-admin-listing-photos__notes": "Done on staging 7/7: admin can now upload/replace a listing logo + cover image (gallery upload already existed). On the directory-listing detail page.",
-  "mon-linked-state": true,
-  "fri-vacation-toggle": true,
-  "fri-vacation-toggle__notes": "Already existed — the admin Seller page has Pause/Reopen shop (vacation). Verified present; no build needed.",
-  "fri-tier-parish-sync": true,
-  "fri-tier-parish-sync__notes": "Verified working: the parish-affiliation limit reads the listing subscription_tier, which the admin tier override pins — so raising the pinned tier raises the available parish slots. (Edge case: pinning a tier BELOW the owner-selected recommended_tier keeps the higher slot count; rare, flag if it matters.)",
-  "cb-tridfi-unpublish": true,
-  "cb-tridfi-unpublish__notes": "DONE ON PROD 7/7 eve: TridFi is hidden (admin_hidden=true). One caveat: the Algolia search record clears on next sync — or instantly if Brooke opens TridFi in admin and clicks Show-then-Hide (which also confirms she can reinstate, the second half of the ask).",
-  "fri-admin-org__notes": "Done on staging 7/7 using Brooke's account taxonomy (her 7/7 message): new Business Owners tab (listing owners w/ Merchant vs Business Owner badge + filters), nav relabeled Sellers→Marketplace Storefronts and Directory→Directory Listings. Guest checkout + regular users already live under Orders/Customers. Verified on staging.",
-  "cb-admin-tabs__notes": "Same as the admin-org item — Directory Listings / Marketplace Storefronts / Business Owners are now distinct nav sections (staging).",
-  "mat-admin-manual-crud__notes": "Mostly there now: admins can edit, hide/unpublish (new toggle), and delete directory listings; upload logo/cover/gallery; edit parishes/categories/badges/tier; events have create/edit. Still missing: a from-scratch admin create-listing form — say the word if wanted.",
-  "fri-admin-org": true,
-  "cb-admin-tabs": true,
-  "cb-claim-logo-fix": true,
-  "cb-claim-logo-fix__notes": "ROOT FIX built on staging 7/7 (claim-flow rebuild): the listing no longer disappears when claimed — it stays publicly visible with its pre-claim content, and ownership/edits publish at payment (grandfathered members transfer instantly, free). Verified end-to-end on staging incl. a simulated Stripe payment webhook. Also: every claim attempt is now recorded (admin → Directory Listings → Claim Attempts) with a Void action, attestation checkbox per the claim terms, and NO forced merchant onboarding. One staging-only gap: staging Stripe test account lacks the tier prices, so the checkout leg can only be browser-tested on prod or after cloning prices (scripts/clone-stripe-tier-prices.mjs).",
-  "addon-team-invite-deadlink": true,
-  "mat-notifications": true,
-  "carry-mobile-next-build": true
+    "mon-cancel-email":  true,
+    "mon-cancel-email__notes":  "Done 7/6, LIVE ON PROD: internal heads-up email on cancel + payment-failed (to brooke@catholicowned.com), with a warning when the listing has a pinned tier. The Loaves \u0026 Fishes Café cancellation email was our staging test — disregard.",
+    "fri-verified-essential":  true,
+    "fri-verified-essential__notes":  "Done on staging 7/6: verified→Essential, plus Merchant/Local split (derives from pricing_tier). Awaiting prod promote.",
+    "fri-badges-set":  true,
+    "fri-badges-set__notes":  "Done on staging: badge taxonomy now Enterprise/Featured/Essential/Merchant/Local across cards, detail, map, checkout, success. Awaiting prod promote.",
+    "fri-remove-verified-doubles":  true,
+    "fri-remove-verified-doubles__notes":  "Done on staging: removed the double \u0027Verified Merchant\u0027/\u0027Verified Business\u0027 chips on Enterprise + detail; swept \u0027Verified\u0027 from tier/badge copy. NOTE: Founding Pillars box copy is the one remaining spot — see the 7/7 add-on item.",
+    "mon-enterprise-star":  true,
+    "mon-enterprise-star__notes":  "Done on staging: Enterprise now shows a premium medal (workspace_premium) vs Featured\u0027s gold star — web cards, map, and mobile. Awaiting prod promote.",
+    "fri-events-rsvp-loggedout":  true,
+    "fri-events-rsvp-loggedout__notes":  "Done on staging: sidebar RSVP now shows a friendly \u0027Sign in to RSVP\u0027 link instead of the raw red SIGN_IN_REQUIRED code. Awaiting prod promote.",
+    "fri-events-networking-copy":  true,
+    "fri-events-networking-copy__notes":  "Done on staging: default event copy no longer says \u0027networking\u0027 (Reserve your spot for this event / Connection Rounds / Live virtual session). Real networking events can say so via the custom format field. Awaiting prod promote.",
+    "fri-events-rsvp-count":  true,
+    "fri-events-rsvp-count__notes":  "Done: admin count fixed (already on prod); public count fixed on staging — there was no single-event API route so the page fell back to a list that omitted RSVPs (always 0); added the route + server-derived confirmed count. Awaiting prod promote.",
+    "carry-staging-allowlist":  true,
+    "carry-staging-allowlist__notes":  "Done 7/7: EMAIL_RECIPIENT_ALLOWLIST set on staging Backend — staging can now only email the team (@humancenteredtech, @catholicowned) + known gmail testers, not real customers.",
+    "fri-my-parishes":  true,
+    "fri-my-parishes__notes":  "LIVE ON PROD (web): /parishes + /parishes/[id]. Native version in build 21 (3.0.2, awaiting store submission). Brooke should take a look at catholicowned.com/us/parishes.",
+    "carry-mobile-next-build__notes":  "3.0.2 = iOS build 21 / Android vc16 CUT (mobile main): My Parishes native, stale-cart recovery, iOS Preparing-payment copy, per-option variant selectors, Shop-More-from, partner badges, notifications row, Verified sweep. STORE SUBMISSION still ON HOLD per Brooke until testing passes.",
+    "cb-payout-promote__notes":  "Correction still stands: fix is on branch feat/seller-payout-fixes (not staging). Needs 2 policy sign-offs, then merge→staging→promote.",
+    "addon-founding-pillars":  true,
+    "addon-founding-pillars__notes":  "Done on staging 7/7: \u0027Every Member must align with our signature Founding Pillars\u0027 (sell page + vendor onboarding). Also swept remaining FAQ \u0027Verified\u0027 copy. Awaiting prod promote.",
+    "ios-placing-order-copy":  true,
+    "ios-placing-order-copy__notes":  "Done 7/7 (mobile branch): overlay behind the Stripe sheet now says \u0027Preparing payment…\u0027 until the card is charged, then \u0027Placing your order…\u0027. Rides the next EAS build.",
+    "addon-custom-badge-dims":  true,
+    "addon-custom-badge-dims__notes":  "ANSWER for the partner (His Way at Work) badge graphic: SQUARE (1:1), transparent bg, SVG preferred else PNG @96×96 (128 fine), simple/high-contrast so it reads small. ALSO done on staging 7/7: the badge graphic now actually shows — icon on directory cards (was name-only), 20px on detail, and rendered in the mobile apps too. If Brooke wants it MORE prominent (standalone 32-40px chip), that\u0027s a further step — say the word.",
+    "cb-price-slider":  true,
+    "cb-price-slider__notes":  "Done on staging 7/7: slider caps at $500 with a \u0027$500+\u0027 ceiling (top = no upper bound, so the $1k-26k Sacred Art originals are still reachable but don\u0027t wreck the scale). Awaiting prod promote.",
+    "mon-crm-names":  true,
+    "mon-crm-names__notes":  "Code fix done on staging 7/7: app-only signups (name optional) + social/guest users were nameless → CRM showed the id. Now derives a readable name from the email when both name fields are empty (never overwrites a real name). Fixes FUTURE syncs. The EXISTING nameless contacts in your CSV need a one-time resync against the live Freshworks CRM — I didn\u0027t run that unattended; tell me and I\u0027ll do the batch.",
+    "addon-team-invite-deadlink__notes":  "FIXED ON PROD: VENDOR_PANEL_URL is now set on production Backend (verified 7/7 eve) — invite emails and vendor password-reset links point at the real dashboard. Root cause was the env var Mercur reads being unset (fell back to localhost).",
+    "ios-hold-submission__notes":  "Acknowledged — no submission tonight; build 20 stays the candidate. Mobile branch work (My Parishes, iOS copy, Shop-More-from, badges) rides the next build (3.0.2).",
+    "mat-webapp-styling__notes":  "Partly done: app \u0027Sold by X\u0027 → \u0027Shop More from X\u0027 + larger icon/spacing DONE (mobile branch). The WEB home-header-size / product-name-size / \u0027View All\u0027 crowding are subjective/screenshot-driven — left for your review rather than guess-and-churn. Proposed: section h2 text-3xl/4xl → text-2xl/3xl + more room for View All. Say go. UPDATE 7/7 eve: app product page reworked — per-OPTION selectors (fixes Chain of Joy wall-of-text pills AND the Novena watch missing second option), moved next to the price above the description, unlinked option choices ship as line-item metadata. Personalization/gift-message box already existed on web+app (metadata.personalization_available) — enabled LIVE on the Novena watch as a demo; vendor-dashboard toggle so merchants can enable it themselves is the remaining piece.",
+    "mat-notifications__notes":  "Built (another agent, mobile main 5b8b3cb): a Notifications row in the app menu that fires the OS permission prompt / deep-links to system settings — fixes the iOS no-settings-entry and Android allow-but-disabled issues. In build 21 (3.0.2). Needs Matteo device test.",
+    "mat-owner-devotional-format__notes":  "DEFERRED — conflicts with Brooke\u0027s \u0027merge devotional into owner-interview Q3 and remove the devotional section\u0027. Matteo wants the two images portrait/square, side-by-side on tablet, stacked on mobile; Brooke wants to merge them. You two should align on the final design before I build (otherwise I\u0027d build something one of you undoes). Flagging both together.",
+    "mon-devotional-merge__notes":  "See mat-owner-devotional-format — Brooke (merge into Q3, remove section) and Matteo (side-by-side layout) overlap/conflict. Needs a quick alignment, then I\u0027ll build.",
+    "mon-directory-pagination__notes":  "DEFERRED — the directory is a 780-line component with map-view sync, dedup, and load-more state. A full load-more→paged rewrite unattended risks breaking the main browse experience. Plan ready; do it with you around to verify.",
+    "mon-marketplace-sort__notes":  "DEFERRED — needs Algolia replica indices + a reindex on the shared prod app (risky unattended). Mobile already has featured/newest/oldest sort; plan = wire replicas + bring web to parity. ~1-2 hrs with you watching the reindex.",
+    "mon-sort-options__notes":  "Same as mon-marketplace-sort — needs Algolia replicas + reindex, deferred to a supervised session. Price filter itself works (slider cap fixed tonight).",
+    "mat-transparent-logo-bg":  true,
+    "mat-transparent-logo-bg__notes":  "Done on staging 7/7: the seller storefront header put transparent logos on a navy background — now white behind a real logo (matches the directory-card convention); the letter placeholder keeps navy. The mobile APP storefront doesn\u0027t show logos at all (letter only), so nothing to change there.",
+    "mon-linked-state__notes":  "Done on staging 7/7: detail page now shows the linked state clearly (green ✓ Membership linked / ✓ Claimed vs No membership linked / Unclaimed). Plus the backend guard from earlier that rejects linking a Stripe sub already on another listing (Renovus).",
+    "mon-parish-edit-admin":  true,
+    "mon-parish-edit-admin__notes":  "Done on staging 7/7: parish-affiliation editor added to the admin directory-listing detail page (typeahead + chips), backed by new admin affiliation endpoints; tier cap enforced.",
+    "fri-admin-listing-photos":  true,
+    "fri-admin-listing-photos__notes":  "Done on staging 7/7: admin can now upload/replace a listing logo + cover image (gallery upload already existed). On the directory-listing detail page.",
+    "mon-linked-state":  true,
+    "fri-vacation-toggle":  true,
+    "fri-vacation-toggle__notes":  "Already existed — the admin Seller page has Pause/Reopen shop (vacation). Verified present; no build needed.",
+    "fri-tier-parish-sync":  true,
+    "fri-tier-parish-sync__notes":  "Verified working: the parish-affiliation limit reads the listing subscription_tier, which the admin tier override pins — so raising the pinned tier raises the available parish slots. (Edge case: pinning a tier BELOW the owner-selected recommended_tier keeps the higher slot count; rare, flag if it matters.)",
+    "cb-tridfi-unpublish":  true,
+    "cb-tridfi-unpublish__notes":  "DONE ON PROD 7/7 eve: TridFi is hidden (admin_hidden=true). One caveat: the Algolia search record clears on next sync — or instantly if Brooke opens TridFi in admin and clicks Show-then-Hide (which also confirms she can reinstate, the second half of the ask).",
+    "fri-admin-org__notes":  "Done on staging 7/7 using Brooke\u0027s account taxonomy (her 7/7 message): new Business Owners tab (listing owners w/ Merchant vs Business Owner badge + filters), nav relabeled Sellers→Marketplace Storefronts and Directory→Directory Listings. Guest checkout + regular users already live under Orders/Customers. Verified on staging.",
+    "cb-admin-tabs__notes":  "Same as the admin-org item — Directory Listings / Marketplace Storefronts / Business Owners are now distinct nav sections (staging).",
+    "mat-admin-manual-crud__notes":  "Mostly there now: admins can edit, hide/unpublish (new toggle), and delete directory listings; upload logo/cover/gallery; edit parishes/categories/badges/tier; events have create/edit. Still missing: a from-scratch admin create-listing form — say the word if wanted.",
+    "fri-admin-org":  true,
+    "cb-admin-tabs":  true,
+    "cb-claim-logo-fix":  true,
+    "cb-claim-logo-fix__notes":  "ROOT FIX built on staging 7/7 (claim-flow rebuild): the listing no longer disappears when claimed — it stays publicly visible with its pre-claim content, and ownership/edits publish at payment (grandfathered members transfer instantly, free). Verified end-to-end on staging incl. a simulated Stripe payment webhook. Also: every claim attempt is now recorded (admin → Directory Listings → Claim Attempts) with a Void action, attestation checkbox per the claim terms, and NO forced merchant onboarding. One staging-only gap: staging Stripe test account lacks the tier prices, so the checkout leg can only be browser-tested on prod or after cloning prices (scripts/clone-stripe-tier-prices.mjs).",
+    "addon-team-invite-deadlink":  true,
+    "mat-notifications":  true,
+    "carry-mobile-next-build":  true,
+    "qa78-marketplace-pagination":  true,
+    "qa78-price-filter":  true,
+    "qa78-vendor-shop-bleed":  true,
+    "qa78-directory-autoload":  true,
+    "qa78-cart-shop-nav":  true,
+    "qa78-gallery-lightbox":  true,
+    "qa78-back-arrow":  true,
+    "qa78-trust-badges":  true,
+    "qa78-reviews-ui":  true,
+    "qa78-reviews-editdelete-bug__notes":  "Found 7/8 during staging QA; create/view fine, edit+delete 404 server-side. Fix queued."
 };
 window.__prodSet = ["mon-cancel-email","fri-verified-essential","fri-badges-set","fri-remove-verified-doubles","mon-enterprise-star","fri-events-rsvp-loggedout","fri-events-networking-copy","fri-events-rsvp-count","cb-price-slider","mon-crm-names","addon-founding-pillars","addon-custom-badge-dims","mat-transparent-logo-bg","mon-parish-edit-admin","fri-admin-listing-photos","mon-linked-state","fri-vacation-toggle","fri-tier-parish-sync","cb-tridfi-unpublish","cb-claim-logo-fix","fri-admin-org","cb-admin-tabs","carry-staging-allowlist","addon-team-invite-deadlink"];
 window.addEventListener("DOMContentLoaded", () => {
