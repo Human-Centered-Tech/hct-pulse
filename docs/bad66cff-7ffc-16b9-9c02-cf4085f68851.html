@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catholic Owned Mobile — Build 22 Release Readiness</title>
+<style>
+  :root {
+    --ground:#faf9f5; --surface:#ffffff; --surface-2:#f1efe9; --line:#e2ded2;
+    --ink:#14140f; --ink-soft:#4a4a45; --ink-faint:#75777f;
+    --navy:#061b3c; --gold:#be9b32; --gold-soft:#f5edd8;
+    --pass:#1a7f37; --pass-bg:#e6f4ea; --wait:#8a6d00; --wait-bg:#fff4cc;
+    --display: Georgia, "Palatino Linotype", Palatino, serif;
+    --body: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --ground:#12141a; --surface:#1a1d26; --surface-2:#232733; --line:#333849;
+      --ink:#edeef2; --ink-soft:#b6bac4; --ink-faint:#858b99; --navy:#c6d4ef;
+      --gold:#d8b95a; --gold-soft:#2e2917; --pass:#6fd3a0; --pass-bg:#16291f;
+      --wait:#e3ac55; --wait-bg:#2c2314; }
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--ground); color:var(--ink); font-family:var(--body); line-height:1.6; }
+  .wrap { max-width: 900px; margin:0 auto; padding: clamp(1.5rem,4vw,3rem) clamp(1rem,4vw,2rem) 4rem; }
+  .eyebrow { font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin:0 0 .8rem; }
+  h1 { font-family:var(--display); font-size:clamp(1.7rem,4.5vw,2.5rem); line-height:1.15; margin:0 0 .6rem; color:var(--navy); }
+  .lede { color:var(--ink-soft); max-width:64ch; margin:0 0 1.4rem; }
+  .meta { display:flex; flex-wrap:wrap; gap:.5rem; padding:0; list-style:none; margin:0 0 1.6rem; }
+  .meta li { font-family:var(--mono); font-size:.76rem; background:var(--surface-2); border:1px solid var(--line); border-radius:999px; padding:.25rem .7rem; color:var(--ink-soft); }
+  .meta b { color:var(--ink); }
+  .verdict { display:grid; gap:.8rem; grid-template-columns:1fr 1fr; margin:1.6rem 0; }
+  @media (max-width:640px){ .verdict{ grid-template-columns:1fr; } }
+  .v { border:1px solid var(--line); border-radius:12px; background:var(--surface); padding:1rem 1.2rem; border-left:5px solid var(--vc); }
+  .v.go { --vc: var(--pass); } .v.hold { --vc: var(--wait); }
+  .v .h { font-family:var(--display); font-size:1.15rem; color:var(--vc); margin:0 0 .25rem; }
+  .v p { margin:0; font-size:.9rem; color:var(--ink-soft); }
+  h2 { font-family:var(--display); font-size:1.3rem; color:var(--navy); margin:2.2rem 0 .6rem; }
+  .sub { color:var(--ink-soft); font-size:.9rem; margin:0 0 1rem; max-width:70ch; }
+  .table-scroll { overflow-x:auto; border:1px solid var(--line); border-radius:12px; background:var(--surface); }
+  table { border-collapse:collapse; width:100%; min-width:600px; font-size:.88rem; }
+  th { text-align:left; font-size:.7rem; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-faint); padding:.7rem .9rem; border-bottom:1px solid var(--line); background:var(--surface-2); }
+  td { padding:.65rem .9rem; border-bottom:1px solid var(--line); vertical-align:top; }
+  tr:last-child td { border-bottom:0; }
+  td .t { font-weight:600; display:block; }
+  td .d { color:var(--ink-soft); font-size:.82rem; }
+  .pill { display:inline-block; font-family:var(--mono); font-size:.64rem; letter-spacing:.05em; text-transform:uppercase; font-weight:700; padding:.2rem .55rem; border-radius:999px; white-space:nowrap; }
+  .pill.pass { color:var(--pass); background:var(--pass-bg); }
+  .pill.wait { color:var(--wait); background:var(--wait-bg); }
+  .who { font-family:var(--mono); font-size:.72rem; color:var(--ink-faint); white-space:nowrap; }
+  .note { background:var(--gold-soft); border:1px solid var(--line); border-left:4px solid var(--gold); border-radius:10px; padding:.9rem 1.1rem; font-size:.9rem; color:var(--ink-soft); margin:1rem 0; }
+  .note b { color:var(--ink); }
+  footer { margin-top:2.5rem; padding-top:1.2rem; border-top:1px solid var(--line); color:var(--ink-faint); font-size:.78rem; }
+  footer a { color:var(--gold); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">HCT Pulse · Mobile Release Readiness</p>
+  <h1>Catholic Owned Mobile — Build 22 (3.0.3 / vc17)</h1>
+  <p class="lede">Every mobile item from the 7/8 tester batch, verified on the <b>release-signed build 22</b> against <b>production</b> data. Combines Luke's 7/8 QA pass (Android emulator, API 30) with a follow-up verification session (Pixel 7, API 34) that closed the two items Luke couldn't reach — including the testers' #1 checkout issue, re-run with the exact failing cart.</p>
+  <ul class="meta">
+    <li>Build: <b>3.0.3 (22 / vc17)</b> release-signed</li>
+    <li>Backend: <b>production</b></li>
+    <li>Verified: <b>8 Jul 2026, evening</b></li>
+    <li>iOS: <b>submitted to TestFlight</b></li>
+    <li>Android: <b>.aab ready for Play internal</b></li>
+  </ul>
+
+  <div class="verdict">
+    <div class="v go">
+      <p class="h">Android — ready to release</p>
+      <p>All 11 verifiable items verified on the release build. Nothing outstanding that automation or a second tester can reach.</p>
+    </div>
+    <div class="v hold">
+      <p class="h">iOS — ready pending 2 spot-checks</p>
+      <p>Same code, but two fixes are iOS-specific in behavior and need one TestFlight pass by Matteo (below). Build is processing in TestFlight now.</p>
+    </div>
+  </div>
+
+  <h2>Verification matrix — 7/8 tester batch, mobile items</h2>
+  <p class="sub">"Who" = Luke's report, the follow-up session, or both. Everything marked Verified was observed on the release-signed build 22 unless noted.</p>
+  <div class="table-scroll"><table>
+    <thead><tr><th>Item</th><th>Who</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td><span class="t">Checkout — "No shipping options" (testers' #1)</span><span class="d">Re-ran Mateo's exact failing scenario: same two products (Via Maria rosary + Chain of Joy box, same variant), same Little Rock address, guest checkout, production backend — shipping resolves, order button enabled. Plus: dead-cart auto-recovery ships in this build, the seller shipping-config guard has been live on prod since 7/7, and a sweep of all 21 sellers found zero broken configs.</span></td><td class="who">follow-up</td><td><span class="pill pass">Verified</span></td></tr>
+      <tr><td><span class="t">Marketplace shows ALL products</span><span class="d">55+ distinct products loaded, past the old 40 cap, still paging.</span></td><td class="who">Luke</td><td><span class="pill pass">Verified</span></td></tr>
+      <tr><td><span class="t">Price filter searches the whole catalog</span><span class="d">Brooke's case: $0–300 now surfaces rosaries; all results ≤ $300.</span></td><td class="who">Luke</td><td><span class="pill pass">Verified</span></td></tr>
+      <tr><td><span class="t">Vendor shop shows only its own products</span><span class="d">The item Luke couldn't reach: Featured listing → SHOP → correctly scoped ("No products yet" for a no-shop seller; no cross-merchant bleed — Mateo's lobster bug).</span></td><td class="who">follow-up</td><td><span class="pill pass">Verified</span></td></tr>
+      <tr><td><span class="t">Directory auto-loads on scroll</span><span class="d">No Load More button; pages append automatically.</span></td><td class="who">Luke</td><td><span class="pill pass">Verified</span></td></tr>
+      <tr><td><span class="t">Map preview card clears the nav bar</span><span class="d">Pin tap → card fully above the floating bar, VIEW DETAILS unclipped.</span></td><td class="who">both</td><td><span class="pill pass">Verified</span></td></tr>
+      <tr><td><span class="t">Listing photos open fullscreen; owner/devotional square</span><span class="d">Fullscreen viewer with close ✕; square rendering confirmed.</span></td><td class="who">both</td><td><span class="pill pass">Verified</span></td></tr>
+      <tr><td><span class="t">Back from a listing's website returns to the listing</span><span class="d">Verified on the release build — meaning the launch-mode fix genuinely ships now (its past failure was a build-config gap).</span></td><td class="who">Luke</td><td><span class="pill pass">Verified</span></td></tr>
+      <tr><td><span class="t">Empty cart → "Shop Marketplace"</span><span class="d">Android: lands on the Shop tab correctly (release build). The blank-overlay symptom was iOS-specific → Matteo's TestFlight check.</span></td><td class="who">follow-up</td><td><span class="pill pass">Verified (Android)</span></td></tr>
+      <tr><td><span class="t">Reviews — seller + product</span><span class="d">Guest surfaces verified on-device (product Reviews section, gated My Reviews). Full write path verified separately on staging: create both types, duplicate guard message, edit modal. The review edit/delete backend fix went live on prod tonight.</span></td><td class="who">both</td><td><span class="pill pass">Verified</span></td></tr>
+      <tr><td><span class="t">Incorrect product-page claims removed</span><span class="d">Only the two accurate badges remain (Catholic-owned, shipping included).</span></td><td class="who">both</td><td><span class="pill pass">Verified</span></td></tr>
+      <tr><td><span class="t">Notifications toggle (Android)</span><span class="d">Not black-box testable; Mateo already confirmed it working on 7/8 morning ("notifications I see the toggle nice").</span></td><td class="who">Mateo 7/8</td><td><span class="pill pass">Tester-verified</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>What's left before "all clear"</h2>
+  <div class="table-scroll"><table>
+    <thead><tr><th>Action</th><th>Owner</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td><span class="t">TestFlight spot-check: empty cart → Shop Marketplace (iOS)</span><span class="d">The one fix whose broken symptom only ever showed on iOS. 2 minutes.</span></td><td class="who">Matteo</td><td><span class="pill wait">Pending</span></td></tr>
+      <tr><td><span class="t">TestFlight spot-check: iOS notifications row</span><span class="d">OS-permission prompt / settings link behavior on a real device.</span></td><td class="who">Matteo</td><td><span class="pill wait">Pending</span></td></tr>
+      <tr><td><span class="t">Play internal upload (.aab)</span><span class="d">versionCode 17 — safely above the live release. Same managed-publishing flow as 3.0.2.</span></td><td class="who">Brooke</td><td><span class="pill wait">In progress</span></td></tr>
+      <tr><td><span class="t">Watch checkout during rollout</span><span class="d">The intermittent zero-options case never reproduced after the fixes — every suspected cause is now shipped, and the exact failing scenario passes — but it earned one week of attention.</span></td><td class="who">all</td><td><span class="pill wait">Monitor</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="note"><b>Bottom line for tonight:</b> Android build 22 is release-ready — every mobile item from the 7/8 batch is verified on the release-signed build against production, including the #1 checkout issue re-run end-to-end. iOS carries the same code and needs only Matteo's two iOS-specific spot-checks on TestFlight before the same call.</div>
+
+  <footer>
+    Sources: Luke's QA verification report (7/8) · follow-up emulator session on release build 22 (7/8 eve) · <a href="https://human-centered-tech.github.io/hct-pulse/1f797bd7-9bdc-4cf3-8292-96058e222437.html">Brooke's master list</a>. No orders were placed and no production data was modified during testing (guest test cart emptied).
+  </footer>
+</div>
+</body>
+</html>
