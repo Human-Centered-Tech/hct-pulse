@@ -957,9 +957,12 @@ window.__state = {
     "qa78-back-arrow":  true,
     "qa78-trust-badges":  true,
     "qa78-reviews-ui":  true,
-    "qa78-reviews-editdelete-bug__notes":  "Found 7/8 during staging QA; create/view fine, edit+delete 404 server-side. Fix queued.",
     "qa78-map-preview":  true,
-    "qa78-reviews-ui__notes":  "Full QA done 7/8 on staging (test order + both review types): create/display/duplicate-guard all pass. Edit/Delete blocked by the backend bug below."
+    "qa78-reviews-ui__notes":  "Full QA done 7/8 on staging (test order + both review types): create/display/duplicate-guard all pass. Edit/Delete blocked by the backend bug below.",
+    "qa78-reviews-editdelete-bug":  true,
+    "qa78-reviews-editdelete-bug__notes":  "FIXED 7/8 eve: root cause was an upstream Mercur middleware bug; we override the routes + clean up deleted-review links. Verified 5/5 on staging (incl. re-review after delete). Ships to prod with the next backend promote.",
+    "qa78-web-gallery":  true,
+    "qa78-web-gallery__notes":  "Built 7/8 eve: fullscreen viewer (arrows/keyboard/counter) on listing gallery + owner + devotional photos. On staging now - quick visual pass welcome before prod promote."
 };
 window.__prodSet = ["mon-cancel-email","fri-verified-essential","fri-badges-set","fri-remove-verified-doubles","mon-enterprise-star","fri-events-rsvp-loggedout","fri-events-networking-copy","fri-events-rsvp-count","cb-price-slider","mon-crm-names","addon-founding-pillars","addon-custom-badge-dims","mat-transparent-logo-bg","mon-parish-edit-admin","fri-admin-listing-photos","mon-linked-state","fri-vacation-toggle","fri-tier-parish-sync","cb-tridfi-unpublish","cb-claim-logo-fix","fri-admin-org","cb-admin-tabs","carry-staging-allowlist","addon-team-invite-deadlink"];
 window.addEventListener("DOMContentLoaded", () => {
