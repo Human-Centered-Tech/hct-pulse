@@ -834,8 +834,8 @@
       <li class="item">
         <input type="checkbox" data-field="qa78-map-preview">
         <div class="body">
-          <div class="title">Map listing preview — needs Mateo to clarify</div>
-          <div class="desc">Mateo flagged "same issue as Android" without detail. Currently the preview card shows a letter placeholder instead of the logo, and the tab bar slightly clips the card. Mateo: which did you mean (or both)?</div>
+          <div class="title">Map listing preview sat too low — covered by the nav bar</div>
+          <div class="desc">Clarified by Mateo 7/8 (both platforms). The card now positions itself above the floating nav bar on every device (safe-area aware). In the next app build.</div>
           <textarea class="notes" data-field="qa78-map-preview__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
         <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="qa78-map-preview__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
@@ -862,7 +862,7 @@
         <input type="checkbox" data-field="qa78-first-product-unbuyable">
         <div class="body">
           <div class="title">#1 product in the marketplace can't be bought</div>
-          <div class="desc">St. Catherine of Siena Print (maeve-cahill-art) is the first card everyone sees, but the vendor never finished onboarding, so add-to-cart fails. Onboard the vendor or unpublish the products (marissa-thornberry-art has the same issue).</div>
+          <div class="desc">St. Catherine of Siena Print (maeve-cahill-art) is the first card everyone sees, but the vendor never finished onboarding, so add-to-cart fails (marissa-thornberry-art same). Durable fix BUILT 7/8: products from not-yet-live vendors are now flagged in search and hidden on web + app automatically — vendors appear the moment they complete go-live. Awaiting backend deploy + one-time reindex, then this checks off.</div>
           <textarea class="notes" data-field="qa78-first-product-unbuyable__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
         <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="qa78-first-product-unbuyable__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
@@ -957,7 +957,9 @@ window.__state = {
     "qa78-back-arrow":  true,
     "qa78-trust-badges":  true,
     "qa78-reviews-ui":  true,
-    "qa78-reviews-editdelete-bug__notes":  "Found 7/8 during staging QA; create/view fine, edit+delete 404 server-side. Fix queued."
+    "qa78-reviews-editdelete-bug__notes":  "Found 7/8 during staging QA; create/view fine, edit+delete 404 server-side. Fix queued.",
+    "qa78-map-preview":  true,
+    "qa78-reviews-ui__notes":  "Full QA done 7/8 on staging (test order + both review types): create/display/duplicate-guard all pass. Edit/Delete blocked by the backend bug below."
 };
 window.__prodSet = ["mon-cancel-email","fri-verified-essential","fri-badges-set","fri-remove-verified-doubles","mon-enterprise-star","fri-events-rsvp-loggedout","fri-events-networking-copy","fri-events-rsvp-count","cb-price-slider","mon-crm-names","addon-founding-pillars","addon-custom-badge-dims","mat-transparent-logo-bg","mon-parish-edit-admin","fri-admin-listing-photos","mon-linked-state","fri-vacation-toggle","fri-tier-parish-sync","cb-tridfi-unpublish","cb-claim-logo-fix","fri-admin-org","cb-admin-tabs","carry-staging-allowlist","addon-team-invite-deadlink"];
 window.addEventListener("DOMContentLoaded", () => {
