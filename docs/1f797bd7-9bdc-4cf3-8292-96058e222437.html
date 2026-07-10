@@ -1228,6 +1228,8 @@
 </div>
 <script>
 window.__state = {
+    "tr-message-business":  true,
+    "tr-message-business__notes":  "Done 7/10 per Brooke's clarification: the app button now reads MESSAGE BUSINESS on every listing (was Message Seller), it stays for Business Owners (not just merchants), and messages land in the one inbox owners already use — the seller dashboard. Backend updated so messaging works for every claimed listing while only real shops get the Visit-Our-Shop button. App part rides the next build; backend/web on staging. Note: the WEB listing page has no message button today — adding one there is a separate (quick) follow-up if wanted.",
     "tr-cta-stuck":  true,
     "tr-cta-stuck__notes":  "SOLVED 7/10, fix on staging: (1) the save endpoint 'locked' any PAID member's account to Visit Our Shop — every owner-dashboard save silently wiped the custom CTA (Brooke's admin edits saved fine but were wiped by the owner's next save of anything); (2) 136 Bubble-imported listings store button TEXT ('Shop Now') where the code expects a code, so those merchants lost their button entirely. Now: Visit Our Shop only for a real live shop (active + at least 1 published product); a saved custom CTA wins otherwise; legacy text renders its own wording. The AI data-edit round was NOT the cause. Follow-up decision: normalize the 136 legacy rows.",
     "tr-owner-interview-loss":  true,
