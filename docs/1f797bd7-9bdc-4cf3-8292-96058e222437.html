@@ -879,7 +879,352 @@
     </ul>
   </section>
 
-  <footer>Read-only published copy — republished as items progress. Last updated: 2026-07-08.</footer>
+  <!-- ===================== 7/9 INTENSIVE TESTING REPORT ===================== -->
+  <section>
+    <h2>7/9 Intensive Testing (Brooke + Matteo) — emailed 7/10, 12:41 AM <span class="count"></span></h2>
+    <div class="secnote">Deduped across iPhone / iPad / Android phone / Android tablet — shared items listed once. Cross-checked against overnight Sentry error monitoring. Mobile fixes ride the next app build (no store submission until they pass). Data-type / CTA cluster is the 10 AM 7/10 meeting topic.</div>
+    <ul class="items">
+      <li class="item">
+        <input type="checkbox" data-field="tr-cta-stuck">
+        <div class="body">
+          <div class="title">Business listings stuck with "Shop" CTA; custom CTA won't stick</div>
+          <div class="desc">Business Owners all show a Shop CTA no matter what Brooke or the owner sets; older Merchants lost their "Visit Shop" CTA entirely. <span class="cc">Two suspects under investigation 7/10 AM: the public-API allowlist (toPublicListing) may be stripping custom-CTA fields (edits save but never surface), and Sentry shows repeated "Unexpected end of form" errors on the owner directory-edit endpoint (8 events) — some owner edits may never save at all.</span></div>
+          <textarea class="notes" data-field="tr-cta-stuck__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-cta-stuck__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="tr-account-types">
+        <div class="body">
+          <div class="title">Account-type cleanup: Business Owners vs Merchants; delete erroneous storefronts</div>
+          <div class="desc">Clarify the taxonomy confusion (10 AM 7/10 meeting), then fix mislabeled accounts and remove storefronts business owners never needed. <span class="cc">An audit script listing every mismatched account is being prepped so the manual pass is a checklist, not archaeology. Storefront deletion is destructive — will not run without Brooke's per-account confirmation.</span></div>
+          <textarea class="notes" data-field="tr-account-types__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-account-types__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="tr-message-business">
+        <div class="body">
+          <div class="title">"Message Seller" → "Message business" on business listings; merchants route to storefront messaging</div>
+          <div class="desc">Label follows the account type; for Merchants the button should open a storefront messaging session. Implemented after the taxonomy is settled at the 10 AM meeting.</div>
+          <textarea class="notes" data-field="tr-message-business__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-message-business__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="tr-owner-interview-loss">
+        <div class="body">
+          <div class="title">Owner-interview answers Brooke saved are cleared out</div>
+          <div class="desc"><span class="cc">Prime suspect: the 5-minute SSO handoff-token bug — editing longer than 5 minutes made saves silently fail with a 401 (owner interview was the canonical case). The 7-day-token fix is written and awaiting the backend prod promote. Checking whether the data still exists in the DB.</span></div>
+          <textarea class="notes" data-field="tr-owner-interview-loss__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-owner-interview-loss__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="tr-logo-banner-sync">
+        <div class="body">
+          <div class="title">Auto-sync logo/banner + contact info between listing and storefront (Merchants)</div>
+          <div class="desc">Merchants shouldn't upload the same assets twice. Needs a source-of-truth decision (listing wins? storefront wins? sync both ways?) before building.</div>
+          <textarea class="notes" data-field="tr-logo-banner-sync__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-logo-banner-sync__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="tr-onboarding-paths">
+        <div class="body">
+          <div class="title">Every onboarding path must create the correct account type</div>
+          <div class="desc"><span class="cc">Sentry cross-ref: a JS crash on /sell/onboarding (setAttribute on null, 2 events 7/8) is being fixed as part of this sweep.</span></div>
+          <textarea class="notes" data-field="tr-onboarding-paths__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-onboarding-paths__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="tr-add-business-btn">
+        <div class="body">
+          <div class="title">App menu: "Add My Business" does nothing (iOS + Android)</div>
+          <div class="desc">Tap closes the hamburger menu but never opens the web page viewer.</div>
+          <textarea class="notes" data-field="tr-add-business-btn__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-add-business-btn__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="tr-dir-scroll-jump">
+        <div class="body">
+          <div class="title">Directory: pagination pushes you up several listings mid-scroll (iOS + Android)</div>
+          <div class="desc">When the next page loads during a long scroll, the list jumps the user away from their position.</div>
+          <textarea class="notes" data-field="tr-dir-scroll-jump__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-dir-scroll-jump__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="tr-dir-logos-scroll">
+        <div class="body">
+          <div class="title">Android: directory logos blank while scrolling</div>
+          <div class="desc"><span class="cc">Likely the image-bloat issue: the 7/9 prod image optimization (78% smaller files) landed during/after the test session — needs a re-test before any app change.</span></div>
+          <textarea class="notes" data-field="tr-dir-logos-scroll__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-dir-logos-scroll__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="tr-listing-layout">
+        <div class="body">
+          <div class="title">Directory listing page: reorder to Brooke's spec; hours + reviews missing</div>
+          <div class="desc">New order: banner+logo, name (larger), gold category, stars, city/state, golden CTA, 3 blue buttons, description, hours of operation (currently not showing), map (moved down), Meet the Owner, devotional, Add a Review + reviews (currently missing entirely), parish affiliations, social icons.</div>
+          <textarea class="notes" data-field="tr-listing-layout__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-listing-layout__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="tr-listing-tablet">
+        <div class="body">
+          <div class="title">Tablets: owner + devotional images left-aligned; CTA/message buttons enormous</div>
+          <div class="desc">iPad + Android tablet.</div>
+          <textarea class="notes" data-field="tr-listing-tablet__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-listing-tablet__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="tr-cta-flaky-ios">
+        <div class="body">
+          <div class="title">iOS: golden CTA + website buttons dead until app restart (intermittent)</div>
+          <textarea class="notes" data-field="tr-cta-flaky-ios__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-cta-flaky-ios__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="tr-share-deeplink">
+        <div class="body">
+          <div class="title">Share link opens mobile web, not the app — verify deep links</div>
+          <div class="desc">May be expected on test builds (store-installed apps register the links); verifying the config either way.</div>
+          <textarea class="notes" data-field="tr-share-deeplink__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-share-deeplink__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="tr-storefront-parity">
+        <div class="body">
+          <div class="title">App marketplace storefront: blank logo, Collections missing, Products/Reviews/Policies toggle missing, name too small</div>
+          <div class="desc">Bring the app storefront page up to web parity.</div>
+          <textarea class="notes" data-field="tr-storefront-parity__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-storefront-parity__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="tr-product-styling">
+        <div class="body">
+          <div class="title">App product page: smaller product name; merchant name styled like a button</div>
+          <div class="desc">Product name ≈ storefront/directory name size or a bit smaller; merchant name same font as the Add-to-Cart / Add-to-Registry buttons, made to look tappable (like the variant-option styling).</div>
+          <textarea class="notes" data-field="tr-product-styling__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-product-styling__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="tr-shipping-policy-app">
+        <div class="body">
+          <div class="title">App product page: show shipping &amp; return policy like web (7/9 meeting)</div>
+          <textarea class="notes" data-field="tr-shipping-policy-app__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-shipping-policy-app__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="tr-marketplace-categories">
+        <div class="body">
+          <div class="title">App marketplace: only show categories that actually have products</div>
+          <textarea class="notes" data-field="tr-marketplace-categories__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-marketplace-categories__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="tr-marketplace-grid-tablet">
+        <div class="body">
+          <div class="title">Tablets: marketplace product cards too big — 3-column grid</div>
+          <div class="desc">Bigger than phone, but currently bigger than web. Rows of 3 on iPad + Android tablet.</div>
+          <textarea class="notes" data-field="tr-marketplace-grid-tablet__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-marketplace-grid-tablet__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="tr-guides-pin">
+        <div class="body">
+          <div class="title">Guides: pin "View Product" to the bottom of each card</div>
+          <div class="desc">Cards vary in length so the buttons sit uneven.</div>
+          <textarea class="notes" data-field="tr-guides-pin__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-guides-pin__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="tr-events-rsvp-state">
+        <div class="body">
+          <div class="title">Events (app): RSVP state should stick — "You're Going", details + Zoom link for registered users, real attendee count, event graphic, location says "Zoom", Share button</div>
+          <div class="desc"><span class="cc">The single-event API route with server-derived RSVP count already exists on staging (7/6 fix) — the app needs to consume it; rest is app UI.</span></div>
+          <textarea class="notes" data-field="tr-events-rsvp-state__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-events-rsvp-state__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="tr-events-reminders">
+        <div class="body">
+          <div class="title">Events: calendar invite on RSVP + SMS/email reminders (15 min / 1 day / 7 days) + collect cell phone</div>
+          <div class="desc">NEW SCOPE, not a bug: Twilio is a new vendor (setup + per-message cost) and collecting phone numbers is a privacy/ToS call. Needs Brooke's go before building. Calendar-invite email is the cheapest first slice.</div>
+          <textarea class="notes" data-field="tr-events-reminders__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-events-reminders__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="tr-cart-variant">
+        <div class="body">
+          <div class="title">Cart: hide the "default variant" label</div>
+          <div class="desc">Show real option/variant selections only.</div>
+          <textarea class="notes" data-field="tr-cart-variant__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-cart-variant__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="tr-cart-nav">
+        <div class="body">
+          <div class="title">Cart: tapping a product opens it BEHIND the cart</div>
+          <div class="desc">Tapping a cart item should close the cart and show the product page.</div>
+          <textarea class="notes" data-field="tr-cart-nav__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-cart-nav__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="tr-trade-copy">
+        <div class="body">
+          <div class="title">Trade: still says "barter market"; add person-to-person rules</div>
+          <div class="desc">Post-a-listing says barter market; rules copy: person-to-person only, businesses join the directory or marketplace; Sacred Exchange explainer → "List used items to sell, trade or give person to person".</div>
+          <textarea class="notes" data-field="tr-trade-copy__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-trade-copy__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="tr-filters-reset">
+        <div class="body">
+          <div class="title">Directory/Marketplace/Trade: search + filters + map view should reset when you tab away</div>
+          <div class="desc">Currently search terms, filters, and directory map-mode persist forever until manually cleared. All platforms.</div>
+          <textarea class="notes" data-field="tr-filters-reset__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-filters-reset__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="tr-android-backnav">
+        <div class="body">
+          <div class="title">Android: back after CTA / map / website link returns to home, not the listing</div>
+          <div class="desc">Intermittent — sometimes returns to the listing, usually home.</div>
+          <textarea class="notes" data-field="tr-android-backnav__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-android-backnav__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="tr-map-markers">
+        <div class="body">
+          <div class="title">Map: marker grouping unusable at times; selected-state stops updating; double icon on tablet tap; gray markers too faint</div>
+          <div class="desc"><span class="cc">The map count weirdness from the 7/9 meeting was the 200-pin fix (shipped 7/9) — verify. Pie-shaped cluster counters are a design idea to confirm with Brooke before building.</span></div>
+          <textarea class="notes" data-field="tr-map-markers__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-map-markers__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="tr-android-icon-margin">
+        <div class="body">
+          <div class="title">Android app icon needs more margin (Brooke's screenshot)</div>
+          <div class="desc"><span class="cc">Already fixed before the email: the icon safe-zone fix is staged for the next build (was part of the 7/9 batch). No new file needed from Brooke. Verify on the next build.</span></div>
+          <textarea class="notes" data-field="tr-android-icon-margin__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-android-icon-margin__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="tr-product-images-slow">
+        <div class="body">
+          <div class="title">Slow-loading product images</div>
+          <div class="desc"><span class="cc">Prod image optimization applied + verified 7/9 (78% byte reduction on the worst offenders) — landed during/after the test session. Needs a re-test before further work.</span></div>
+          <textarea class="notes" data-field="tr-product-images-slow__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-product-images-slow__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="tr-my-parishes-dashboard">
+        <div class="body">
+          <div class="title">My Parishes: add to the web user dashboard (keep top-nav entry too)</div>
+          <textarea class="notes" data-field="tr-my-parishes-dashboard__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-my-parishes-dashboard__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="tr-admin-owner-photo">
+        <div class="body">
+          <div class="title">Admin: how to upload the Owner photo?</div>
+          <div class="desc"><span class="cc">Logo + cover + gallery upload shipped to admin 7/7 (staging). Checking whether the owner-interview photo has an admin upload path — if not, adding one.</span></div>
+          <textarea class="notes" data-field="tr-admin-owner-photo__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-admin-owner-photo__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="tr-web-next-week">
+        <div class="body">
+          <div class="title">Web polish bundle — Brooke: "next week"</div>
+          <div class="desc">Storefront Products/Reviews/Policies toggle behavior; shield + truck badges on product page; shop name larger; listing/storefront/product name fonts smaller; banners forced to size (hero overflow); master-search modal puts directory first; search tuning on directory/marketplace/trade.</div>
+          <textarea class="notes" data-field="tr-web-next-week__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-web-next-week__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ===================== SENTRY WATCH 7/10 ===================== -->
+  <section>
+    <h2>Found by error monitoring (Sentry) — 7/10 sweep <span class="count"></span></h2>
+    <div class="secnote">Not reported by testers — surfaced by cross-referencing the overnight error logs against Brooke's report.</div>
+    <ul class="items">
+      <li class="item">
+        <input type="checkbox" data-field="sen-dir-404">
+        <div class="body">
+          <div class="title">One directory listing 404s repeatedly (17 hits, still firing during the 7/9 test)</div>
+          <div class="desc"><span class="cc">/us/directory/01KX44V743Y85M91QEPNPHNG9X — identify the listing and where the link comes from; likely a hidden/claim-pending listing still linked from search or a share.</span></div>
+          <textarea class="notes" data-field="sen-dir-404__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="sen-dir-404__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="sen-social-relative">
+        <div class="body">
+          <div class="title">Social links without "https://" break (open as site pages → 404)</div>
+          <div class="desc"><span class="cc">e.g. /us/directory/www.tiktok.com/@chain.of.joy — the 7/2 URL normalization missed social-media links. Fix: normalize socials at render too.</span></div>
+          <textarea class="notes" data-field="sen-social-relative__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="sen-social-relative__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="sen-dir-edit-form">
+        <div class="body">
+          <div class="title">Owner directory-edit form intermittently fails server-side ("Unexpected end of form", 8 events)</div>
+          <div class="desc"><span class="cc">Ties directly to "my CTA edits don't stick" — some owner edits abort mid-upload. Same class as the 7/2 trade-upload fix (images through server actions); moving uploads to an API route.</span></div>
+          <textarea class="notes" data-field="sen-dir-edit-form__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="sen-dir-edit-form__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="sen-deleted-customer">
+        <div class="body">
+          <div class="title">Deleted test account's session still hitting APIs (40 errors across app + web)</div>
+          <div class="desc"><span class="cc">"Customer cus_…ZBHB4 was not found" — a deleted customer's login token kept working (app keeps JWT in Keychain across reinstall). Needs graceful sign-out on customer-gone instead of an error loop.</span></div>
+          <textarea class="notes" data-field="sen-deleted-customer__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="sen-deleted-customer__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="sen-shipping-doubled">
+        <div class="body">
+          <div class="title">New checkout signal: "Some of the shipping methods are doubled!" (Android, 4 events)</div>
+          <div class="desc"><span class="cc">Related to the intermittent no-shipping-options family; under investigation alongside the build-22 retest.</span></div>
+          <textarea class="notes" data-field="sen-shipping-doubled__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="sen-shipping-doubled__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+    </ul>
+  </section>
+
+  <footer>Read-only published copy — republished as items progress. Last updated: 2026-07-10.</footer>
 </div>
 <script>
 window.__state = {
@@ -965,7 +1310,7 @@ window.__state = {
     "qa78-web-gallery__notes":  "Built 7/8 eve: fullscreen viewer (arrows/keyboard/counter) on listing gallery + owner + devotional photos. On staging now - quick visual pass welcome before prod promote.",
     "qa78-first-product-unbuyable":  true,
     "qa78-first-product-unbuyable__notes":  "LIVE on web 7/8 eve (deploy + reindex verified: 299 buyable products shown, the 2 un-onboarded vendors hidden; they reappear automatically at go-live). App side ships in build 22.",
-    "qa78-checkout-shipping__notes":  "All suspected causes now live: dead-cart auto-recovery (build 21+) and the seller shipping-config guard (prod since 7/7). Left open until Mateo\u0027s build-22 retest confirms - this one never left an error trail, so we want a clean retest, not an assumption.",
+    "qa78-checkout-shipping__notes":  "All suspected causes now live: dead-cart auto-recovery (build 21+) and the seller shipping-config guard (prod since 7/7). Left open until Mateo\u0027s build-22 retest confirms - this one never left an error trail, so we want a clean retest, not an assumption. UPDATE 7/10: Sentry shows the auto-recovery firing for 2 users during the 7/9 evening test ('shipping-options empty; rebuilding cart') — the heal works in the wild. New Android signal 'shipping methods doubled' tracked in the Sentry section below.",
     "qa78-mobile-build":  true,
     "qa78-mobile-build__notes":  "Build 23 (vc18) fixes STAGED + emulator-verified 7/9: (1) notif soft-ask now survives reinstall - was iOS Keychain persistence; moved to AsyncStorage + 14-day \u0027Maybe later\u0027 re-prompt; (2) fixed a bug found during verification - Android reports never-asked notifs as \u0027denied\u0027 not \u0027undetermined\u0027, so the soft-ask + Turn-On button would have broken on Android (now gated on canAskAgain); (3) Android app icon safe-zone fix. All three verified on emulator. Ready to cut build 23 after Matteo\u0027s Android pass on build 22."
 };
