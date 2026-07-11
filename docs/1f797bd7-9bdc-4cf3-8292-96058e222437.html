@@ -1171,6 +1171,194 @@
     </ul>
   </section>
 
+  <!-- ===================== MONDAY BUILD BATCH ===================== -->
+  <section>
+    <h2>Monday build batch — from the 7/10 overnight retest (Brooke + Matteo) <span class="count"></span></h2>
+    <div class="secnote">Their color-coded retest of the new builds: deep links, CTAs, and most of the 7/9 batch confirmed working 🎉 — these are the new finds + fallout, scoped for Monday&#39;s release build. Two red items lead.</div>
+    <ul class="items">
+      <li class="item">
+        <input type="checkbox" data-field="mon-map-crash">
+        <div class="body">
+          <div class="title">🔴 Map crash (fatal, iPhone + iPad) — maps library upgraded + churn cap</div>
+          <div class="desc">Your 3 crash reports matched two Sentry fatals in the map component (build 25). Library upgraded to a version with the known crash fixes + a safety cap on simultaneous markers. Verifying on emulator; ships Monday. The intermittent disappearing/double icons were the same bug family.</div>
+          <textarea class="notes" data-field="mon-map-crash__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-map-crash__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-play-datasafety">
+        <div class="body">
+          <div class="title">🔴 Google Play Data-Safety: account-deletion URL 404s (deadline 7/24 — blocks Play updates)</div>
+          <div class="desc">Fix = point the Data Safety form at https://www.catholicowned.com/account-deletion (page is live). Brooke can edit the form in Play Console; a permanent redirect from the old /support_page URL is also ready to deploy. MUST be fixed before Monday&#39;s Android submission. (The two bullets in Google&#39;s email are the same issue, not two.)</div>
+          <textarea class="notes" data-field="mon-play-datasafety__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-play-datasafety__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-dir-sort-global">
+        <div class="body">
+          <div class="title">Directory sort order across pages (Enterprise-in-their-states → Featured → rest)</div>
+          <div class="desc">The scroll-jump fix made each page sort independently — fix is moving tier ranking into the search index so pages arrive globally sorted.</div>
+          <textarea class="notes" data-field="mon-dir-sort-global__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-dir-sort-global__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-marker-colors">
+        <div class="body">
+          <div class="title">Map pins: swap to GOLD ring / navy fill / white dot</div>
+          <div class="desc">Done in code per your note — the 7/10 colorway was inverted.</div>
+          <textarea class="notes" data-field="mon-marker-colors__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-marker-colors__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-marker-clip">
+        <div class="body">
+          <div class="title">Selected map pin renders cut off</div>
+          <div class="desc">Same platform bug as the group bubbles — enlarged pin now sized inside the safe canvas. Done in code.</div>
+          <textarea class="notes" data-field="mon-marker-clip__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-marker-clip__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-cart-stacking">
+        <div class="body">
+          <div class="title">Cart → product pages stack on repeat taps</div>
+          <div class="desc">Repeat cart-line taps now reuse the open product page instead of piling screens.</div>
+          <textarea class="notes" data-field="mon-cart-stacking__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-cart-stacking__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-share-dedupe">
+        <div class="body">
+          <div class="title">Share message contains the link twice</div>
+          <div class="desc">iOS share put the URL in two fields; send it once.</div>
+          <textarea class="notes" data-field="mon-share-dedupe__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-share-dedupe__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-bottom-padding">
+        <div class="body">
+          <div class="title">Bottom row hidden behind the floating nav bar (directory, marketplace, events, trade)</div>
+          <div class="desc">Padding sweep on all four lists.</div>
+          <textarea class="notes" data-field="mon-bottom-padding__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-bottom-padding__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-product-photo-50">
+        <div class="body">
+          <div class="title">Product page: photo ≤50% of screen + tighter spacing + Shop more copy</div>
+          <div class="desc">Name, price, Shop more (merchant) and description visible above Add to Cart; remove &gt; symbol; lowercase &#39;more&#39;; drop &#39;from&#39;.</div>
+          <textarea class="notes" data-field="mon-product-photo-50__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-product-photo-50__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-scroll-top-tabs">
+        <div class="body">
+          <div class="title">Tab tap returns each page to the top</div>
+          <div class="desc">Pairs with the search/filter reset that already ships.</div>
+          <textarea class="notes" data-field="mon-scroll-top-tabs__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-scroll-top-tabs__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-ipad-scroll-loss">
+        <div class="body">
+          <div class="title">iPad: back from a listing/product loses your scroll position</div>
+          <div class="desc">Works on iPhone; iPad regression.</div>
+          <textarea class="notes" data-field="mon-ipad-scroll-loss__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-ipad-scroll-loss__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-price-filter-tolerance">
+        <div class="body">
+          <div class="title">Price filter shows items above the cap ($25 → $27/$35 items)</div>
+          <div class="desc">Likely filtering on a different variant price than displayed; needs a data check.</div>
+          <textarea class="notes" data-field="mon-price-filter-tolerance__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-price-filter-tolerance__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-android-softask-update">
+        <div class="body">
+          <div class="title">Android: no notification soft-ask after UPDATE install</div>
+          <div class="desc">Fresh installs show it; update installs carry the &#39;already seen&#39; flag (14-day re-prompt by design). Confirming the menu row prompts correctly as the fallback.</div>
+          <textarea class="notes" data-field="mon-android-softask-update__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-android-softask-update__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-android-logos-scroll">
+        <div class="body">
+          <div class="title">Android: directory logos blank while scrolling + owner/devotional white squares</div>
+          <div class="desc">Still present after the image optimization — app-side rendering investigation.</div>
+          <textarea class="notes" data-field="mon-android-logos-scroll__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-android-logos-scroll__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-listing-map-missing">
+        <div class="body">
+          <div class="title">Some listings show no map on the detail page</div>
+          <div class="desc">Verified + many Featured listings; likely missing geocode coordinates — data check.</div>
+          <textarea class="notes" data-field="mon-listing-map-missing__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-listing-map-missing__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-deleted-listings-index">
+        <div class="body">
+          <div class="title">Deleted listings still appearing in Directory</div>
+          <div class="desc">Delete should also remove the search record; web likely already cured by 7/11&#39;s fresh reindex — app follows.</div>
+          <textarea class="notes" data-field="mon-deleted-listings-index__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-deleted-listings-index__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-storefront-paging-android">
+        <div class="body">
+          <div class="title">Android storefront: products stall / never load on scroll</div>
+          <div class="desc">May have been the 7/11 search outage mid-session — retest first.</div>
+          <textarea class="notes" data-field="mon-storefront-paging-android__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-storefront-paging-android__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-single-card-size">
+        <div class="body">
+          <div class="title">Marketplace: lone product in a row renders too large</div>
+          
+          <textarea class="notes" data-field="mon-single-card-size__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-single-card-size__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-icon-asset">
+        <div class="body">
+          <div class="title">Android icon: use Brooke&#39;s new white-background asset</div>
+          <div class="desc">Files attached to her 7/11 email (2 sizes).</div>
+          <textarea class="notes" data-field="mon-icon-asset__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-icon-asset__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="mon-messaging-ux">
+        <div class="body">
+          <div class="title">Messaging / product-inquiry flow review</div>
+          <div class="desc">Inquiry appears to auto-send without typing (real bug), chat lacks product/merchant context, notify-on-message, reply-surface question (web vs app), email copy, SMS option. Needs a design conversation — bug part ships Monday.</div>
+          <textarea class="notes" data-field="mon-messaging-ux__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-messaging-ux__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
+      </li>
+    </ul>
+  </section>
+
   <!-- ===================== SENTRY WATCH 7/10 ===================== -->
   <section>
     <h2>Found by error monitoring (Sentry) — 7/10 sweep <span class="count"></span></h2>
