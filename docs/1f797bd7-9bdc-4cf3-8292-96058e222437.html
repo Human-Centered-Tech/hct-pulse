@@ -1425,6 +1425,18 @@
 </div>
 <script>
 window.__state = {
+    "mon-map-crash":  true,
+    "mon-map-crash__notes":  "Fixed in code 7/11 aft: maps library upgraded to the version with the interop crash fixes + a marker cap as defence in depth. Emulator stress-verified (cluster expand, rapid pin taps, zoom-out storms — no crash). Real-device confirmation rides Monday&#39;s build.",
+    "mon-marker-colors":  true,
+    "mon-marker-colors__notes":  "Swapped: gold ring / navy fill / white dot. Emulator-verified.",
+    "mon-marker-clip":  true,
+    "mon-marker-clip__notes":  "Selected pin now sized inside the safe canvas — no more cut-off corner.",
+    "mon-cart-stacking":  true,
+    "mon-cart-stacking__notes":  "Repeat cart taps now return to the open product page instead of stacking copies.",
+    "mon-share-dedupe":  true,
+    "mon-share-dedupe__notes":  "iOS share now sends the link once.",
+    "mon-play-datasafety__notes":  "Liam&#39;s half done: permanent redirect from the old /support_page URL to /account-deletion is written (one word from Liam promotes it to the live site). BROOKE: edit the Play Console Data Safety form to https://www.catholicowned.com/account-deletion — that&#39;s the part Google actually checks. Before Monday&#39;s Android submission.",
+    "mon-deleted-listings-index__notes":  "Web very likely already cured: the 7/11 search-provider migration rebuilt the entire index fresh from the database, so anything deleted before this morning is gone from web search. App follows once its search unblocks/rebuilds. A delete-removes-search-record hook is still worth adding so it can&#39;t recur.",
     "tr-share-deeplink":  true,
     "tr-share-deeplink__notes":  "BUILT + verified 7/10 on the actual release binary: shared links for listings, products, events, sellers, registries, guides and trade now open the app on Android (tested end-to-end on the build-24 artifact — a shared listing URL opens the listing screen). iOS activates once the storefront promote puts the new Apple association file on prod (Apple caches it up to ~a day). Also caught + fixed a release-only URL-parsing bug during verification — the first build-24 artifacts were superseded before any store upload.",
     "tr-message-business":  true,
