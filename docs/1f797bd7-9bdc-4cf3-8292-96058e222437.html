@@ -1177,6 +1177,15 @@
     <div class="secnote">Not reported by testers — surfaced by cross-referencing the overnight error logs against Brooke's report.</div>
     <ul class="items">
       <li class="item">
+        <input type="checkbox" data-field="sen-algolia-outage">
+        <div class="body">
+          <div class="title">7/11 search outage: search provider quota-blocked us — WEB restored same morning on an upgraded paid plan</div>
+          <div class="desc"><span class="cc">The search backend (Algolia) hard-blocked the free plan after the heavy test week. Web directory/shop search was down overnight; restored by ~9:40am CT on a new paid application (full reindex verified: 4,473 listings + 315 products). The mobile TEST builds&#39; browse tabs stay degraded until the provider restores the old app (ticket filed) — and the next app build adds an automatic fallback so a search-provider outage can never blank the app again.</span></div>
+          <textarea class="notes" data-field="sen-algolia-outage__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="sen-algolia-outage__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
         <input type="checkbox" data-field="sen-dir-404">
         <div class="body">
           <div class="title">One directory listing 404s repeatedly (17 hits, still firing during the 7/9 test)</div>
