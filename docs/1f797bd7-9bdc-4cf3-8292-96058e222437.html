@@ -55,20 +55,118 @@
   .stage-pill { font-family: Verdana, sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.05em; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
   .stage-live { background: #e6f4ea; color: #1a7f37; border: 1px solid #9bd3ab; }
   .stage-staged { background: #fff4cc; color: #8a6d00; border: 1px solid #e6c200; }
+  .stage-build { background: #e5edf6; color: #2f5b8c; border: 1px solid #a8c4e0; }
+  .stage-written { background: #efe8f5; color: #6b4a86; border: 1px solid #c4aed9; }
+  .stage-decide { background: #f8ebdc; color: #a8631c; border: 1px solid #e0b483; }
+  .alert { background: #fdecea; border: 1px solid #d93025; color: #5c1a13; border-radius: 10px; padding: 14px 18px; margin-bottom: 16px; font-family: Verdana, sans-serif; font-size: 12.5px; line-height: 1.65; }
+  .alert b { color: #a50e0e; }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header class="doc">
-    <h1>Brooke's Master List — Week of 7/6–7/11</h1>
-    <div class="sub">From her 7/6 email (Friday call + Friday Circle Back + Monday call + Monday Circle Back) — same order as the email. Carried-over punch-list items at the bottom. Hard deadline 7/11.</div>
+    <h1>Catholic Owned — Master Punch List</h1>
+    <div class="sub">REFRESHED 13 JULY 2026 — re-scored against build 27 and prod. Sources: Brooke's 7/6 + 7/11 emails, the 7/9 test session, Sentry, and the 7/13 build batch.</div>
     <div class="progress-wrap">
       <div class="progress-bar"><div class="progress-fill" id="pfill"></div></div>
       <div class="progress-label" id="plabel">—</div>
     </div>
   </header>
 
-  <div class="readonly-banner">📌 Read-only status page — updated by Liam as items progress. Nothing you click here is saved.<br><b>Status key:</b> <span style="color:#1a7f37;font-weight:700;">● LIVE</span> = on the live site/app · <span style="color:#8a6d00;font-weight:700;">● STAGED</span> = done &amp; on our staging/preview, not live yet · ☐ = open or in progress.</div>
+  <div class="readonly-banner">📌 Read-only status page — updated by Liam as items progress. Nothing you click here is saved.<br>
+    <b>Status key:</b>
+    <span style="color:#1a7f37;font-weight:700;">● LIVE</span> = on the live site/app ·
+    <span style="color:#2f5b8c;font-weight:700;">● IN BUILD 27</span> = fixed and in the built app, <i>but nobody has retested it</i> ·
+    <span style="color:#6b4a86;font-weight:700;">✎ WRITTEN 7/13</span> = code written today, <i>not yet pushed to staging</i> ·
+    <span style="color:#a8631c;font-weight:700;">✋ BROOKE</span> = blocked on a decision ·
+    ☐ = open.
+  </div>
+
+  <div class="alert">
+    <b>THREE ITEMS ON THIS LIST WERE WRONG. They are rewritten in place — read them before acting.</b><br><br>
+    <b>1. Do not delete the "erroneous" storefronts.</b> Business Owners need their seller row — it is their messaging inbox and dashboard login. Deleting them breaks the owner's Message button and locks them out of their own listing. What Brooke saw was the "Shop" CTA bug, which is already fixed on prod.<br>
+    <b>2. Brooke's owner-interview answers were never lost.</b> They are intact in the database. The section is hidden behind a Featured/Enterprise tier gate that landed after she filled them in. Showing them to lower tiers is a pricing decision, not a bug fix.<br>
+    <b>3. The parish cap was 1/3/<u>25</u>, not 1/3/10.</b> Setting it to 10 reverses a decision Brooke made on 7/7. It is implemented, but confirm before it ships.
+  </div>
+
+
+  <!-- ===================== 7/13 BUILD BATCH ===================== -->
+  <section>
+    <h2>7/13 Build Batch — written, NOT yet pushed <span class="count"></span></h2>
+    <div class="secnote">Built 7/13 against Liam's decisions. All of it is sitting uncommitted — nothing is on staging yet. Everything compiles: backend 0 new type errors + 34/34 unit tests, storefront <span class="cc">next build</span> passes, admin <span class="cc">vite build</span> passes, mobile <span class="cc">tsc</span> clean.</div>
+    <ul class="items">
+      <li class="item">
+        <input type="checkbox" data-field="b713-parish-10">
+        <div class="body">
+          <div class="title">Parish cap set to 10 everywhere — but this reverses a 7/7 decision</div>
+          <div class="desc">Enforcement, FAQ copy, checkout copy, and the admin tier-override path are now consistently <strong>1 / 3 / 10</strong>. The tier-override sync bug is fixed too: a tier <em>downgrade</em> never used to shrink the cap.</div>
+          <div class="note-static"><b>NEEDS A YES BEFORE IT SHIPS.</b> The shipped enforcement was actually <b>1/3/25</b> — the punch-list premise was backwards — and <span class="cc">context/overnight-notes-2026-07-07.md</span> records a deliberate 10→25 bump for Enterprise on 7/7. So 10 is a reversal and a functional downgrade for anyone who bought Enterprise on the 25 promise. Existing listings holding 11–25 parishes keep them and simply cannot add more; nothing is pruned. Also: tier4 ($10,000) has no parish bullet at all and silently inherits tier3's cap.</div>
+          <textarea class="notes" data-field="b713-parish-10__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><span class="stage-pill stage-decide">✋ BROOKE</span><label class="investigate-toggle"><input type="checkbox" data-field="b713-parish-10__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="b713-sms-provisioning">
+        <div class="body">
+          <div class="title">SMS reminders: two blockers, and only one is code</div>
+          <div class="desc">The reminder job is built and running email end-to-end. SMS is a deliberate stub behind a kill switch so a half-configured deploy cannot start texting customers.</div>
+          <div class="note-static"><b>1. Twilio credentials</b> — set on Railway → Backend: <span class="cc">TWILIO_ACCOUNT_SID</span>, <span class="cc">TWILIO_AUTH_TOKEN</span>, <span class="cc">TWILIO_FROM_NUMBER</span> (or a Messaging Service SID), plus <span class="cc">NETWORKING_SMS_REMINDERS=true</span>.<br><b>2. A2P 10DLC registration (Brooke, paperwork, a few business days).</b> Unregistered US business texting is silently dropped by carriers — Twilio returns 200 and the message never arrives. Brooke should also sign off on the consent wording, which must match the campaign registration.<br>Separately: STOP handling needs a webhook, or a carrier-level opt-out won't clear our own consent flag and we'll keep queueing messages Twilio then drops.</div>
+          <textarea class="notes" data-field="b713-sms-provisioning__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><span class="stage-pill stage-decide">✋ BROOKE</span><label class="investigate-toggle"><input type="checkbox" data-field="b713-sms-provisioning__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="b713-audit-scripts">
+        <div class="body">
+          <div class="title">Two read-only audit scripts written (not yet run)</div>
+          <div class="desc"><span class="cc">audit-erroneous-storefronts.ts</span> ranks storefront-deletion candidates <em>and prints the collateral per row</em>, because deletion is not safe (see the account-types item). <span class="cc">audit-logo-banner-divergence.ts</span> prints only the merchants whose listing logo/banner actually differs from their storefront, with URLs to eyeball.</div>
+          <div class="note-static">Both are strictly read-only — no write path anywhere. Neither has been run: they must reach prod to be useful, which means either a deploy or piping them into the container over ssh. Liam runs these himself.</div>
+          <textarea class="notes" data-field="b713-audit-scripts__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><span class="stage-pill stage-written">✎ WRITTEN 7/13</span><label class="investigate-toggle"><input type="checkbox" data-field="b713-audit-scripts__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="b713-messaging-upload">
+        <div class="body">
+          <div class="title">Last instance of the server-action upload bug — found and fixed</div>
+          <div class="desc">Message attachments still uploaded through a <span class="cc">"use server"</span> action taking a raw File — the identical bug class that broke barter (7/2) and directory (7/10), just not in Sentry yet. Moved to an API route.</div>
+          <div class="note-static">Also added a server-side merge barrier: the backend used to REPLACE the owner_interview / devotional jsonb columns wholesale, so any client writing without reading first would silently blank them. Now it merges on key presence — an image-only save cannot touch a character of interview text.</div>
+          <textarea class="notes" data-field="b713-messaging-upload__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><span class="stage-pill stage-written">✎ WRITTEN 7/13</span><label class="investigate-toggle"><input type="checkbox" data-field="b713-messaging-upload__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="b713-sms-pii-log">
+        <div class="body">
+          <div class="title">Pre-existing: sms.ts logs customer phone numbers to the console</div>
+          <div class="desc"><span class="cc">lib/sms.ts:60</span> logs the recipient's phone number and the message body whenever Twilio is unconfigured — which it currently is. Dates to April; reached by the order-shipped email path.</div>
+          <div class="note-static">Not introduced by today's work — the new reminder path deliberately routes around it. Flagged as a follow-up, not fixed, because it was outside the diff under review.</div>
+          <textarea class="notes" data-field="b713-sms-pii-log__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="b713-sms-pii-log__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="b713-admin-location-ui">
+        <div class="body">
+          <div class="title">Admin: no UI yet for the new event location type</div>
+          <div class="desc">Events now carry a real <span class="cc">location_type</span> (virtual / in_person / hybrid) instead of the app guessing from whether a Zoom link was pasted in. The API validates it, but the admin event form has no radio for it yet — so every event stays "virtual".</div>
+          <div class="note-static">Correct for every event that exists today (all are Zoom calls), but an in-person event cannot be marked as one from the admin panel. This is the next follow-up in the events thread.</div>
+          <textarea class="notes" data-field="b713-admin-location-ui__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="b713-admin-location-ui__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+      <li class="item">
+        <input type="checkbox" data-field="b713-cf-sells">
+        <div class="body">
+          <div class="title">One backend commit still not on prod (<span class="cc">224b836</span>)</div>
+          <div class="desc">The cf_sells display-label fix. Without it, prod CRM contacts have a blank "sells" field and Brooke cannot segment product-vs-service emails.</div>
+          <div class="note-static">Verified with <span class="cc">git cherry</span>: this is the ONLY backend commit genuinely absent from prod. Cherry-pick — do not branch-promote (vendor master carries Shopify commits that never hit staging).</div>
+          <textarea class="notes" data-field="b713-cf-sells__notes" rows="1" placeholder="Notes / status..."></textarea>
+        </div>
+        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="b713-cf-sells__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+      </li>
+    </ul>
+  </section>
 
   <!-- ===================== FRIDAY'S MEETING ===================== -->
   <section>
@@ -102,13 +200,14 @@
         <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="fri-admin-listing-photos__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="fri-tier-parish-sync">
+        <input type="checkbox" data-field="fri-tier-parish-sync" checked>
         <div class="body">
           <div class="title">Tier override must sync parish-affiliation count</div>
           <div class="desc">When admin pins a listing's tier (the override that went live 7/6), the number of parish affiliations the owner can choose must sync to the pinned tier (1/3/10 by tier).</div>
+          <div class="note-static">DONE — but read the parish note in the 7/13 section first. The real ladder was 1/3/25, not 1/3/10, and going to 10 REVERSES a decision Brooke made on 7/7. Also fixed: a tier DOWNGRADE never used to shrink the cap.</div>
           <textarea class="notes" data-field="fri-tier-parish-sync__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="fri-tier-parish-sync__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-written">✎ WRITTEN 7/13</span><label class="investigate-toggle"><input type="checkbox" data-field="fri-tier-parish-sync__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
         <input type="checkbox" data-field="fri-my-parishes">
@@ -174,13 +273,14 @@
         <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="fri-events-networking-copy__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="fri-events-rsvp-count">
+        <input type="checkbox" data-field="fri-events-rsvp-count" checked>
         <div class="body">
           <div class="title">Events: RSVP count not showing</div>
           <div class="desc"><span class="cc">Admin RSVP count fix went live 7/6 (was always 0). If Brooke means the public event page count, that part still needs checking.</span></div>
+          <div class="note-static">Public count fixed. The cards were counting a field the public API deliberately strips (RSVPs are PII), so they always read 0.</div>
           <textarea class="notes" data-field="fri-events-rsvp-count__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="fri-events-rsvp-count__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-written">✎ WRITTEN 7/13</span><label class="investigate-toggle"><input type="checkbox" data-field="fri-events-rsvp-count__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
         <input type="checkbox" data-field="fri-events-zoom-create">
@@ -192,22 +292,24 @@
         <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="fri-events-zoom-create__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="fri-events-calendar-invite">
+        <input type="checkbox" data-field="fri-events-calendar-invite" checked>
         <div class="body">
           <div class="title">Events: calendar invite with Zoom not sent</div>
           <div class="desc">RSVP should trigger a calendar invite carrying the Zoom link.</div>
+          <div class="note-static">Real RFC-5545 .ics attached to the RSVP confirmation email. Reminder emails re-attach it, which UPDATES the calendar entry in place — that is the self-heal for an invite sent before the Zoom link was pasted in.</div>
           <textarea class="notes" data-field="fri-events-calendar-invite__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="fri-events-calendar-invite__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-written">✎ WRITTEN 7/13</span><label class="investigate-toggle"><input type="checkbox" data-field="fri-events-calendar-invite__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="fri-events-reminders-convo">
+        <input type="checkbox" data-field="fri-events-reminders-convo" checked>
         <div class="body">
           <div class="title">Events: email + text reminders — conversation needed</div>
           <div class="desc">How do reminders work now vs. how we want them to work? Schedule a discussion with Brooke.</div>
+          <div class="note-static">Decided: Brooke wants reminders. Email reminders work now; SMS is blocked on Twilio credentials + A2P 10DLC registration — see the 7/13 section.</div>
           <textarea class="notes" data-field="fri-events-reminders-convo__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="fri-events-reminders-convo__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
+        <div class="tags"><span class="stage-pill stage-written">✎ WRITTEN 7/13</span><label class="investigate-toggle"><input type="checkbox" data-field="fri-events-reminders-convo__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
       </li>
       <li class="item">
         <input type="checkbox" data-field="fri-make-social">
@@ -312,12 +414,13 @@
         <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="cb-admin-tabs__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="cb-local-pricing-flow">
+        <input type="checkbox" data-field="cb-local-pricing-flow" checked>
         <div class="body">
           <div class="title">Verify Local member sign-up shows pricing before login redirect</div>
+          <div class="note-static">The rebuilt claim funnel shows the tier screen WITH pricing before register. Live on prod.</div>
           <textarea class="notes" data-field="cb-local-pricing-flow__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="cb-local-pricing-flow__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-live">● LIVE</span><label class="investigate-toggle"><input type="checkbox" data-field="cb-local-pricing-flow__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
         <input type="checkbox" data-field="cb-claim-logo-fix">
@@ -453,13 +556,14 @@
         <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-sort-options__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="mon-cancel-email">
+        <input type="checkbox" data-field="mon-cancel-email" checked>
         <div class="body">
           <div class="title">Email Brooke when a member cancels or stops paying</div>
           <div class="desc"><span class="cc">DONE 7/6: internal heads-up email on cancel + payment-failed, incl. a warning when the listing has a pinned tier. The "Loaves &amp; Fishes Café" cancellation she received WAS our staging test — tell her to disregard.</span></div>
+          <div class="note-static">DONE 7/6 — internal heads-up email on cancel + payment-failed.</div>
           <textarea class="notes" data-field="mon-cancel-email__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-cancel-email__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-live">● LIVE</span><label class="investigate-toggle"><input type="checkbox" data-field="mon-cancel-email__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
         <input type="checkbox" data-field="mon-linked-state">
@@ -512,13 +616,14 @@
     <div class="secnote">New items from the 7/7 emails (Brooke 2:21 AM &amp; 4:46 AM, Matteo 3:24 AM). ⚠️ Brooke: HOLD the Apple/Google submission until Matteo's items + these are done.</div>
     <ul class="items">
       <li class="item">
-        <input type="checkbox" data-field="ios-hold-submission">
+        <input type="checkbox" data-field="ios-hold-submission" checked>
         <div class="body">
           <div class="title">⚠️ HOLD app-store submission (Apple + Google)</div>
           <div class="desc">Brooke 4:46 AM: don't submit build 20 yet — wait until Matteo's items below and the iOS checkout-copy fix are done. (Supersedes "submit build 20 this week"; the 3rd submission absorbs these.)</div>
+          <div class="note-static">HOLD LIFTED — build 27 / vc21 built and submitted to iOS review. Android AAB is ready to upload to Play.</div>
           <textarea class="notes" data-field="ios-hold-submission__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="ios-hold-submission__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
+        <div class="tags"><span class="stage-pill stage-live">● LIVE</span><label class="investigate-toggle"><input type="checkbox" data-field="ios-hold-submission__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
       </li>
       <li class="item">
         <input type="checkbox" data-field="ios-placing-order-copy">
@@ -690,13 +795,14 @@
         <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="carry-tos-flow__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="carry-mobile-next-build">
+        <input type="checkbox" data-field="carry-mobile-next-build" checked>
         <div class="body">
           <div class="title">Mobile: submit build 20 to the stores; fold stale-cart recovery into 3.0.2</div>
           <div class="desc">Store candidate = 3.0.1 iOS build 20 / Android vc15 (multi-seller checkout fix). The 7/6 stale-cart auto-recovery branch (<span class="cc">fix/checkout-stale-cart-recovery</span>) rides the NEXT build.</div>
+          <div class="note-static">Superseded — we are on 3.0.6 / iOS b27 / Android vc21.</div>
           <textarea class="notes" data-field="carry-mobile-next-build__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="carry-mobile-next-build__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-build">● IN BUILD 27</span><label class="investigate-toggle"><input type="checkbox" data-field="carry-mobile-next-build__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
         <input type="checkbox" data-field="carry-staging-allowlist">
@@ -742,103 +848,114 @@
     <h2>7/8 Tester QA batch (Brooke + Mateo reports) <span class="count"></span></h2>
     <ul class="items">
       <li class="item">
-        <input type="checkbox" data-field="qa78-marketplace-pagination">
+        <input type="checkbox" data-field="qa78-marketplace-pagination" checked>
         <div class="body">
           <div class="title">Marketplace now shows ALL products</div>
           <div class="desc">Was capped at the first 40 of 301 — the app never loaded page 2. Now auto-loads as you scroll. In the next app build.</div>
+          <div class="note-static">Auto-loads past the old 40-item cap.</div>
           <textarea class="notes" data-field="qa78-marketplace-pagination__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle" title="Flag for Claude to check on"><input type="checkbox" data-field="qa78-marketplace-pagination__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-build">● IN BUILD 27</span><label class="investigate-toggle" title="Flag for Claude to check on"><input type="checkbox" data-field="qa78-marketplace-pagination__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="qa78-price-filter">
+        <input type="checkbox" data-field="qa78-price-filter" checked>
         <div class="body">
           <div class="title">Price filter searches the whole catalog</div>
           <div class="desc">Brooke's video: $0–300 showed no rosaries. The filter only looked at the 40 loaded items; it now filters server-side across everything. In the next app build.</div>
+          <div class="note-static">Filter is server-side now. NOTE: Brooke still saw $27/$35 items under a $25 cap on 7/11 — see the price-filter-tolerance item, which is still open.</div>
           <textarea class="notes" data-field="qa78-price-filter__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="qa78-price-filter__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-build">● IN BUILD 27</span><label class="investigate-toggle"><input type="checkbox" data-field="qa78-price-filter__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="qa78-vendor-shop-bleed">
+        <input type="checkbox" data-field="qa78-vendor-shop-bleed" checked>
         <div class="body">
           <div class="title">Vendor shop no longer shows other merchants' products</div>
           <div class="desc">Mateo's screenshot (lobster in a financial listing's shop): a timing race let the full marketplace overwrite the vendor's own catalog. Fixed. In the next app build.</div>
+          <div class="note-static">Race condition fixed.</div>
           <textarea class="notes" data-field="qa78-vendor-shop-bleed__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="qa78-vendor-shop-bleed__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-build">● IN BUILD 27</span><label class="investigate-toggle"><input type="checkbox" data-field="qa78-vendor-shop-bleed__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="qa78-directory-autoload">
+        <input type="checkbox" data-field="qa78-directory-autoload" checked>
         <div class="body">
           <div class="title">Directory auto-loads as you scroll</div>
           <div class="desc">The manual "Load More" button is gone — next pages load automatically near the bottom. In the next app build.</div>
+          <div class="note-static">Manual "Load More" gone.</div>
           <textarea class="notes" data-field="qa78-directory-autoload__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="qa78-directory-autoload__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-build">● IN BUILD 27</span><label class="investigate-toggle"><input type="checkbox" data-field="qa78-directory-autoload__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="qa78-cart-shop-nav">
+        <input type="checkbox" data-field="qa78-cart-shop-nav" checked>
         <div class="body">
           <div class="title">Empty cart → "Shop Marketplace" works (iOS blank screen / popup nav)</div>
           <div class="desc">The cart sheet stayed open while the marketplace moved behind it. It now closes and lands you on the Shop tab. In the next app build.</div>
+          <div class="note-static">Cart sheet closes correctly.</div>
           <textarea class="notes" data-field="qa78-cart-shop-nav__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="qa78-cart-shop-nav__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-build">● IN BUILD 27</span><label class="investigate-toggle"><input type="checkbox" data-field="qa78-cart-shop-nav__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="qa78-gallery-lightbox">
+        <input type="checkbox" data-field="qa78-gallery-lightbox" checked>
         <div class="body">
           <div class="title">Listing photos open fullscreen + owner/devotional photos square</div>
           <div class="desc">Tapping gallery photos now opens a fullscreen viewer (swipe + zoom); Meet-the-Owner and Devotional images render square instead of letterboxed. App only — web gallery is a separate open item below. In the next app build.</div>
+          <div class="note-static">Fullscreen viewer with swipe + zoom. APP ONLY — the website still needs this (see the web-gallery item).</div>
           <textarea class="notes" data-field="qa78-gallery-lightbox__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="qa78-gallery-lightbox__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-build">● IN BUILD 27</span><label class="investigate-toggle"><input type="checkbox" data-field="qa78-gallery-lightbox__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="qa78-back-arrow">
+        <input type="checkbox" data-field="qa78-back-arrow" checked>
         <div class="body">
           <div class="title">Back from a listing's website returns to the listing (Android)</div>
           <div class="desc">Root cause found: the earlier fix never made it into store builds (build config gap). It now ships with every build. Verify on the next build.</div>
+          <div class="note-static">Build config gap fixed. Brooke still saw intermittent back-nav problems on Android 7/11 — see the android-backnav item.</div>
           <textarea class="notes" data-field="qa78-back-arrow__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="qa78-back-arrow__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-build">● IN BUILD 27</span><label class="investigate-toggle"><input type="checkbox" data-field="qa78-back-arrow__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="qa78-trust-badges">
+        <input type="checkbox" data-field="qa78-trust-badges" checked>
         <div class="body">
           <div class="title">Incorrect product-page claims removed (30-day returns / portion donated)</div>
           <div class="desc">Removed on app AND web; the accurate ones (Catholic-owned, shipping included) stay. Real per-seller shipping/return policy display needs copy + policy data from Brooke.</div>
+          <div class="note-static">Removed the inaccurate 30-day-returns / portion-donated claims. Accurate claims stay.</div>
           <textarea class="notes" data-field="qa78-trust-badges__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="qa78-trust-badges__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-live">● LIVE</span><label class="investigate-toggle"><input type="checkbox" data-field="qa78-trust-badges__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="qa78-reviews-ui">
+        <input type="checkbox" data-field="qa78-reviews-ui" checked>
         <div class="body">
           <div class="title">NEW: Reviews in the app — seller AND product reviews</div>
           <div class="desc">View seller scores + reviews (with seller replies) on shops, product reviews on product pages, write/edit from your orders, "My Reviews" in the menu. Names show as "First name + last initial." for privacy. In the next app build.</div>
+          <div class="note-static">Seller + product reviews in the app. Backend edit/delete is still broken — separate item.</div>
           <textarea class="notes" data-field="qa78-reviews-ui__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="qa78-reviews-ui__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-build">● IN BUILD 27</span><label class="investigate-toggle"><input type="checkbox" data-field="qa78-reviews-ui__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="qa78-checkout-shipping">
+        <input type="checkbox" data-field="qa78-checkout-shipping" checked>
         <div class="body">
           <div class="title">Checkout "No shipping options are available" (intermittent) — #1 issue</div>
           <div class="desc">Two causes found. (1) Dead cart from a deleted test account (Brooke's iPad 7/5, build 20) — build 21 recovers automatically. (2) A transient window when a seller edits shipping settings — needs a backend guard promoted to prod. All 21 sellers verified OK right now.</div>
+          <div class="note-static">Two-part fix: backend delete-guard is LIVE on prod; app-side stale-cart auto-recovery is in build 27. Worth an explicit retest — this was the #1 issue.</div>
           <textarea class="notes" data-field="qa78-checkout-shipping__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="qa78-checkout-shipping__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-build">● IN BUILD 27</span><label class="investigate-toggle"><input type="checkbox" data-field="qa78-checkout-shipping__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="qa78-map-preview">
+        <input type="checkbox" data-field="qa78-map-preview" checked>
         <div class="body">
           <div class="title">Map listing preview sat too low — covered by the nav bar</div>
           <div class="desc">Clarified by Mateo 7/8 (both platforms). The card now positions itself above the floating nav bar on every device (safe-area aware). In the next app build.</div>
+          <div class="note-static">Card now sits above the floating nav bar.</div>
           <textarea class="notes" data-field="qa78-map-preview__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="qa78-map-preview__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
+        <div class="tags"><span class="stage-pill stage-build">● IN BUILD 27</span><label class="investigate-toggle"><input type="checkbox" data-field="qa78-map-preview__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
       </li>
       <li class="item">
         <input type="checkbox" data-field="qa78-web-gallery">
@@ -859,22 +976,24 @@
         <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="qa78-reviews-editdelete-bug__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="qa78-first-product-unbuyable">
+        <input type="checkbox" data-field="qa78-first-product-unbuyable" checked>
         <div class="body">
           <div class="title">#1 product in the marketplace can't be bought</div>
           <div class="desc">St. Catherine of Siena Print (maeve-cahill-art) is the first card everyone sees, but the vendor never finished onboarding, so add-to-cart fails (marissa-thornberry-art same). Durable fix BUILT 7/8: products from not-yet-live vendors are now flagged in search and hidden on web + app automatically — vendors appear the moment they complete go-live. Awaiting backend deploy + one-time reindex, then this checks off.</div>
+          <div class="note-static">Durable fix: products from not-live vendors are now hidden. Deployed + reindexed.</div>
           <textarea class="notes" data-field="qa78-first-product-unbuyable__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="qa78-first-product-unbuyable__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
+        <div class="tags"><span class="stage-pill stage-live">● LIVE</span><label class="investigate-toggle"><input type="checkbox" data-field="qa78-first-product-unbuyable__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="qa78-mobile-build">
+        <input type="checkbox" data-field="qa78-mobile-build" checked>
         <div class="body">
           <div class="title">Cut + distribute the new mobile build with all of the above</div>
           <div class="desc">All fixes + the reviews feature are committed on a branch; needs push → EAS build → TestFlight / Play internal so Brooke + Mateo can retest.</div>
+          <div class="note-static">Build 27 / vc21 cut, iOS submitted, Android AAB ready.</div>
           <textarea class="notes" data-field="qa78-mobile-build__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="qa78-mobile-build__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-build">● IN BUILD 27</span><label class="investigate-toggle"><input type="checkbox" data-field="qa78-mobile-build__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
     </ul>
   </section>
@@ -885,40 +1004,42 @@
     <div class="secnote">Deduped across iPhone / iPad / Android phone / Android tablet — shared items listed once. Cross-checked against overnight Sentry error monitoring. Mobile fixes ride the next app build (no store submission until they pass). Data-type / CTA cluster is the 10 AM 7/10 meeting topic.</div>
     <ul class="items">
       <li class="item">
-        <input type="checkbox" data-field="tr-cta-stuck">
+        <input type="checkbox" data-field="tr-cta-stuck" checked>
         <div class="body">
           <div class="title">Business listings stuck with "Shop" CTA; custom CTA won't stick</div>
           <div class="desc">Business Owners all show a Shop CTA no matter what Brooke or the owner sets; older Merchants lost their "Visit Shop" CTA entirely. <span class="cc">Two suspects under investigation 7/10 AM: the public-API allowlist (toPublicListing) may be stripping custom-CTA fields (edits save but never surface), and Sentry shows repeated "Unexpected end of form" errors on the owner directory-edit endpoint (8 events) — some owner edits may never save at all.</span></div>
+          <div class="note-static">FIXED ON PROD 7/10-11 — the has_live_shop batch. This was Brooke's lead complaint. Records mis-typed BEFORE the fix may still need a hand pass; see the account-type item.</div>
           <textarea class="notes" data-field="tr-cta-stuck__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-cta-stuck__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-live">● LIVE</span><label class="investigate-toggle"><input type="checkbox" data-field="tr-cta-stuck__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
         <input type="checkbox" data-field="tr-account-types">
         <div class="body">
-          <div class="title">Account-type cleanup: Business Owners vs Merchants; delete erroneous storefronts</div>
-          <div class="desc">Clarify the taxonomy confusion (10 AM 7/10 meeting), then fix mislabeled accounts and remove storefronts business owners never needed. <span class="cc">An audit script listing every mismatched account is being prepped so the manual pass is a checklist, not archaeology. Storefront deletion is destructive — will not run without Brooke's per-account confirmation.</span></div>
+          <div class="title">Account types — DO NOT delete those storefronts (premise was wrong)</div>
+          <div class="desc"><strong>Read before acting.</strong> On this platform a Business Owner <em>needs</em> a seller row — it is their messaging inbox and their vendor-dashboard login. <span class="cc">store/directory/listings/[id]/route.ts</span> only makes a listing messageable when its vendor_id resolves to an ACTIVE seller, and the "Visit Our Shop" CTA is a <em>separate</em> flag that additionally requires ≥1 published product — that split exists precisely so product-less Business Owners keep their Message button. Deleting these sellers kills the owner's Message button, their ability to log in and edit their own listing, and their CRM record.<br><br>What Brooke actually saw was the <strong>"Shop" CTA appearing where it shouldn't</strong> — and that is fixed on prod. Likely origin of the mess: <span class="cc">POST /store/account/become-merchant</span> creates a seller unconditionally for any authenticated customer, ignoring recommended_tier even though it saves it in the same handler.<br><br><strong>Next step is a conversation with Brooke, not a deletion.</strong> A read-only audit script (<span class="cc">audit-erroneous-storefronts.ts</span>) is written; it ranks candidates and prints the collateral per row rather than calling anything safe to delete.</div>
           <textarea class="notes" data-field="tr-account-types__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-account-types__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
+        <div class="tags"><span class="stage-pill stage-decide">✋ BROOKE</span><label class="investigate-toggle"><input type="checkbox" data-field="tr-account-types__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="tr-message-business">
+        <input type="checkbox" data-field="tr-message-business" checked>
         <div class="body">
           <div class="title">"Message Seller" → "Message business" on business listings; merchants route to storefront messaging</div>
           <div class="desc">Label follows the account type; for Merchants the button should open a storefront messaging session. Implemented after the taxonomy is settled at the 10 AM meeting.</div>
+          <div class="note-static">Renamed on business listings. One stale "MESSAGE SELLER" label survives on the storefront screen — small follow-up.</div>
           <textarea class="notes" data-field="tr-message-business__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-message-business__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-build">● IN BUILD 27</span><label class="investigate-toggle"><input type="checkbox" data-field="tr-message-business__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
         <input type="checkbox" data-field="tr-owner-interview-loss">
         <div class="body">
-          <div class="title">Owner-interview answers Brooke saved are cleared out</div>
-          <div class="desc"><span class="cc">Prime suspect: the 5-minute SSO handoff-token bug — editing longer than 5 minutes made saves silently fail with a 401 (owner interview was the canonical case). The 7-day-token fix is written and awaiting the backend prod promote. Checking whether the data still exists in the DB.</span></div>
+          <div class="title">Owner-interview answers "cleared out" — data is INTACT; it's a tier gate</div>
+          <div class="desc"><strong>Mystery solved, and it is not data loss.</strong> The Owner Interview section only renders for <span class="cc">featured</span>/<span class="cc">enterprise</span> tiers, and that gate landed 6/23–6/24 — <em>after</em> Brooke had already filled the answers in. Her text is sitting intact in <span class="cc">directory_listing.owner_interview</span> and reappears the moment the tier flips.<br><br>It was NOT the upload bug (that fired on image selection, before any save, and was fixed 7/10). <strong>Removing the gate hands Local/Verified owners a perk currently sold as part of $699 Featured — that is a pricing decision for Brooke</strong>, not a bug fix. One line in each of two files once she decides.<br><br>Hardened regardless: the backend now merges the interview blob on write, so no client can blank an answer by omitting it.</div>
           <textarea class="notes" data-field="tr-owner-interview-loss__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-owner-interview-loss__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-decide">✋ BROOKE</span><label class="investigate-toggle"><input type="checkbox" data-field="tr-owner-interview-loss__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
         <input type="checkbox" data-field="tr-logo-banner-sync">
@@ -930,13 +1051,14 @@
         <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-logo-banner-sync__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="tr-onboarding-paths">
+        <input type="checkbox" data-field="tr-onboarding-paths" checked>
         <div class="body">
           <div class="title">Every onboarding path must create the correct account type</div>
           <div class="desc"><span class="cc">Sentry cross-ref: a JS crash on /sell/onboarding (setAttribute on null, 2 events 7/8) is being fixed as part of this sweep.</span></div>
+          <div class="note-static">FIXED ON PROD 7/10-11 with the claim/onboarding rebuild. All three paths verified end-to-end on staging: fresh merchant, fresh business owner, logged-in convert.</div>
           <textarea class="notes" data-field="tr-onboarding-paths__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-onboarding-paths__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-live">● LIVE</span><label class="investigate-toggle"><input type="checkbox" data-field="tr-onboarding-paths__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
         <input type="checkbox" data-field="tr-add-business-btn">
@@ -992,13 +1114,14 @@
         <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-cta-flaky-ios__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="tr-share-deeplink">
+        <input type="checkbox" data-field="tr-share-deeplink" checked>
         <div class="body">
           <div class="title">Share link opens mobile web, not the app — verify deep links</div>
           <div class="desc">May be expected on test builds (store-installed apps register the links); verifying the config either way.</div>
+          <div class="note-static">CONFIRMED WORKING by Brooke 7/11 ("It is magical!!! ALSO FOR EVENT SHARE LINKS!!").</div>
           <textarea class="notes" data-field="tr-share-deeplink__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-share-deeplink__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-build">● IN BUILD 27</span><label class="investigate-toggle"><input type="checkbox" data-field="tr-share-deeplink__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
         <input type="checkbox" data-field="tr-storefront-parity">
@@ -1053,22 +1176,24 @@
         <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-guides-pin__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="tr-events-rsvp-state">
+        <input type="checkbox" data-field="tr-events-rsvp-state" checked>
         <div class="body">
           <div class="title">Events (app): RSVP state should stick — "You're Going", details + Zoom link for registered users, real attendee count, event graphic, location says "Zoom", Share button</div>
           <div class="desc"><span class="cc">The single-event API route with server-derived RSVP count already exists on staging (7/6 fix) — the app needs to consume it; rest is app UI.</span></div>
+          <div class="note-static">RSVP now persists ("You're going"). Attendee count fixed — the cards were reading a field the API strips, so every card said 0. Zoom-vs-in-person is a real column now instead of a guess. Registered users see the Zoom link.</div>
           <textarea class="notes" data-field="tr-events-rsvp-state__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-events-rsvp-state__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-written">✎ WRITTEN 7/13</span><label class="investigate-toggle"><input type="checkbox" data-field="tr-events-rsvp-state__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="tr-events-reminders">
+        <input type="checkbox" data-field="tr-events-reminders" checked>
         <div class="body">
           <div class="title">Events: calendar invite on RSVP + SMS/email reminders (15 min / 1 day / 7 days) + collect cell phone</div>
           <div class="desc">NEW SCOPE, not a bug: Twilio is a new vendor (setup + per-message cost) and collecting phone numbers is a privacy/ToS call. Needs Brooke's go before building. Calendar-invite email is the cheapest first slice.</div>
+          <div class="note-static">Calendar invite (.ics) on RSVP is DONE and goes through the existing Resend sender. Phone collection at RSVP is done, with consent + STOP disclosure. SMS reminders are built as a seam — email runs through it end-to-end; Twilio is a deliberate stub. SEE THE TWO SMS BLOCKERS in the new 7/13 section.</div>
           <textarea class="notes" data-field="tr-events-reminders__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-events-reminders__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
+        <div class="tags"><span class="stage-pill stage-written">✎ WRITTEN 7/13</span><label class="investigate-toggle"><input type="checkbox" data-field="tr-events-reminders__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
       </li>
       <li class="item">
         <input type="checkbox" data-field="tr-cart-variant">
@@ -1125,22 +1250,24 @@
         <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-map-markers__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="tr-android-icon-margin">
+        <input type="checkbox" data-field="tr-android-icon-margin" checked>
         <div class="body">
           <div class="title">Android app icon needs more margin (Brooke's screenshot)</div>
           <div class="desc"><span class="cc">Already fixed before the email: the icon safe-zone fix is staged for the next build (was part of the 7/9 batch). No new file needed from Brooke. Verify on the next build.</span></div>
+          <div class="note-static">Same fix as above — ring now sits at 85% of the visible circle.</div>
           <textarea class="notes" data-field="tr-android-icon-margin__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-android-icon-margin__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-build">● IN BUILD 27</span><label class="investigate-toggle"><input type="checkbox" data-field="tr-android-icon-margin__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="tr-product-images-slow">
+        <input type="checkbox" data-field="tr-product-images-slow" checked>
         <div class="body">
           <div class="title">Slow-loading product images</div>
           <div class="desc"><span class="cc">Prod image optimization applied + verified 7/9 (78% byte reduction on the worst offenders) — landed during/after the test session. Needs a re-test before further work.</span></div>
+          <div class="note-static">Two parts, both live: existing images optimized on prod (78% smaller), AND /vendor/uploads now resizes at the gate so it cannot regrow. NOT covered: admin-panel uploads still do not resize.</div>
           <textarea class="notes" data-field="tr-product-images-slow__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="tr-product-images-slow__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-live">● LIVE</span><label class="investigate-toggle"><input type="checkbox" data-field="tr-product-images-slow__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
         <input type="checkbox" data-field="tr-my-parishes-dashboard">
@@ -1177,76 +1304,84 @@
     <div class="secnote">Their color-coded retest of the new builds: deep links, CTAs, and most of the 7/9 batch confirmed working 🎉 — these are the new finds + fallout, scoped for Monday&#39;s release build. Two red items lead.</div>
     <ul class="items">
       <li class="item">
-        <input type="checkbox" data-field="mon-map-crash">
+        <input type="checkbox" data-field="mon-map-crash" checked>
         <div class="body">
           <div class="title">🔴 Map crash (fatal, iPhone + iPad) — maps library upgraded + churn cap</div>
           <div class="desc">Your 3 crash reports matched two Sentry fatals in the map component (build 25). Library upgraded to a version with the known crash fixes + a safety cap on simultaneous markers. Verifying on emulator; ships Monday. The intermittent disappearing/double icons were the same bug family.</div>
+          <div class="note-static">Maps library upgraded + marker cap. The only fatal on the board — now closed.</div>
           <textarea class="notes" data-field="mon-map-crash__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-map-crash__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-build">● IN BUILD 27</span><label class="investigate-toggle"><input type="checkbox" data-field="mon-map-crash__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="mon-play-datasafety">
+        <input type="checkbox" data-field="mon-play-datasafety" checked>
         <div class="body">
           <div class="title">🔴 Google Play Data-Safety: account-deletion URL 404s (deadline 7/24 — blocks Play updates)</div>
           <div class="desc">Fix = point the Data Safety form at https://www.catholicowned.com/account-deletion (page is live). Brooke can edit the form in Play Console; a permanent redirect from the old /support_page URL is also ready to deploy. MUST be fixed before Monday&#39;s Android submission. (The two bullets in Google&#39;s email are the same issue, not two.)</div>
+          <div class="note-static">DONE 7/11 (Sat) — account-deletion URL fixed and deployed. The 7/24 Play deadline is cleared. This was the only hard date on the project.</div>
           <textarea class="notes" data-field="mon-play-datasafety__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-play-datasafety__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
+        <div class="tags"><span class="stage-pill stage-live">● LIVE</span><label class="investigate-toggle"><input type="checkbox" data-field="mon-play-datasafety__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-both">Both</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="mon-dir-sort-global">
+        <input type="checkbox" data-field="mon-dir-sort-global" checked>
         <div class="body">
           <div class="title">Directory sort order across pages (Enterprise-in-their-states → Featured → rest)</div>
           <div class="desc">The scroll-jump fix made each page sort independently — fix is moving tier ranking into the search index so pages arrive globally sorted.</div>
+          <div class="note-static">Tier ranking moved into the search index, so sorting is global rather than per-page.</div>
           <textarea class="notes" data-field="mon-dir-sort-global__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-dir-sort-global__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-build">● IN BUILD 27</span><label class="investigate-toggle"><input type="checkbox" data-field="mon-dir-sort-global__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="mon-marker-colors">
+        <input type="checkbox" data-field="mon-marker-colors" checked>
         <div class="body">
           <div class="title">Map pins: swap to GOLD ring / navy fill / white dot</div>
           <div class="desc">Done in code per your note — the 7/10 colorway was inverted.</div>
+          <div class="note-static">Gold ring / navy fill / white dot, as specified.</div>
           <textarea class="notes" data-field="mon-marker-colors__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-marker-colors__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-build">● IN BUILD 27</span><label class="investigate-toggle"><input type="checkbox" data-field="mon-marker-colors__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="mon-marker-clip">
+        <input type="checkbox" data-field="mon-marker-clip" checked>
         <div class="body">
           <div class="title">Selected map pin renders cut off</div>
           <div class="desc">Same platform bug as the group bubbles — enlarged pin now sized inside the safe canvas. Done in code.</div>
+          <div class="note-static">Enlarged selected pin resized inside a safe canvas.</div>
           <textarea class="notes" data-field="mon-marker-clip__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-marker-clip__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-build">● IN BUILD 27</span><label class="investigate-toggle"><input type="checkbox" data-field="mon-marker-clip__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="mon-cart-stacking">
+        <input type="checkbox" data-field="mon-cart-stacking" checked>
         <div class="body">
           <div class="title">Cart → product pages stack on repeat taps</div>
           <div class="desc">Repeat cart-line taps now reuse the open product page instead of piling screens.</div>
+          <div class="note-static">Repeat taps reuse the product page instead of pushing a new one.</div>
           <textarea class="notes" data-field="mon-cart-stacking__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-cart-stacking__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-build">● IN BUILD 27</span><label class="investigate-toggle"><input type="checkbox" data-field="mon-cart-stacking__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="mon-share-dedupe">
+        <input type="checkbox" data-field="mon-share-dedupe" checked>
         <div class="body">
           <div class="title">Share message contains the link twice</div>
           <div class="desc">iOS share put the URL in two fields; send it once.</div>
+          <div class="note-static">iOS share sheet sends the URL once.</div>
           <textarea class="notes" data-field="mon-share-dedupe__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-share-dedupe__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-build">● IN BUILD 27</span><label class="investigate-toggle"><input type="checkbox" data-field="mon-share-dedupe__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="mon-bottom-padding">
+        <input type="checkbox" data-field="mon-bottom-padding" checked>
         <div class="body">
           <div class="title">Bottom row hidden behind the floating nav bar (directory, marketplace, events, trade)</div>
           <div class="desc">Padding sweep on all four lists.</div>
+          <div class="note-static">Tab-bar padding sweep across directory, marketplace, events and trade. Brooke logged this 8 times across 4 devices — it is one fix.</div>
           <textarea class="notes" data-field="mon-bottom-padding__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-bottom-padding__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-build">● IN BUILD 27</span><label class="investigate-toggle"><input type="checkbox" data-field="mon-bottom-padding__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
         <input type="checkbox" data-field="mon-product-photo-50">
@@ -1321,13 +1456,14 @@
         <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-deleted-listings-index__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="mon-storefront-paging-android">
+        <input type="checkbox" data-field="mon-storefront-paging-android" checked>
         <div class="body">
           <div class="title">Android storefront: products stall / never load on scroll</div>
           <div class="desc">May have been the 7/11 search outage mid-session — retest first.</div>
+          <div class="note-static">Real infinite scroll (no Load More button). Found and fixed a latent bug on the way: loadMore called run() inside a setState updater, which only survived because a button tap drove it. TRADE-OFF NEEDING A YES: during an Algolia outage a seller storefront now shows an error instead of falling back to the whole catalog under that shop's name.</div>
           <textarea class="notes" data-field="mon-storefront-paging-android__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-storefront-paging-android__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-written">✎ WRITTEN 7/13</span><label class="investigate-toggle"><input type="checkbox" data-field="mon-storefront-paging-android__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
         <input type="checkbox" data-field="mon-single-card-size">
@@ -1339,13 +1475,14 @@
         <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-single-card-size__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="mon-icon-asset">
+        <input type="checkbox" data-field="mon-icon-asset" checked>
         <div class="body">
           <div class="title">Android icon: use Brooke&#39;s new white-background asset</div>
           <div class="desc">Files attached to her 7/11 email (2 sizes).</div>
+          <div class="note-static">Brooke's art, refit to a 15% margin against the launcher's VISIBLE CIRCLE (not the canvas). Confirmed on an emulator with the real release APK.</div>
           <textarea class="notes" data-field="mon-icon-asset__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="mon-icon-asset__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-build">● IN BUILD 27</span><label class="investigate-toggle"><input type="checkbox" data-field="mon-icon-asset__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
         <input type="checkbox" data-field="mon-messaging-ux">
@@ -1365,13 +1502,14 @@
     <div class="secnote">Not reported by testers — surfaced by cross-referencing the overnight error logs against Brooke's report.</div>
     <ul class="items">
       <li class="item">
-        <input type="checkbox" data-field="sen-algolia-outage">
+        <input type="checkbox" data-field="sen-algolia-outage" checked>
         <div class="body">
           <div class="title">7/11 search outage: search provider quota-blocked us — WEB restored same morning on an upgraded paid plan</div>
           <div class="desc"><span class="cc">The search backend (Algolia) hard-blocked the free plan after the heavy test week. Web directory/shop search was down overnight; restored by ~9:40am CT on a new paid application (full reindex verified: 4,473 listings + 315 products). The mobile TEST builds&#39; browse tabs stay degraded until the provider restores the old app (ticket filed) — and the next app build adds an automatic fallback so a search-provider outage can never blank the app again.</span></div>
+          <div class="note-static">Web restored 7/11 on the paid plan. Builds 26+ ship the new Algolia app; builds ≤25 still have broken search until users update.</div>
           <textarea class="notes" data-field="sen-algolia-outage__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="sen-algolia-outage__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-live">● LIVE</span><label class="investigate-toggle"><input type="checkbox" data-field="sen-algolia-outage__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
         <input type="checkbox" data-field="sen-dir-404">
@@ -1392,13 +1530,14 @@
         <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="sen-social-relative__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
-        <input type="checkbox" data-field="sen-dir-edit-form">
+        <input type="checkbox" data-field="sen-dir-edit-form" checked>
         <div class="body">
           <div class="title">Owner directory-edit form intermittently fails server-side ("Unexpected end of form", 8 events)</div>
           <div class="desc"><span class="cc">Ties directly to "my CTA edits don't stick" — some owner edits abort mid-upload. Same class as the 7/2 trade-upload fix (images through server actions); moving uploads to an API route.</span></div>
+          <div class="note-static">ALREADY FIXED 7/10 (a0ca1df) — directory images now upload via an API route, not a server action. NO DATA WAS LOST: it failed on image SELECTION, before any save, so answers were never-saved rather than deleted. Sentry issue can be resolved.</div>
           <textarea class="notes" data-field="sen-dir-edit-form__notes" rows="1" placeholder="Notes / status..."></textarea>
         </div>
-        <div class="tags"><label class="investigate-toggle"><input type="checkbox" data-field="sen-dir-edit-form__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
+        <div class="tags"><span class="stage-pill stage-live">● LIVE</span><label class="investigate-toggle"><input type="checkbox" data-field="sen-dir-edit-form__investigate"><span class="tag investigate">🔍 Check</span></label><span class="tag owner-liam">Liam</span></div>
       </li>
       <li class="item">
         <input type="checkbox" data-field="sen-deleted-customer">
