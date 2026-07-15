@@ -1,5 +1,5 @@
 {
-  "ts": "2026-07-15T14:20:04.632Z",
+  "ts": "2026-07-15T15:59:29.806Z",
   "overall": "up",
   "results": [
     {
@@ -8,8 +8,8 @@
       "url": "https://www.catholicowned.com/us",
       "state": "up",
       "status": 200,
-      "ttfb": 645,
-      "total": 695,
+      "ttfb": 593,
+      "total": 627,
       "edge": "iad1",
       "warnMs": 3000,
       "service": "Catholic Owned — Production"
@@ -20,8 +20,8 @@
       "url": "https://www.catholicowned.com/us/directory",
       "state": "up",
       "status": 200,
-      "ttfb": 541,
-      "total": 589,
+      "ttfb": 504,
+      "total": 544,
       "edge": "iad1",
       "warnMs": 3000,
       "service": "Catholic Owned — Production"
@@ -32,8 +32,8 @@
       "url": "https://api.catholicowned.com/health",
       "state": "up",
       "status": 200,
-      "ttfb": 590,
-      "total": 591,
+      "ttfb": 485,
+      "total": 485,
       "edge": "iad1",
       "warnMs": 1500,
       "service": "Catholic Owned — Production"
@@ -44,8 +44,8 @@
       "url": "https://v3-admin.catholicowned.com/",
       "state": "up",
       "status": 200,
-      "ttfb": 502,
-      "total": 504,
+      "ttfb": 365,
+      "total": 368,
       "edge": "iad1",
       "warnMs": 2000,
       "service": "Catholic Owned — Production"
@@ -56,8 +56,8 @@
       "url": "https://v3-vendor.catholicowned.com/",
       "state": "up",
       "status": 200,
-      "ttfb": 592,
-      "total": 592,
+      "ttfb": 498,
+      "total": 498,
       "edge": "iad1",
       "warnMs": 2000,
       "service": "Catholic Owned — Production"
@@ -68,8 +68,8 @@
       "url": "https://v3-cdn.catholicowned.com/",
       "state": "up",
       "status": 403,
-      "ttfb": 716,
-      "total": 716,
+      "ttfb": 561,
+      "total": 562,
       "edge": "iad1",
       "warnMs": 3000,
       "service": "Catholic Owned — Production"
@@ -80,8 +80,8 @@
       "url": "https://backend-staging-5366.up.railway.app/health",
       "state": "up",
       "status": 200,
-      "ttfb": 733,
-      "total": 733,
+      "ttfb": 597,
+      "total": 597,
       "edge": "iad1",
       "warnMs": 3000,
       "service": "Catholic Owned — Staging"
@@ -92,8 +92,8 @@
       "url": "https://marketplace-staging-f930.up.railway.app/us",
       "state": "up",
       "status": 200,
-      "ttfb": 1004,
-      "total": 1045,
+      "ttfb": 1291,
+      "total": 1323,
       "edge": "iad1",
       "warnMs": 5000,
       "service": "Catholic Owned — Staging"
