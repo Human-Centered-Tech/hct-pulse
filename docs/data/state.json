@@ -1,49 +1,49 @@
 {
   "co-www-home": {
     "status": "up",
-    "consecutive": 75,
+    "consecutive": 76,
     "alertedStatus": "up",
     "since": "2026-07-13T20:58:52.975Z"
   },
   "co-www-directory": {
     "status": "up",
-    "consecutive": 75,
+    "consecutive": 76,
     "alertedStatus": "up",
     "since": "2026-07-13T20:58:52.975Z"
   },
   "co-api-health": {
     "status": "up",
-    "consecutive": 75,
+    "consecutive": 76,
     "alertedStatus": "up",
     "since": "2026-07-13T20:58:52.975Z"
   },
   "co-admin": {
     "status": "up",
-    "consecutive": 75,
+    "consecutive": 76,
     "alertedStatus": "up",
     "since": "2026-07-13T20:58:52.975Z"
   },
   "co-vendor": {
     "status": "up",
-    "consecutive": 1,
-    "alertedStatus": "down",
+    "consecutive": 2,
+    "alertedStatus": "up",
     "since": "2026-07-18T19:52:11.438Z"
   },
   "co-cdn": {
     "status": "up",
-    "consecutive": 75,
+    "consecutive": 76,
     "alertedStatus": "up",
     "since": "2026-07-13T20:58:52.975Z"
   },
   "co-stg-api": {
     "status": "up",
-    "consecutive": 75,
+    "consecutive": 76,
     "alertedStatus": "up",
     "since": "2026-07-13T20:58:52.975Z"
   },
   "co-stg-www": {
     "status": "up",
-    "consecutive": 75,
+    "consecutive": 76,
     "alertedStatus": "up",
     "since": "2026-07-13T20:58:52.975Z"
   }
