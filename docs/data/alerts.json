@@ -1,13 +1,1 @@
-[
-  {
-    "id": "co-vendor",
-    "name": "Vendor dashboard",
-    "service": "Catholic Owned — Production",
-    "url": "https://v3-vendor.catholicowned.com/",
-    "from": "up",
-    "to": "down",
-    "since": "2026-07-19T17:42:58.715Z",
-    "total": 15242,
-    "status": 502
-  }
-]
+[]
