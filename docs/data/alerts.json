@@ -1,13 +1,1 @@
-[
-  {
-    "id": "co-admin",
-    "name": "Admin dashboard",
-    "service": "Catholic Owned — Production",
-    "url": "https://v3-admin.catholicowned.com/",
-    "from": "up",
-    "to": "slow",
-    "since": "2026-08-04T14:55:58.637Z",
-    "total": 3804,
-    "status": 200
-  }
-]
+[]
