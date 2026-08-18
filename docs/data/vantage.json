@@ -1,49 +1,11 @@
 {
-  "ts": "2026-08-18T17:00:05.438Z",
+  "ts": "2026-08-18T18:01:52.901Z",
   "results": {
     "https://api.catholicowned.com/health": {
-      "ca1": {
-        "ok": true,
-        "seconds": 0.218,
-        "detail": "OK"
-      },
-      "us1": {
-        "ok": true,
-        "seconds": 0.044,
-        "detail": "OK"
-      },
-      "us2": {
-        "ok": true,
-        "seconds": 0.279,
-        "detail": "OK"
-      },
-      "us3": {
-        "ok": true,
-        "seconds": 0.207,
-        "detail": "OK"
-      }
+      "error": "check-host returned non-JSON (HTTP 403, likely rate limit)"
     },
     "https://www.catholicowned.com/us": {
-      "ca1": {
-        "ok": true,
-        "seconds": 0.528,
-        "detail": "OK"
-      },
-      "us1": {
-        "ok": true,
-        "seconds": 0.359,
-        "detail": "OK"
-      },
-      "us2": {
-        "ok": true,
-        "seconds": 0.492,
-        "detail": "OK"
-      },
-      "us3": {
-        "ok": true,
-        "seconds": 0.378,
-        "detail": "OK"
-      }
+      "error": "check-host returned non-JSON (HTTP 403, likely rate limit)"
     }
   }
 }
