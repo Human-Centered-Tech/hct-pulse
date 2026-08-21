@@ -1,1 +1,57 @@
-[]
+[
+  {
+    "id": "co-www-home",
+    "name": "Storefront home",
+    "service": "Catholic Owned — Production",
+    "url": "https://www.catholicowned.com/us",
+    "from": "slow",
+    "to": "up",
+    "since": "2026-08-21T15:18:17.598Z",
+    "total": 687,
+    "status": 200
+  },
+  {
+    "id": "co-www-directory",
+    "name": "Directory",
+    "service": "Catholic Owned — Production",
+    "url": "https://www.catholicowned.com/us/directory",
+    "from": "slow",
+    "to": "up",
+    "since": "2026-08-21T15:18:17.598Z",
+    "total": 634,
+    "status": 200
+  },
+  {
+    "id": "co-admin",
+    "name": "Admin dashboard",
+    "service": "Catholic Owned — Production",
+    "url": "https://v3-admin.catholicowned.com/",
+    "from": "slow",
+    "to": "up",
+    "since": "2026-08-21T15:18:17.598Z",
+    "total": 495,
+    "status": 200
+  },
+  {
+    "id": "co-vendor",
+    "name": "Vendor dashboard",
+    "service": "Catholic Owned — Production",
+    "url": "https://v3-vendor.catholicowned.com/",
+    "from": "slow",
+    "to": "up",
+    "since": "2026-08-21T15:18:17.598Z",
+    "total": 573,
+    "status": 200
+  },
+  {
+    "id": "co-cdn",
+    "name": "Media CDN (minio)",
+    "service": "Catholic Owned — Production",
+    "url": "https://v3-cdn.catholicowned.com/",
+    "from": "slow",
+    "to": "up",
+    "since": "2026-08-21T15:18:17.598Z",
+    "total": 638,
+    "status": 403
+  }
+]
