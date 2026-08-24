@@ -1,47 +1,47 @@
 {
-  "ts": "2026-08-24T05:04:02.181Z",
+  "ts": "2026-08-24T12:02:17.047Z",
   "results": {
     "https://api.catholicowned.com/health": {
       "ca1": {
         "ok": true,
-        "seconds": 0.208,
+        "seconds": 0.194,
         "detail": "OK"
       },
       "us1": {
         "ok": true,
-        "seconds": 0.101,
+        "seconds": 0.388,
         "detail": "OK"
       },
       "us2": {
         "ok": true,
-        "seconds": 0.369,
+        "seconds": 0.296,
         "detail": "OK"
       },
       "us3": {
         "ok": true,
-        "seconds": 0.193,
+        "seconds": 0.45,
         "detail": "OK"
       }
     },
     "https://www.catholicowned.com/us": {
       "ca1": {
         "ok": true,
-        "seconds": 0.778,
+        "seconds": 0.597,
         "detail": "OK"
       },
       "us1": {
         "ok": true,
-        "seconds": 0.762,
+        "seconds": 0.542,
         "detail": "OK"
       },
       "us2": {
         "ok": true,
-        "seconds": 0.627,
+        "seconds": 0.698,
         "detail": "OK"
       },
       "us3": {
         "ok": true,
-        "seconds": 0.593,
+        "seconds": 0.634,
         "detail": "OK"
       }
     }
