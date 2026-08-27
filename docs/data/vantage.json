@@ -1,48 +1,48 @@
 {
-  "ts": "2026-08-26T11:02:26.700Z",
+  "ts": "2026-08-27T13:03:28.963Z",
   "results": {
     "https://api.catholicowned.com/health": {
       "ca1": {
-        "ok": true,
-        "seconds": 0.511,
-        "detail": "OK"
+        "ok": false,
+        "seconds": 15.124,
+        "detail": "Bad Gateway"
       },
       "us1": {
-        "ok": true,
-        "seconds": 0.404,
-        "detail": "OK"
+        "ok": false,
+        "seconds": 15.073,
+        "detail": "Bad Gateway"
       },
       "us2": {
-        "ok": true,
-        "seconds": 0.278,
-        "detail": "OK"
+        "ok": false,
+        "seconds": 15.285,
+        "detail": "Bad Gateway"
       },
       "us3": {
-        "ok": true,
-        "seconds": 0.195,
-        "detail": "OK"
+        "ok": false,
+        "seconds": 15.485,
+        "detail": "Bad Gateway"
       }
     },
     "https://www.catholicowned.com/us": {
       "ca1": {
-        "ok": true,
-        "seconds": 0.754,
-        "detail": "OK"
+        "ok": false,
+        "seconds": 15.374,
+        "detail": "Internal Server Error"
       },
       "us1": {
-        "ok": true,
-        "seconds": 0.595,
-        "detail": "OK"
+        "ok": false,
+        "seconds": 15.222,
+        "detail": "Internal Server Error"
       },
       "us2": {
-        "ok": true,
-        "seconds": 0.661,
-        "detail": "OK"
+        "ok": false,
+        "seconds": 15.342,
+        "detail": "Internal Server Error"
       },
       "us3": {
-        "ok": true,
-        "seconds": 0.836,
-        "detail": "OK"
+        "ok": false,
+        "seconds": 15.279,
+        "detail": "Internal Server Error"
       }
     }
   }
