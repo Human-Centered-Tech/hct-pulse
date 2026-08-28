@@ -1,1 +1,46 @@
-[]
+[
+  {
+    "id": "co-www-home",
+    "name": "Storefront home",
+    "service": "Catholic Owned — Production",
+    "url": "https://www.catholicowned.com/us",
+    "from": "down",
+    "to": "up",
+    "since": "2026-08-27T22:56:24.576Z",
+    "total": 721,
+    "status": 200
+  },
+  {
+    "id": "co-www-directory",
+    "name": "Directory",
+    "service": "Catholic Owned — Production",
+    "url": "https://www.catholicowned.com/us/directory",
+    "from": "down",
+    "to": "up",
+    "since": "2026-08-27T22:56:24.576Z",
+    "total": 643,
+    "status": 200
+  },
+  {
+    "id": "co-api-health",
+    "name": "Backend API /health",
+    "service": "Catholic Owned — Production",
+    "url": "https://api.catholicowned.com/health",
+    "from": "down",
+    "to": "up",
+    "since": "2026-08-27T22:56:24.576Z",
+    "total": 424,
+    "status": 200
+  },
+  {
+    "id": "co-vendor",
+    "name": "Vendor dashboard",
+    "service": "Catholic Owned — Production",
+    "url": "https://v3-vendor.catholicowned.com/",
+    "from": "up",
+    "to": "down",
+    "since": "2026-08-27T22:56:24.576Z",
+    "total": 645,
+    "status": 301
+  }
+]
