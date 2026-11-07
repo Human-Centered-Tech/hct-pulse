@@ -1,5 +1,5 @@
 {
-  "ts": "2026-11-07T11:56:25.270Z",
+  "ts": "2026-11-07T17:42:18.883Z",
   "overall": "down",
   "results": [
     {
@@ -8,8 +8,8 @@
       "url": "https://www.catholicowned.com/us",
       "state": "up",
       "status": 200,
-      "ttfb": 533,
-      "total": 580,
+      "ttfb": 594,
+      "total": 640,
       "edge": "iad1",
       "warnMs": 3000,
       "service": "Catholic Owned — Production"
@@ -20,8 +20,8 @@
       "url": "https://www.catholicowned.com/us/directory",
       "state": "up",
       "status": 200,
-      "ttfb": 478,
-      "total": 527,
+      "ttfb": 572,
+      "total": 633,
       "edge": "iad1",
       "warnMs": 3000,
       "service": "Catholic Owned — Production"
@@ -32,8 +32,8 @@
       "url": "https://api.catholicowned.com/health",
       "state": "up",
       "status": 200,
-      "ttfb": 447,
-      "total": 447,
+      "ttfb": 441,
+      "total": 442,
       "edge": "iad1",
       "warnMs": 1500,
       "service": "Catholic Owned — Production"
@@ -44,8 +44,8 @@
       "url": "https://v3-admin.catholicowned.com/",
       "state": "down",
       "status": 301,
-      "ttfb": 378,
-      "total": 378,
+      "ttfb": 377,
+      "total": 379,
       "edge": "iad1",
       "warnMs": 2000,
       "service": "Catholic Owned — Production"
@@ -56,8 +56,8 @@
       "url": "https://v3-vendor.catholicowned.com/",
       "state": "down",
       "status": 301,
-      "ttfb": 513,
-      "total": 513,
+      "ttfb": 480,
+      "total": 480,
       "edge": "iad1",
       "warnMs": 2000,
       "service": "Catholic Owned — Production"
@@ -80,8 +80,8 @@
       "url": "https://backend-staging-5366.up.railway.app/health",
       "state": "up",
       "status": 200,
-      "ttfb": 656,
-      "total": 656,
+      "ttfb": 592,
+      "total": 592,
       "edge": "iad1",
       "warnMs": 3000,
       "service": "Catholic Owned — Staging"
@@ -92,8 +92,8 @@
       "url": "https://marketplace-staging-f930.up.railway.app/us",
       "state": "up",
       "status": 200,
-      "ttfb": 1020,
-      "total": 1063,
+      "ttfb": 982,
+      "total": 1041,
       "edge": "iad1",
       "warnMs": 5000,
       "service": "Catholic Owned — Staging"
